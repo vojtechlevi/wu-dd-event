@@ -4,6 +4,7 @@ import Student from "./pages/Student";
 import Company from "./pages/Company";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/company" element={<Company />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
   );
