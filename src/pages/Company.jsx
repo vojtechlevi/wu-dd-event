@@ -18,43 +18,33 @@ import FormPage10 from "../components/FormPage10";
 const Company = () => {
   const [counter, setCounter] = useState(0);
 
-  const formPages = {
-    0: FormPage0,
-    1: FormPage1,
-    2: FormPage2,
-    3: FormPage3,
-    4: FormPage4,
-    5: FormPage5,
-    6: FormPage6,
-    7: FormPage7,
-    8: FormPage8,
-    9: FormPage9,
-    10: FormPage10,
+  const formPages = [
+    FormPage0,
+    FormPage1,
+    FormPage2,
+    FormPage3,
+    FormPage4,
+    FormPage5,
+    FormPage6,
+    FormPage7,
+    FormPage8,
+    FormPage9,
+    FormPage10,
     // add more form pages as needed
-  };
+  ];
 
   const FormPage = formPages[counter];
-
-  const handleClickForward = () => {
-    setCounter(counter + 1);
-  };
-  const handleClickBack = () => {
-    setCounter(counter - 1);
-  };
 
   return (
     <>
       <div className="h-screen w-full relative">
-        <button onClick={handleClickBack} className="absolute left-8 top-8">
+        <button
+          onClick={() => setCounter(counter - 1)}
+          className="absolute left-8 top-8">
           <BackArrow />
         </button>
         <div className="h-full flex flex-col justify-center items-center gap-4 p-8">
-          <FormPage />
-          <button
-            onClick={handleClickForward}
-            className="border border-black p-2">
-            Nästa
-          </button>
+          <FormPage counter={counter} setCounter={setCounter} />
         </div>
       </div>
     </>
