@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormPage7 = () => {
+const FormPage7 = ({ counter, setCounter }) => {
   return (
     <>
       <h2 className="text-4xl">Vilka program jobbar ni i?</h2>
@@ -14,6 +14,11 @@ const FormPage7 = () => {
         <button className="border border-black p-2">Exempel</button>
         <button className="border border-black p-2">Exempel</button>
       </div>
+      <button
+        onClick={() => setCounter(counter + 1)}
+        className="border border-black p-2">
+        Nästa
+      </button>
     </>
   );
 };

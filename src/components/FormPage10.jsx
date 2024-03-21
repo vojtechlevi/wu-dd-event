@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormPage10 = () => {
+const FormPage10 = ({ counter, setCounter }) => {
   return (
     <>
       <h2 className="text-4xl">Hela perioden eller delar?</h2>
@@ -18,6 +18,11 @@ const FormPage10 = () => {
         <input type="checkbox" />
         <p>Vet mer senare</p>
       </span>
+      <button
+        onClick={() => setCounter(counter + 1)}
+        className="border border-black p-2">
+        Nästa
+      </button>
     </>
   );
 };

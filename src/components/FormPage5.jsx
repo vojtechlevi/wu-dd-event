@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormPage5 = () => {
+const FormPage5 = ({ counter, setCounter }) => {
   return (
     <>
       <h2 className="text-4xl">Var kan vi läsa mer om er?</h2>
@@ -9,6 +9,11 @@ const FormPage5 = () => {
         placeholder="www.företagsnamn.se"
         className="bg-gray-200"
       />
+      <button
+        onClick={() => setCounter(counter + 1)}
+        className="border border-black p-2">
+        Nästa
+      </button>
     </>
   );
 };
