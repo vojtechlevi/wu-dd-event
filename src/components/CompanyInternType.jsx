@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormPage8 = ({ counter, setCounter }) => {
+const CompanyInternType = ({ counter, setCounter }) => {
   return (
     <>
       <h2 className="text-4xl">Vilken typ av praktikant söker ni?</h2>
@@ -19,4 +19,4 @@ const FormPage8 = ({ counter, setCounter }) => {
   );
 };
 
-export default FormPage8;
+export default CompanyInternType;

@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormPage3 = ({ counter, setCounter }) => {
+const CompanyEmployees = ({ counter, setCounter }) => {
   return (
     <>
       <h2 className="text-4xl">Hur många jobbar hos er?</h2>
@@ -14,4 +14,4 @@ const FormPage3 = ({ counter, setCounter }) => {
   );
 };
 
-export default FormPage3;
+export default CompanyEmployees;

@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormPage10 = ({ counter, setCounter }) => {
+const CompanyInternshipDuration = ({ counter, setCounter }) => {
   return (
     <>
       <h2 className="text-4xl">Hela perioden eller delar?</h2>
@@ -27,4 +27,4 @@ const FormPage10 = ({ counter, setCounter }) => {
   );
 };
 
-export default FormPage10;
+export default CompanyInternshipDuration;

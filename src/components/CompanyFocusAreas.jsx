@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormPage4 = ({ counter, setCounter }) => {
+const CompanyFocusAreas = ({ counter, setCounter }) => {
   return (
     <>
       <h2 className="text-4xl">Vad sysslar ni med?</h2>
@@ -23,4 +23,4 @@ const FormPage4 = ({ counter, setCounter }) => {
   );
 };
 
-export default FormPage4;
+export default CompanyFocusAreas;

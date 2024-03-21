@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormPage9 = ({ counter, setCounter }) => {
+const CompanyInternCount = ({ counter, setCounter }) => {
   return (
     <>
       <h2 className="text-4xl">Hur många kan ni ta emot?</h2>
@@ -25,4 +25,4 @@ const FormPage9 = ({ counter, setCounter }) => {
   );
 };
 
-export default FormPage9;
+export default CompanyInternCount;
