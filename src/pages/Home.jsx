@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <>
       <main className="w-full h-screen flex flex-col justify-around items-center">
-        <div className="w-full px-8 flex flex-col gap-6">
+        <div className="w-full px-8 flex flex-col gap-6 justify-center items-center">
           <h1 className="text-8xl">Event 24 april</h1>
           <p className="text-base">
             Välkomna - mingel - Webbutvecklare och Digital Designers på YRGO -
