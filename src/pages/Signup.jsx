@@ -59,13 +59,13 @@ const Signup = () => {
         </section>
       ) : (
         <section className="w-full h-screen flex flex-col justify-center items-center">
-          <div className="w-full pl-8 mb-8 text-[#d2d2d2]">
-            <Link to="/login">
-              <MoveLeft size={32} />
-            </Link>
-          </div>
-          <div className="px-16">
-            <div className="w-full flex flex-col gap-6">
+          <div className="px-4 w-[320px]">
+            <div className="w-full mb-8 text-[#d2d2d2]">
+              <Link to="/login">
+                <MoveLeft size={32} />
+              </Link>
+            </div>
+            <div className="w-full flex flex-col gap-6 justify-center px-8">
               <h1 className="text-6xl">Skapa Konto</h1>
               <p className="text-base w-full justify-center">
                 Kort text om varför skapa konto: spara favoriter,
@@ -80,7 +80,7 @@ const Signup = () => {
                 name="fullName"
                 placeholder="Namn"
                 onChange={handleChange}
-                className="bg-[#DEDEDE] rounded-lg p-2 w-full"
+                className="bg-[#DEDEDE] rounded-lg p-2 w-[250px]"
               />
               <input
                 type="email"
@@ -96,7 +96,7 @@ const Signup = () => {
                 onChange={handleChange}
                 className="bg-[#DEDEDE] rounded-lg p-2 w-[250px]"
               />
-              <div className="w-full flex justify-start">
+              <div className="flex justify-start">
                 <button
                   type="submit"
                   className="w-full border border-black rounded-[32px] px-4 py-3 text-xl text-white bg-black"
