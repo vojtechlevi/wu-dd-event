@@ -13,9 +13,9 @@ const Student = () => {
 
   return (
     <section>
-      <div>
-        <img src={yrgo} alt="" />
-        <Menu />
+      <div className="w-full h-12 px-8 flex justify-between items-center">
+        <img src={yrgo} alt="yrgo-logo" />
+        <Menu className="" />
       </div>
       <h1>Welcome to the Student Dashboard</h1>
       <p>Logged in as: {name}</p>
