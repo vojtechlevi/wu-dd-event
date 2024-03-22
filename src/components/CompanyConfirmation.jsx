@@ -1,6 +1,8 @@
 import React from "react";
 
-const CompanyConfirmation = ({ counter, setCounter }) => {
+const CompanyConfirmation = ({ counter, setCounter, answer }) => {
+  console.log(answer);
+
   return (
     <>
       <h2 className="text-4xl">Tack!</h2>

@@ -1,23 +1,68 @@
 import React from "react";
+import { useState } from "react";
 
-const CompanyQuickQuestions = ({ counter, setCounter }) => {
+const CompanyQuickQuestions = ({ counter, setCounter, answer, setAnswer }) => {
+  const [dogPolicy, setDogPolicy] = useState("");
+
+  const updateDogPolicy = (event) => {
+    setDogPolicy(event.target.textContent);
+  };
+
+  const [remoteWorkPolicy, setRemoteWorkPolicy] = useState("");
+
+  const updateRemoteWorkPolicy = (event) => {
+    setRemoteWorkPolicy(event.target.textContent);
+  };
+
+  const [officeLocation, setOfficeLocation] = useState("");
+
+  const updateOfficeLocation = (event) => {
+    setOfficeLocation(event.target.textContent);
+  };
+
   return (
     <>
-      <h2 className="text-4xl">5 snabba</h2>
+      <h2 className="text-4xl">3 snabba</h2>
       <div className="grid grid-cols-2 gap-4">
-        <button className="border border-black p-2">No dogs</button>
-        <button className="border border-black p-2">Hundar = JA</button>
-        <button className="border border-black p-2">Remote work = NEJ</button>
-        <button className="border border-black p-2">Remote work = JA</button>
-        <button className="border border-black p-2">Kontor i Sverige</button>
-        <button className="border border-black p-2">Kontor utomlands</button>
-        <button className="border border-black p-2">Byrå</button>
-        <button className="border border-black p-2">Inhouse</button>
-        <button className="border border-black p-2">bla bla </button>
-        <button className="border border-black p-2">bla</button>
+        <button className="border border-black p-2" onClick={updateDogPolicy}>
+          No dogs
+        </button>
+        <button className="border border-black p-2" onClick={updateDogPolicy}>
+          Hundar = JA
+        </button>
+        <button
+          className="border border-black p-2"
+          onClick={updateRemoteWorkPolicy}>
+          Remote work = NEJ
+        </button>
+        <button
+          className="border border-black p-2"
+          onClick={updateRemoteWorkPolicy}>
+          Remote work = JA
+        </button>
+        <button
+          className="border border-black p-2"
+          onClick={updateOfficeLocation}>
+          Kontor i Sverige
+        </button>
+        <button
+          className="border border-black p-2"
+          onClick={updateOfficeLocation}>
+          Kontor utomlands
+        </button>
       </div>
       <button
-        onClick={() => setCounter(counter + 1)}
+        onClick={() => {
+          setCounter(counter + 1);
+          setAnswer({
+            ...answer,
+            quickQuestions: {
+              dogPolicy: dogPolicy,
+              remoteWorkPolicy: remoteWorkPolicy,
+              officeLocation: officeLocation,
+            },
+          });
+        }}
         className="border border-black p-2">
         Nästa
       </button>

@@ -1,10 +1,14 @@
 import React from "react";
 
-const CompanyInternCount = ({ counter, setCounter }) => {
+const CompanyInternCount = ({ counter, setCounter, answer, setAnswer }) => {
+  const handleChange = (event) => {
+    setAnswer({ ...answer, internCount: Number(event.target.value) });
+  };
+
   return (
     <>
       <h2 className="text-4xl">Hur många kan ni ta emot?</h2>
-      <select name="count">
+      <select name="count" onChange={handleChange}>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>

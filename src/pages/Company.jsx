@@ -33,7 +33,7 @@ const Company = () => {
     software: {},
     quickQuestions: {},
     internType: "",
-    internCount: 0,
+    internCount: 1,
     internshipDuration: "",
     skillsRequested: {},
     description: "",
