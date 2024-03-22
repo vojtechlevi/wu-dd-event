@@ -8,11 +8,11 @@ import UserContext from "../UserContext";
 import yrgo from "../assets/yrgo.png";
 
 const Student = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [menu, setMenu] = useState(true);
   const [companies, setCompanies] = useState([]);
-  const name =
-    user && user.user.user_metadata ? user.user.user_metadata.full_name : "";
+  // const name = user && user.user.user_metadata ? user.user.user_metadata.full_name : ""; //email
+  //const name = user.user_metadata.user_name; //github - figma
 
   useEffect(() => {
     getCompanies();
@@ -26,6 +26,10 @@ const Student = () => {
 
   function handleMenu() {
     setMenu(!menu);
+  }
+
+  async function signOut() {
+    const { error } = await supabase.auth.signOut();
   }
 
   return (
@@ -42,7 +46,7 @@ const Student = () => {
         <div className="text-right w-full mb-4 px-8">
           <p className="cursor-pointer">Sparade Favoriter</p>
           <Link to="/" className="cursor-pointer">
-            <button onClick={() => setUser(null)}>Logga ut</button>
+            <button onClick={signOut}>Logga ut</button>
           </Link>
         </div>
       ) : (
