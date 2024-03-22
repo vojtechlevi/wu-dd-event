@@ -1,17 +1,32 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
 import { MoveLeft } from "lucide-react";
 
 import { supabase } from "../client";
 import UserContext from "../UserContext";
+import GithubIcon from "../assets/github-icon.svg";
+import FigmaIcon from "../assets/figma-icon.svg";
 
 const Login = () => {
+  let navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
+  const { setUser } = useContext(UserContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  async function signInWithFigma() {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "figma",
+    });
+  }
+
+  async function signInWithGithub() {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "github",
+    });
+  }
 
   function handleChange(event) {
     setFormData((prevFormData) => {
@@ -21,9 +36,6 @@ const Login = () => {
       };
     });
   }
-
-  const { setUser } = useContext(UserContext);
-  let navigate = useNavigate();
 
   async function signInWithEmail(e) {
     e.preventDefault();
@@ -73,7 +85,6 @@ const Login = () => {
             className="flex flex-col gap-6 my-20 w-full items-center"
           >
             <input
-              required
               type="email"
               name="email"
               placeholder="Mailadress"
@@ -81,7 +92,6 @@ const Login = () => {
               className="bg-[#DEDEDE] rounded-lg p-2 w-[250px]"
             />
             <input
-              required
               type="password"
               name="password"
               placeholder="Lösenord"
@@ -89,6 +99,21 @@ const Login = () => {
               className="bg-[#DEDEDE] rounded-lg p-2 w-[250px]"
             />
             {errorMessage && <p>{errorMessage}</p>}
+            <div className="flex gap-4">
+              <h2>eller logga in med:</h2>
+              <img
+                onClick={signInWithGithub}
+                src={GithubIcon}
+                alt="Github Sign in"
+                className="w-5 cursor-pointer"
+              />
+              <img
+                onClick={signInWithFigma}
+                src={FigmaIcon}
+                alt="Github Sign in"
+                className="w-5 cursor-pointer"
+              />
+            </div>
             <div className="flex gap-4">
               <button
                 type="submit"
