@@ -1,7 +1,6 @@
-import React from "react";
 import { useState } from "react";
 
-const CompanyQuickQuestions = ({ counter, setCounter, answer, setAnswer }) => {
+const QuickQuestions = ({ counter, setCounter, answer, setAnswer }) => {
   const [dogPolicy, setDogPolicy] = useState("");
 
   const updateDogPolicy = (event) => {
@@ -32,22 +31,26 @@ const CompanyQuickQuestions = ({ counter, setCounter, answer, setAnswer }) => {
         </button>
         <button
           className="border border-black p-2"
-          onClick={updateRemoteWorkPolicy}>
+          onClick={updateRemoteWorkPolicy}
+        >
           Remote work = NEJ
         </button>
         <button
           className="border border-black p-2"
-          onClick={updateRemoteWorkPolicy}>
+          onClick={updateRemoteWorkPolicy}
+        >
           Remote work = JA
         </button>
         <button
           className="border border-black p-2"
-          onClick={updateOfficeLocation}>
+          onClick={updateOfficeLocation}
+        >
           Kontor i Sverige
         </button>
         <button
           className="border border-black p-2"
-          onClick={updateOfficeLocation}>
+          onClick={updateOfficeLocation}
+        >
           Kontor utomlands
         </button>
       </div>
@@ -63,11 +66,12 @@ const CompanyQuickQuestions = ({ counter, setCounter, answer, setAnswer }) => {
             },
           });
         }}
-        className="border border-black p-2">
+        className="border border-black p-2"
+      >
         Nästa
       </button>
     </>
   );
 };
 
-export default CompanyQuickQuestions;
+export default QuickQuestions;

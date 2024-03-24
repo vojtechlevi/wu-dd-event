@@ -1,6 +1,4 @@
-import React from "react";
-
-const CompanyConfirmation = ({ counter, setCounter, answer }) => {
+const Confirmation = ({ counter, setCounter, answer }) => {
   console.log(answer);
 
   return (
@@ -17,11 +15,12 @@ const CompanyConfirmation = ({ counter, setCounter, answer }) => {
       </p>
       <button
         onClick={() => setCounter(counter + 1)}
-        className="border border-black p-2">
+        className="border border-black p-2"
+      >
         Berätta mer!
       </button>
     </>
   );
 };
 
-export default CompanyConfirmation;
+export default Confirmation;

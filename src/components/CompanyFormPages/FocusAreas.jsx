@@ -1,63 +1,60 @@
-import React from "react";
-
-const CompanySoftware = ({ counter, setCounter, answer, setAnswer }) => {
-  let software = [];
+const FocusAreas = ({ counter, setCounter, answer, setAnswer }) => {
+  let focusAreas = [];
 
   const handleClick = (event) => {
     if (event.target.classList.contains("bg-black")) {
       event.target.classList.remove("bg-black", "text-white");
 
-      software = software.filter((sw) => {
-        return sw !== event.target.textContent;
+      focusAreas = focusAreas.filter((focusArea) => {
+        return focusArea !== event.target.textContent;
       });
     } else {
       event.target.classList.add("bg-black", "text-white");
 
-      software.push(event.target.textContent);
+      focusAreas.push(event.target.textContent);
     }
   };
 
-  console.log(answer);
-
   return (
     <>
-      <h2 className="text-4xl">Vilka program jobbar ni i?</h2>
+      <h2 className="text-4xl">Vad sysslar ni med?</h2>
       <div className="grid grid-cols-2 gap-4">
         <button className="border border-black p-2" onClick={handleClick}>
-          Figma
+          Motion design
         </button>
         <button className="border border-black p-2" onClick={handleClick}>
-          Webflow
+          Graphic design
         </button>
         <button className="border border-black p-2" onClick={handleClick}>
-          React
+          Web design
         </button>
         <button className="border border-black p-2" onClick={handleClick}>
-          Adobe
+          UX/UI design
         </button>
         <button className="border border-black p-2" onClick={handleClick}>
-          Exempel
+          3D design
         </button>
         <button className="border border-black p-2" onClick={handleClick}>
-          Exempel2
+          Product design
         </button>
         <button className="border border-black p-2" onClick={handleClick}>
-          Exempel3
+          Interior design
         </button>
         <button className="border border-black p-2" onClick={handleClick}>
-          Exempel4
+          Industrial design
         </button>
       </div>
       <button
         onClick={() => {
           setCounter(counter + 1);
-          setAnswer({ ...answer, software: software });
+          setAnswer({ ...answer, focusAreas: focusAreas });
         }}
-        className="border border-black p-2">
+        className="border border-black p-2"
+      >
         Nästa
       </button>
     </>
   );
 };
 
-export default CompanySoftware;
+export default FocusAreas;

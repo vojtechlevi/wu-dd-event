@@ -1,6 +1,4 @@
-import React from "react";
-
-const CompanySector = ({ counter, setCounter, answer, setAnswer }) => {
+const Sector = ({ counter, setCounter, answer, setAnswer }) => {
   const handleChange = (event) => {
     setAnswer({ ...answer, sector: event.target.value });
   };
@@ -16,11 +14,12 @@ const CompanySector = ({ counter, setCounter, answer, setAnswer }) => {
       />
       <button
         onClick={() => setCounter(counter + 1)}
-        className="border border-black p-2">
+        className="border border-black p-2"
+      >
         Nästa
       </button>
     </>
   );
 };
 
-export default CompanySector;
+export default Sector;

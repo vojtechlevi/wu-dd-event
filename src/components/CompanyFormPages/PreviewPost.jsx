@@ -1,6 +1,6 @@
-import { supabase } from "../client";
+import { supabase } from "../../client";
 
-const CompanyPreviewPost = ({ counter, setCounter, answer }) => {
+const PreviewPost = ({ counter, setCounter, answer }) => {
   async function writeToDatabase() {
     try {
       const { error } = await supabase.from("companies").insert({
@@ -39,11 +39,12 @@ const CompanyPreviewPost = ({ counter, setCounter, answer }) => {
           setCounter(counter + 1);
           writeToDatabase();
         }}
-        className="border border-black p-2">
+        className="border border-black p-2"
+      >
         Klar!
       </button>
     </>
   );
 };
 
-export default CompanyPreviewPost;
+export default PreviewPost;

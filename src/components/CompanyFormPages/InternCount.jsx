@@ -1,6 +1,4 @@
-import React from "react";
-
-const CompanyInternCount = ({ counter, setCounter, answer, setAnswer }) => {
+const InternCount = ({ counter, setCounter, answer, setAnswer }) => {
   const handleChange = (event) => {
     setAnswer({ ...answer, internCount: Number(event.target.value) });
   };
@@ -22,11 +20,12 @@ const CompanyInternCount = ({ counter, setCounter, answer, setAnswer }) => {
       </select>
       <button
         onClick={() => setCounter(counter + 1)}
-        className="border border-black p-2">
+        className="border border-black p-2"
+      >
         Nästa
       </button>
     </>
   );
 };
 
-export default CompanyInternCount;
+export default InternCount;

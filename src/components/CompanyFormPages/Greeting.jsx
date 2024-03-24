@@ -1,6 +1,4 @@
-import React from "react";
-
-const CompanyGreeting = ({ counter, setCounter }) => {
+const Greeting = ({ counter, setCounter }) => {
   return (
     <>
       <h1 className="text-6xl">Hej Företag</h1>
@@ -10,7 +8,8 @@ const CompanyGreeting = ({ counter, setCounter }) => {
       </p>
       <button
         onClick={() => setCounter(counter + 1)}
-        className="border bg-black text-white p-2">
+        className="border bg-black text-white p-2"
+      >
         Formulär
       </button>
       <button className="border border-black p-2">Läs mer</button>
@@ -18,4 +17,4 @@ const CompanyGreeting = ({ counter, setCounter }) => {
   );
 };
 
-export default CompanyGreeting;
+export default Greeting;

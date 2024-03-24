@@ -1,7 +1,6 @@
-import React from "react";
 import { useState } from "react";
 
-const CompanySkillsRequested = ({ counter, setCounter, answer, setAnswer }) => {
+const SkillsRequested = ({ counter, setCounter, answer, setAnswer }) => {
   const [skills, setSkills] = useState("");
 
   const updateSkills = (event) => {
@@ -18,18 +17,20 @@ const CompanySkillsRequested = ({ counter, setCounter, answer, setAnswer }) => {
         className="bg-gray-200"
         cols="30"
         rows="5"
-        placeholder="Vi jobbar med ett projekt just nu där vi jobbar med användarvänlighet. Toppen om du har koll på WCAG."></textarea>
+        placeholder="Vi jobbar med ett projekt just nu där vi jobbar med användarvänlighet. Toppen om du har koll på WCAG."
+      ></textarea>
       <p className="self-end">0/300</p>
       <button
         onClick={() => {
           setCounter(counter + 1);
           setAnswer({ ...answer, skillsRequested: skills });
         }}
-        className="border border-black p-2">
+        className="border border-black p-2"
+      >
         Nästa
       </button>
     </>
   );
 };
 
-export default CompanySkillsRequested;
+export default SkillsRequested;

@@ -1,6 +1,4 @@
-import React from "react";
-
-const CompanyUrl = ({ counter, setCounter, answer, setAnswer }) => {
+const Url = ({ counter, setCounter, answer, setAnswer }) => {
   const handleChange = (event) => {
     setAnswer({ ...answer, url: event.target.value });
   };
@@ -16,11 +14,12 @@ const CompanyUrl = ({ counter, setCounter, answer, setAnswer }) => {
       />
       <button
         onClick={() => setCounter(counter + 1)}
-        className="border border-black p-2">
+        className="border border-black p-2"
+      >
         Nästa
       </button>
     </>
   );
 };
 
-export default CompanyUrl;
+export default Url;

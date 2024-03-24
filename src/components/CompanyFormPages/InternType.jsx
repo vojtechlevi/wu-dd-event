@@ -1,7 +1,6 @@
-import React from "react";
 import { useState } from "react";
 
-const CompanyInternType = ({ counter, setCounter, answer, setAnswer }) => {
+const InternType = ({ counter, setCounter, answer, setAnswer }) => {
   const [internType, setInternType] = useState("");
 
   const updateInternType = (event) => {
@@ -13,12 +12,14 @@ const CompanyInternType = ({ counter, setCounter, answer, setAnswer }) => {
       <h2 className="text-4xl">Vilken typ av praktikant söker ni?</h2>
       <button
         className="border border-black p-2 self-start"
-        onClick={updateInternType}>
+        onClick={updateInternType}
+      >
         Digital Designer
       </button>
       <button
         className="border border-black p-2 self-start"
-        onClick={updateInternType}>
+        onClick={updateInternType}
+      >
         Webbutvecklare
       </button>
       <button
@@ -26,11 +27,12 @@ const CompanyInternType = ({ counter, setCounter, answer, setAnswer }) => {
           setCounter(counter + 1);
           setAnswer({ ...answer, internType: internType });
         }}
-        className="border border-black p-2">
+        className="border border-black p-2"
+      >
         Nästa
       </button>
     </>
   );
 };
 
-export default CompanyInternType;
+export default InternType;

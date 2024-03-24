@@ -1,6 +1,4 @@
-import React from "react";
-
-const CompanyName = ({ counter, setCounter, answer, setAnswer }) => {
+const Name = ({ counter, setCounter, answer, setAnswer }) => {
   const handleChange = (event) => {
     setAnswer({ name: event.target.value });
   };
@@ -16,11 +14,12 @@ const CompanyName = ({ counter, setCounter, answer, setAnswer }) => {
       />
       <button
         onClick={() => setCounter(counter + 1)}
-        className="border border-black p-2">
+        className="border border-black p-2"
+      >
         Nästa
       </button>
     </>
   );
 };
 
-export default CompanyName;
+export default Name;

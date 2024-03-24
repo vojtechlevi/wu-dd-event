@@ -1,6 +1,4 @@
-import React from "react";
-
-const CompanyEmployees = ({ counter, setCounter, answer, setAnswer }) => {
+const Employees = ({ counter, setCounter, answer, setAnswer }) => {
   const handleChange = (event) => {
     setAnswer({ ...answer, employees: Number(event.target.value) });
   };
@@ -17,11 +15,12 @@ const CompanyEmployees = ({ counter, setCounter, answer, setAnswer }) => {
       />
       <button
         onClick={() => setCounter(counter + 1)}
-        className="border border-black p-2">
+        className="border border-black p-2"
+      >
         Nästa
       </button>
     </>
   );
 };
 
-export default CompanyEmployees;
+export default Employees;

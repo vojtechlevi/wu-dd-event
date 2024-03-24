@@ -1,6 +1,4 @@
-import React from "react";
-
-const CompanyConfirmation = ({ counter, setCounter }) => {
+const Confirmation = ({ counter, setCounter }) => {
   return (
     <>
       <h2 className="text-4xl">Event 24 April </h2>
@@ -20,4 +18,4 @@ const CompanyConfirmation = ({ counter, setCounter }) => {
   );
 };
 
-export default CompanyConfirmation;
+export default Confirmation;

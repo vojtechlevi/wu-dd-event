@@ -1,7 +1,6 @@
-import React from "react";
 import { useState } from "react";
 
-const CompanyDescription = ({ counter, setCounter, answer, setAnswer }) => {
+const Description = ({ counter, setCounter, answer, setAnswer }) => {
   const [description, setDescription] = useState("");
 
   const updateDescription = (event) => {
@@ -20,18 +19,20 @@ const CompanyDescription = ({ counter, setCounter, answer, setAnswer }) => {
         Vi må vara ett litet företag, men jobbar
         med stora kunder och växer för varje år. 
         Och! Viktigast av allt: vi dricker öl varje 
-        fredag! "></textarea>
+        fredag! "
+      ></textarea>
       <p className="self-end">0/300</p>
       <button
         onClick={() => {
           setCounter(counter + 1);
           setAnswer({ ...answer, description: description });
         }}
-        className="border border-black p-2">
+        className="border border-black p-2"
+      >
         Nästa
       </button>
     </>
   );
 };
 
-export default CompanyDescription;
+export default Description;
