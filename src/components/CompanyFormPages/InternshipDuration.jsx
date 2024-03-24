@@ -1,11 +1,4 @@
-import React from "react";
-
-const CompanyInternshipDuration = ({
-  counter,
-  setCounter,
-  answer,
-  setAnswer,
-}) => {
+const InternshipDuration = ({ counter, setCounter, answer, setAnswer }) => {
   const handleChange = (event) => {
     setAnswer({ ...answer, internshipDuration: event.target.value });
   };
@@ -28,11 +21,12 @@ const CompanyInternshipDuration = ({
       </form>
       <button
         onClick={() => setCounter(counter + 1)}
-        className="border border-black p-2">
+        className="border border-black p-2"
+      >
         Nästa
       </button>
     </>
   );
 };
 
-export default CompanyInternshipDuration;
+export default InternshipDuration;

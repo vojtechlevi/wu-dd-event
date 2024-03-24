@@ -2,23 +2,23 @@ import React from "react";
 import { useState } from "react";
 
 import BackArrow from "../components/BackArrow";
-import CompanyGreeting from "../components/CompanyGreeting";
-import CompanyName from "../components/CompanyName";
-import CompanySector from "../components/CompanySector";
-import CompanyEmployees from "../components/CompanyEmployees";
-import CompanyFocusAreas from "../components/CompanyFocusAreas";
-import CompanyUrl from "../components/CompanyUrl";
-import CompanyType from "../components/CompanyType";
-import CompanySoftware from "../components/CompanySoftware";
-import CompanyQuickQuestions from "../components/CompanyQuickQuestions";
-import CompanyInternType from "../components/CompanyInternType";
-import CompanyInternCount from "../components/CompanyInternCount";
-import CompanyInternshipDuration from "../components/CompanyInternshipDuration";
-import CompanySkillsRequested from "../components/CompanySkillsRequested";
-import CompanyDescription from "../components/CompanyDescription";
-import CompanyPreviewPost from "../components/CompanyPreviewPost";
-import CompanyConfirmation from "../components/CompanyConfirmation";
-import CompanyEventStats from "../components/CompanyEventStats";
+import Greeting from "../components/CompanyFormPages/Greeting";
+import Name from "../components/CompanyFormPages/Name";
+import Sector from "../components/CompanyFormPages/Sector";
+import Employees from "../components/CompanyFormPages/Employees";
+import FocusAreas from "../components/CompanyFormPages/FocusAreas";
+import Url from "../components/CompanyFormPages/Url";
+import Type from "../components/CompanyFormPages/Type";
+import Software from "../components/CompanyFormPages/Software";
+import QuickQuestions from "../components/CompanyFormPages/QuickQuestions";
+import InternType from "../components/CompanyFormPages/InternType";
+import InternCount from "../components/CompanyFormPages/InternCount";
+import InternshipDuration from "../components/CompanyFormPages/InternshipDuration";
+import SkillsRequested from "../components/CompanyFormPages/SkillsRequested";
+import Description from "../components/CompanyFormPages/Description";
+import PreviewPost from "../components/CompanyFormPages/PreviewPost";
+import Confirmation from "../components/CompanyFormPages/Confirmation";
+import EventStats from "../components/CompanyFormPages/EventStats";
 // import more form pages as needed
 
 const Company = () => {
@@ -40,23 +40,23 @@ const Company = () => {
   });
 
   const formPages = [
-    CompanyGreeting,
-    CompanyName,
-    CompanySector,
-    CompanyEmployees,
-    CompanyFocusAreas,
-    CompanyUrl,
-    CompanyType,
-    CompanySoftware,
-    CompanyQuickQuestions,
-    CompanyInternType,
-    CompanyInternCount,
-    CompanyInternshipDuration,
-    CompanySkillsRequested,
-    CompanyDescription,
-    CompanyPreviewPost,
-    CompanyConfirmation,
-    CompanyEventStats,
+    Greeting,
+    Name,
+    Sector,
+    Employees,
+    FocusAreas,
+    Url,
+    Type,
+    Software,
+    QuickQuestions,
+    InternType,
+    InternCount,
+    InternshipDuration,
+    SkillsRequested,
+    Description,
+    PreviewPost,
+    Confirmation,
+    EventStats,
     // add more form pages as needed
   ];
 

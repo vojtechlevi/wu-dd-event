@@ -1,7 +1,10 @@
-import React from "react";
+import { useState } from "react";
 
-const CompanyEmployees = ({ counter, setCounter, answer, setAnswer }) => {
+const Employees = ({ counter, setCounter, answer, setAnswer }) => {
+  const [employees, setEmployees] = useState(50);
+
   const handleChange = (event) => {
+    setEmployees(event.target.value);
     setAnswer({ ...answer, employees: Number(event.target.value) });
   };
 
@@ -15,13 +18,15 @@ const CompanyEmployees = ({ counter, setCounter, answer, setAnswer }) => {
         className="bg-gray-200"
         onChange={handleChange}
       />
+      <p>{employees}</p>
       <button
         onClick={() => setCounter(counter + 1)}
-        className="border border-black p-2">
+        className="border border-black p-2"
+      >
         Nästa
       </button>
     </>
   );
 };
 
-export default CompanyEmployees;
+export default Employees;
