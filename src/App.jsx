@@ -1,87 +1,63 @@
-import { useEffect, useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 import { supabase } from "./client";
+import UserContext from "./UserContext";
+
+import Home from "./pages/Home";
+import Student from "./pages/Student";
+import Company from "./pages/Company";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import PageNotFound from "./pages/PageNotFound";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
-  const [countries, setCountries] = useState([]);
+  const [user, setUser] = useState(null);
+  const userContextValue = { user, setUser };
+  let navigate = useNavigate();
 
   useEffect(() => {
-    getCountries();
+    const user = supabase.auth.user;
+    setUser(user);
+
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setUser(session?.user ?? null);
+      }
+    );
+
+    // Cleanup the listener
+    return () => {
+      authListener.unsubscribe();
+    };
   }, []);
 
-  async function getCountries() {
-    const { data } = await supabase.from("countries").select();
-    setCountries(data);
-  }
-
-  async function addCountry() {
-    const { error } = await supabase
-      .from("countries")
-      .insert({ name: "Denmark" });
-  }
-
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    password: "",
-  });
-
-  function handleChange(event) {
-    setFormData((prevFormData) => {
-      return {
-        ...prevFormData,
-        [event.target.name]: event.target.value,
-      };
-    });
-  }
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email: formData.email,
-        password: formData.password,
-        options: {
-          data: {
-            full_name: formData.fullName,
-          },
-        },
-      });
-    } catch (error) {
-      alert(error);
+  useEffect(() => {
+    if (user) {
+      navigate("/student");
     }
-  }
-
+  }, [user, navigate]);
   return (
-    <div>
-      {/* <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Fullname"
-          name="fullName"
-          onChange={handleChange}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          name="email"
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          onChange={handleChange}
-        />
-
-        <button type="submit">Submit</button>
-      </form> */}
-      <ul>
-        {countries.map((country) => (
-          <li key={country.id}>{country.name}</li>
-        ))}
-      </ul>
-      <button onClick={addCountry}>add</button>
-    </div>
+    <>
+      <UserContext.Provider value={userContextValue}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/company" element={<Company />} />
+          <Route
+            path="/student"
+            element={
+              <ProtectedRoute>
+                <Student />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </UserContext.Provider>
+    </>
   );
 }
 
