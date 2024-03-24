@@ -66,8 +66,9 @@ const Company = () => {
     <>
       <div className="h-screen w-full relative">
         <button
-          onClick={() => setCounter(counter - 1)}
-          className="absolute left-8 top-8">
+          onClick={() => setCounter(counter > 0 ? counter - 1 : counter)}
+          className="absolute left-8 top-8"
+        >
           <BackArrow />
         </button>
         <div className="h-full flex flex-col justify-center items-center gap-4 p-8">

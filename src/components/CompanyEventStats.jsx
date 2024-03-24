@@ -10,8 +10,10 @@ const CompanyConfirmation = ({ counter, setCounter }) => {
       </p>
       <p> Hoppas vi ses!</p>
       <button
-        onClick={() => setCounter(counter + 1)}
-        className="border border-black p-2">
+        // onClick={() => setCounter(counter + 1)}
+        // this button should route to somewhere else
+        className="border border-black p-2"
+      >
         Frågor?
       </button>
     </>
