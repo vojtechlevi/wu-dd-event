@@ -15,8 +15,8 @@ const PreviewPost = ({ counter, setCounter, answer }) => {
         top5: answer.quickQuestions,
         internType: answer.internType,
         internCount: answer.internCount,
-        internshipStartDate: "2000-01-01", // for now
-        internshipEndDate: "2050-01-01", // for now
+        internshipStartDate: answer.internshipStartDate,
+        internshipEndDate: answer.internshipEndDate,
         internshipSkillReq: answer.skillsRequested,
         description: answer.description,
       });

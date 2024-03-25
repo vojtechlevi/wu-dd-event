@@ -1,26 +1,90 @@
+import { useState } from "react";
+
 const InternshipDuration = ({ counter, setCounter, answer, setAnswer }) => {
-  const handleChange = (event) => {
-    setAnswer({ ...answer, internshipDuration: event.target.value });
+  const [fullDuration, setFullDuration] = useState("Yes");
+  const [startDate, setStartDate] = useState("2024-11-01");
+  const [endDate, setEndDate] = useState("2025-05-31");
+
+  const handleChoiceChange = (event) => {
+    setFullDuration(event.target.value);
+
+    if (event.target.value == "Yes") {
+      setStartDate("2024-11-01");
+      setEndDate("2025-05-31");
+    } else if (event.target.value == "Maybe") {
+      setStartDate(null);
+      setEndDate(null);
+    }
+  };
+
+  // for "Nej, delar av perioden" value:
+  const handleStartDateChange = (event) => {
+    setStartDate(event.target.value);
+  };
+
+  const handleEndDateChange = (event) => {
+    setEndDate(event.target.value);
   };
 
   return (
     <>
       <h2 className="text-4xl">Hela perioden eller delar?</h2>
-      <p>Vår praktikperiod löper mellan xx november 2024 – xx maj 2025. </p>
+      <p>Vår praktikperiod löper mellan 1 november 2024 – 31 maj 2025. </p>
       <p>Har ni möjlighet att ta emot ... </p>
-      <form onChange={handleChange}>
-        <input type="radio" value="alt1" id="alt1" name="duration" />
-        <label htmlFor="alt1">Ja, hela perioden</label>
+      <form>
+        <input
+          type="radio"
+          value="Yes"
+          id="Yes"
+          name="duration"
+          onChange={handleChoiceChange}
+        />
+        <label htmlFor="Yes">Ja, hela perioden</label>
         <br />
-        <input type="radio" value="alt2" id="alt2" name="duration" />
-        <label htmlFor="alt2">Nej, delar av perioden</label>
+        <input
+          type="radio"
+          value="No"
+          id="No"
+          name="duration"
+          onChange={handleChoiceChange}
+        />
+        <label htmlFor="No">Nej, delar av perioden</label>
         <br />
-        <input type="radio" value="alt3" id="alt3" name="duration" />
-        <label htmlFor="alt3">Vet mer senare</label>
+        {fullDuration == "No" ? (
+          <>
+            <input
+              type="date"
+              name="durationStartDate"
+              onChange={handleStartDateChange}
+            />
+            <br />
+            <input
+              type="date"
+              name="durationEndDate"
+              onChange={handleEndDateChange}
+            />
+            <br />
+          </>
+        ) : null}
+        <input
+          type="radio"
+          value="Maybe"
+          id="Maybe"
+          name="duration"
+          onChange={handleChoiceChange}
+        />
+        <label htmlFor="Maybe">Vet mer senare</label>
         <br />
       </form>
       <button
-        onClick={() => setCounter(counter + 1)}
+        onClick={() => {
+          setCounter(counter + 1);
+          setAnswer({
+            ...answer,
+            internshipStartDate: startDate,
+            internshipEndDate: endDate,
+          });
+        }}
         className="border border-black p-2"
       >
         Nästa
