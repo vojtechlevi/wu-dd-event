@@ -34,7 +34,8 @@ const Company = () => {
     quickQuestions: {},
     internType: "",
     internCount: 1,
-    internshipDuration: "",
+    internshipStartDate: "",
+    internshipEndDate: "",
     skillsRequested: {},
     description: "",
   });
