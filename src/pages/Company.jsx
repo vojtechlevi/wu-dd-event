@@ -65,7 +65,7 @@ const Company = () => {
 
   return (
     <>
-      <div className="h-screen w-full relative">
+      <div className="h-screen w-full relative bg-red-500">
         <button
           onClick={() => setCounter(counter > 0 ? counter - 1 : counter)}
           className="absolute left-8 top-8"
