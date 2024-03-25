@@ -8,7 +8,7 @@ const PreviewPost = ({ counter, setCounter, answer }) => {
         bransch: answer.sector,
         employees: answer.employees,
         employees: answer.employees,
-        focusareas: answer.focusareas,
+        focusareas: answer.focusAreas,
         companyURL: answer.url,
         companyType: answer.type,
         softwares: answer.software,
