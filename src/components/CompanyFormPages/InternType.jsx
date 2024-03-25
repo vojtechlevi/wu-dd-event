@@ -1,13 +1,17 @@
-import { useState } from "react";
-
 const InternType = ({ counter, setCounter, answer, setAnswer }) => {
-  const [internType, setInternType] = useState("");
+  let internType = [];
 
-  const updateInternType = (event) => {
-    if (internType === event.target.textContent) {
-      setInternType("");
+  const handleClick = (event) => {
+    if (event.target.classList.contains("bg-black")) {
+      event.target.classList.remove("bg-black", "text-white");
+
+      internType = internType.filter((type) => {
+        return type !== event.target.textContent;
+      });
     } else {
-      setInternType(event.target.textContent);
+      event.target.classList.add("bg-black", "text-white");
+
+      internType.push(event.target.textContent);
     }
   };
 
@@ -15,18 +19,14 @@ const InternType = ({ counter, setCounter, answer, setAnswer }) => {
     <>
       <h2 className="text-4xl">Vilken typ av praktikant söker ni?</h2>
       <button
-        className={`border border-black p-2 self-start ${
-          internType === "Digital Designer" ? "bg-black text-white" : ""
-        }`}
-        onClick={updateInternType}
+        className="border border-black p-2 self-start"
+        onClick={handleClick}
       >
         Digital Designer
       </button>
       <button
-        className={`border border-black p-2 self-start ${
-          internType === "Webbutvecklare" ? "bg-black text-white" : ""
-        }`}
-        onClick={updateInternType}
+        className="border border-black p-2 self-start"
+        onClick={handleClick}
       >
         Webbutvecklare
       </button>
