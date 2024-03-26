@@ -10,6 +10,7 @@ const Url = ({ counter, setCounter, answer, setAnswer }) => {
         type="text"
         placeholder="www.företagsnamn.se"
         className="bg-gray-200"
+        value={answer.url || ""}
         onChange={handleChange}
       />
       <button

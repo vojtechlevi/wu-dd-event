@@ -1,7 +1,9 @@
 import { useState } from "react";
 
 const QuickQuestions = ({ counter, setCounter, answer, setAnswer }) => {
-  const [dogPolicy, setDogPolicy] = useState("");
+  const [dogPolicy, setDogPolicy] = useState(
+    answer.quickQuestions.dogPolicy || ""
+  );
 
   const updateDogPolicy = (event) => {
     if (dogPolicy === event.target.textContent) {
@@ -11,7 +13,9 @@ const QuickQuestions = ({ counter, setCounter, answer, setAnswer }) => {
     }
   };
 
-  const [remoteWorkPolicy, setRemoteWorkPolicy] = useState("");
+  const [remoteWorkPolicy, setRemoteWorkPolicy] = useState(
+    answer.quickQuestions.remoteWorkPolicy || ""
+  );
 
   const updateRemoteWorkPolicy = (event) => {
     if (remoteWorkPolicy === event.target.textContent) {
@@ -21,7 +25,9 @@ const QuickQuestions = ({ counter, setCounter, answer, setAnswer }) => {
     }
   };
 
-  const [officeLocation, setOfficeLocation] = useState("");
+  const [officeLocation, setOfficeLocation] = useState(
+    answer.quickQuestions.officeLocation || ""
+  );
 
   const updateOfficeLocation = (event) => {
     if (officeLocation === event.target.textContent) {

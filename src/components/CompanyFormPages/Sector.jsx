@@ -10,6 +10,7 @@ const Sector = ({ counter, setCounter, answer, setAnswer }) => {
         type="text"
         placeholder="bilindustrin"
         className="bg-gray-200"
+        value={answer.sector || ""}
         onChange={handleChange}
       />
       <button

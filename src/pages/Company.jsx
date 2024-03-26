@@ -32,11 +32,12 @@ const Company = () => {
     type: "",
     software: {},
     quickQuestions: {},
-    internType: "",
+    internType: {},
     internCount: 1,
+    internshipDurationAnswer: "", // not written to db
     internshipStartDate: "",
     internshipEndDate: "",
-    skillsRequested: {},
+    skillsRequested: "",
     description: "",
   });
 
@@ -65,7 +66,7 @@ const Company = () => {
 
   return (
     <>
-      <div className="h-screen w-full relative bg-red-500">
+      <div className="h-screen w-full relative">
         <button
           onClick={() => setCounter(counter > 0 ? counter - 1 : counter)}
           className="absolute left-8 top-8"
