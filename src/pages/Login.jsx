@@ -29,6 +29,7 @@ const Login = () => {
   }
 
   function handleChange(event) {
+    setErrorMessage("");
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
@@ -42,7 +43,7 @@ const Login = () => {
 
     // Form validation
     if (!formData.email && !formData.password) {
-      setErrorMessage("Email and password are required.");
+      setErrorMessage("Mailadress och lösenord krävs.");
       return;
     }
 
@@ -53,7 +54,7 @@ const Login = () => {
       });
 
       if (error) {
-        setErrorMessage(error.message);
+        setErrorMessage(translateErrorMessage(error.message));
         return;
       }
 
@@ -64,6 +65,15 @@ const Login = () => {
     } catch (error) {
       alert(error);
     }
+  }
+
+  function translateErrorMessage(message) {
+    const errorTranslations = {
+      "Email and password are required.": "E-post och lösenord krävs.",
+      "Invalid login credentials": "Ogiltiga inloggningsuppgifter",
+    };
+
+    return errorTranslations[message] || message;
   }
   return (
     <>
@@ -98,7 +108,7 @@ const Login = () => {
               onChange={handleChange}
               className="bg-[#DEDEDE] rounded-lg p-2 w-[250px]"
             />
-            {errorMessage && <p>{errorMessage}</p>}
+            <p className="text-xs text-center text-red-600">{errorMessage}</p>
             <div className="flex gap-4">
               <h2>eller logga in med:</h2>
               <img
