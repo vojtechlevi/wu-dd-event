@@ -1,10 +1,5 @@
-import { useState } from "react";
-
 const Employees = ({ counter, setCounter, answer, setAnswer }) => {
-  const [employees, setEmployees] = useState(50);
-
   const handleChange = (event) => {
-    setEmployees(event.target.value);
     setAnswer({ ...answer, employees: Number(event.target.value) });
   };
 
@@ -17,8 +12,9 @@ const Employees = ({ counter, setCounter, answer, setAnswer }) => {
         max="100"
         className="bg-gray-200"
         onChange={handleChange}
+        value={answer.employees || 50}
       />
-      <p>{employees}</p>
+      <p>{answer.employees || 50}</p>
       <button
         onClick={() => setCounter(counter + 1)}
         className="border border-black p-2"

@@ -1,12 +1,14 @@
 import { useState } from "react";
 
 const InternshipDuration = ({ counter, setCounter, answer, setAnswer }) => {
-  const [fullDuration, setFullDuration] = useState("Yes");
+  const [durationAnswer, setDurationAnswer] = useState(
+    answer.internshipDurationAnswer || ""
+  );
   const [startDate, setStartDate] = useState("2024-11-01");
   const [endDate, setEndDate] = useState("2025-05-31");
 
   const handleChoiceChange = (event) => {
-    setFullDuration(event.target.value);
+    setDurationAnswer(event.target.value);
 
     if (event.target.value == "Yes") {
       setStartDate("2024-11-01");
@@ -33,32 +35,34 @@ const InternshipDuration = ({ counter, setCounter, answer, setAnswer }) => {
       <p>Har ni möjlighet att ta emot ... </p>
       <form>
         <input
+          checked={durationAnswer === "Yes" ? true : false}
           type="radio"
           value="Yes"
-          id="Yes"
           name="duration"
           onChange={handleChoiceChange}
         />
         <label htmlFor="Yes">Ja, hela perioden</label>
         <br />
         <input
+          checked={durationAnswer === "No" ? true : false}
           type="radio"
           value="No"
-          id="No"
           name="duration"
           onChange={handleChoiceChange}
         />
         <label htmlFor="No">Nej, delar av perioden</label>
         <br />
-        {fullDuration == "No" ? (
+        {durationAnswer == "No" ? (
           <>
             <input
+              defaultValue={answer.internshipStartDate || ""}
               type="date"
               name="durationStartDate"
               onChange={handleStartDateChange}
             />
             <br />
             <input
+              defaultValue={answer.internshipEndDate || ""}
               type="date"
               name="durationEndDate"
               onChange={handleEndDateChange}
@@ -67,9 +71,9 @@ const InternshipDuration = ({ counter, setCounter, answer, setAnswer }) => {
           </>
         ) : null}
         <input
+          checked={durationAnswer === "Maybe" ? true : false}
           type="radio"
           value="Maybe"
-          id="Maybe"
           name="duration"
           onChange={handleChoiceChange}
         />
@@ -81,6 +85,7 @@ const InternshipDuration = ({ counter, setCounter, answer, setAnswer }) => {
           setCounter(counter + 1);
           setAnswer({
             ...answer,
+            internshipDurationAnswer: durationAnswer,
             internshipStartDate: startDate,
             internshipEndDate: endDate,
           });

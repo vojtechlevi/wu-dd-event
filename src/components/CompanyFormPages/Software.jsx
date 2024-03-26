@@ -1,50 +1,65 @@
+import { useState } from "react";
+
 const Software = ({ counter, setCounter, answer, setAnswer }) => {
-  let software = [];
+  const [software, setSoftware] = useState(answer.software || []);
+
+  const choices = [
+    "Figma",
+    "Webflow",
+    "React",
+    "Adobe",
+    "Exempel1",
+    "Exempel2",
+    "Exempel3",
+    "Exempel4",
+    "Exempel",
+  ];
 
   const handleClick = (event) => {
-    if (event.target.classList.contains("bg-black")) {
+    if (
+      Array.isArray(software) &&
+      software.includes(event.target.textContent)
+    ) {
+      // if the button is already selected, deselect it.
+
       event.target.classList.remove("bg-black", "text-white");
 
-      software = software.filter((sw) => {
+      const updatedSoftware = software.filter((sw) => {
         return sw !== event.target.textContent;
       });
+
+      setSoftware(updatedSoftware);
     } else {
+      // if the button is not selected, add it to array software.
+
       event.target.classList.add("bg-black", "text-white");
 
-      software.push(event.target.textContent);
+      const updatedSoftware = Array.isArray(software)
+        ? [...software, event.target.textContent]
+        : [event.target.textContent];
+      setSoftware(updatedSoftware);
     }
   };
-
-  console.log(answer);
 
   return (
     <>
       <h2 className="text-4xl">Vilka program jobbar ni i?</h2>
       <div className="grid grid-cols-2 gap-4">
-        <button className="border border-black p-2" onClick={handleClick}>
-          Figma
-        </button>
-        <button className="border border-black p-2" onClick={handleClick}>
-          Webflow
-        </button>
-        <button className="border border-black p-2" onClick={handleClick}>
-          React
-        </button>
-        <button className="border border-black p-2" onClick={handleClick}>
-          Adobe
-        </button>
-        <button className="border border-black p-2" onClick={handleClick}>
-          Exempel
-        </button>
-        <button className="border border-black p-2" onClick={handleClick}>
-          Exempel2
-        </button>
-        <button className="border border-black p-2" onClick={handleClick}>
-          Exempel3
-        </button>
-        <button className="border border-black p-2" onClick={handleClick}>
-          Exempel4
-        </button>
+        {choices.map((choice) => {
+          return (
+            <button
+              key={choice}
+              className={`border border-black p-2 ${
+                Array.isArray(software) && software.includes(choice)
+                  ? "bg-black text-white"
+                  : ""
+              }`}
+              onClick={handleClick}
+            >
+              {choice}
+            </button>
+          );
+        })}
       </div>
       <button
         onClick={() => {

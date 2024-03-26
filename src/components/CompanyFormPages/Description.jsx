@@ -11,6 +11,7 @@ const Description = ({ counter, setCounter, answer, setAnswer }) => {
     <>
       <h2 className="text-4xl">Kan du beskriva er som företag?</h2>
       <textarea
+        defaultValue={answer.description || ""}
         onChange={updateDescription}
         className="bg-gray-200"
         cols="30"
