@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MoveLeft } from "lucide-react";
 
 import { supabase } from "../client";
@@ -7,6 +7,7 @@ import { supabase } from "../client";
 const Signup = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [countdown, setCountdown] = useState(null);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -51,9 +52,10 @@ const Signup = () => {
         setCountdown(countdown - 1);
       }, 1000);
       return () => clearTimeout(timerId);
+    } else if (countdown === 0) {
+      navigate("/login");
     }
-  }, [countdown]);
-  console.log(countdown);
+  }, [countdown, navigate]);
 
   return (
     <>
@@ -61,11 +63,15 @@ const Signup = () => {
         <section className="w-full h-screen flex flex-col justify-center items-center">
           <div className="px-16 flex flex-col gap-6">
             <div className="w-full flex flex-col gap-6">
-              <h1 className="text-5xl">{formData.fullName}</h1>
               <p className="text-base w-full">
-                Ditt konto är skapat! Logga in på din profil och sök LIA
-                <span>{countdown}</span>
+                Ditt konto är skapat! <br />
               </p>
+              <h1 className="text-5xl">{formData.fullName}</h1>
+              <p>
+                Logga in på din profil och sök bland företag och kanske hitta en
+                LIA plats?
+              </p>
+              <p className="text-xs">Du omdirigeras om: {countdown}</p>
             </div>
             <Link to="/login">
               <button className="border border-black rounded-[32px] px-4 py-3">
