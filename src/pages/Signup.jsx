@@ -5,9 +5,10 @@ import { MoveLeft } from "lucide-react";
 import { supabase } from "../client";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [countdown, setCountdown] = useState(null);
-  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -15,6 +16,7 @@ const Signup = () => {
   });
 
   function handleChange(event) {
+    setErrorMessage("");
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
@@ -23,8 +25,26 @@ const Signup = () => {
     });
   }
 
+  function translateErrorMessage(message) {
+    const errorTranslations = {
+      "User already registered":
+        "En användare med denna e-postadress finns redan",
+      "Signup requires a valid password":
+        "Registrering kräver ett giltigt lösenord",
+      "Password should be at least 6 characters.":
+        "Lösenordet måste vara minst 6 tecken långt",
+    };
+
+    return errorTranslations[message] || message;
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (formData.fullName.trim() === "") {
+      setErrorMessage("Du behöver ange ditt namn");
+      return;
+    }
     try {
       const { data, error } = await supabase.auth.signUp({
         email: formData.email,
@@ -35,7 +55,9 @@ const Signup = () => {
           },
         },
       });
-      if (data) {
+      if (error) {
+        setErrorMessage(translateErrorMessage(error.message));
+      } else if (data) {
         setIsSubmitted(true);
         setCountdown(5);
         // Sign the user out after sign-up
@@ -119,6 +141,7 @@ const Signup = () => {
                 onChange={handleChange}
                 className="bg-[#DEDEDE] rounded-lg p-2 w-[250px]"
               />
+              <p className="text-xs text-center text-red-600">{errorMessage}</p>
               <div className="flex justify-start">
                 <button
                   type="submit"
