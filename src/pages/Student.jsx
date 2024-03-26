@@ -8,11 +8,17 @@ import UserContext from "../UserContext";
 import yrgo from "../assets/yrgo.png";
 
 const Student = () => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [menu, setMenu] = useState(true);
   const [companies, setCompanies] = useState([]);
-  // const name = user && user.user.user_metadata ? user.user.user_metadata.full_name : ""; //email
-  //const name = user.user_metadata.user_name; //github - figma
+
+  let name;
+  /* if (user && user.user_metadata.full_name) {
+    name = user.user_metadata.full_name;
+  }
+  if (user && user.user_metadata && user.user_metadata.user_name) {
+    name = user.user_metadata.user_name;
+  } */
 
   useEffect(() => {
     getCompanies();
@@ -30,11 +36,12 @@ const Student = () => {
 
   async function signOut() {
     const { error } = await supabase.auth.signOut();
+    setUser(null);
   }
 
   return (
-    <section className="px-4">
-      <div className="w-full h-12 flex justify-between items-center">
+    <section className="">
+      <div className=" px-4 w-full h-12 flex justify-between items-center">
         <img src={yrgo} alt="yrgo-logo" />
         {menu ? (
           <Menu onClick={handleMenu} className="cursor-pointer" />
@@ -43,7 +50,7 @@ const Student = () => {
         )}
       </div>
       {!menu ? (
-        <div className="text-right w-full mb-4 px-8">
+        <div className="text-right w-full mb-4 px-4">
           <p className="cursor-pointer">Sparade Favoriter</p>
           <Link to="/" className="cursor-pointer">
             <button onClick={signOut}>Logga ut</button>
@@ -52,8 +59,7 @@ const Student = () => {
       ) : (
         ""
       )}
-      <div>
-        <h1>Inloggad som: {name}</h1>
+      <div className="px-4">
         <div className="flex gap-4 mt-4">
           <input
             type="text"
@@ -69,14 +75,40 @@ const Student = () => {
           filtrera sökning
         </p>
       </div>
-      <div className="mt-4 border-t">
+      <div className=" bg-red max-h-[550px] my-8 border-t border-b rounded-md  overflow-scroll no-scrollbar scroll-smooth">
         <ul>
           {companies.map((company) => (
-            <li key={company.id} className="mt-4">
-              <h3 className="flex justify-between items-center">
-                {company.name} <Heart size={16} />
+            <li key={company.id} className="mt-4 px-4">
+              <h3 className="text-lg flex justify-between items-center mb-2">
+                {company.name}
+                <Heart size={16} /* fill="red" stroke="black"  */ />
               </h3>
-              <p>Vi söker:</p>
+              {company && company.internType.length > 0 ? (
+                Array.isArray(company.internType) &&
+                company.internType.length > 0 ? (
+                  <div className="flex items-center gap-2 ">
+                    <p className=" text-xs">Vi söker:</p>
+                    {company.internType.map((type, index) => (
+                      <p
+                        key={index}
+                        className="border px-2 py-1 rounded-lg text-xs"
+                      >
+                        {type}
+                      </p>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="flex items-center">
+                    <p className="mr-2 text-xs">Vi söker:</p>
+                    <p className="border px-2 py-1 rounded-lg text-xs">
+                      {company.internType}
+                    </p>
+                  </div>
+                )
+              ) : (
+                <p className="text-xs">Söker ej</p>
+              )}
+              <div className="w-full h-[1px] bg-gray-200 mt-4"></div>
             </li>
           ))}
         </ul>
