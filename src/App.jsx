@@ -11,6 +11,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PageNotFound from "./pages/PageNotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ThemeBox from "./components/ThemeBox";
+import Test from "./pages/Test";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -33,11 +35,6 @@ function App() {
     };
   }, []);
 
-  useEffect(() => {
-    if (user) {
-      navigate("/student");
-    }
-  }, [user, navigate]);
   return (
     <>
       <UserContext.Provider value={userContextValue}>
@@ -46,6 +43,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/company" element={<Company />} />
+          <Route path="/test" element={<Test />} />
           <Route
             path="/student"
             element={

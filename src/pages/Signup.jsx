@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MoveLeft } from "lucide-react";
 
@@ -6,6 +6,7 @@ import { supabase } from "../client";
 
 const Signup = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [countdown, setCountdown] = useState(null);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -33,11 +34,26 @@ const Signup = () => {
           },
         },
       });
-      if (data) setIsSubmitted(true);
+      if (data) {
+        setIsSubmitted(true);
+        setCountdown(5);
+        // Sign the user out after sign-up
+        await supabase.auth.signOut();
+      }
     } catch (error) {
       alert(error);
     }
   }
+
+  useEffect(() => {
+    if (countdown > 0) {
+      const timerId = setTimeout(() => {
+        setCountdown(countdown - 1);
+      }, 1000);
+      return () => clearTimeout(timerId);
+    }
+  }, [countdown]);
+  console.log(countdown);
 
   return (
     <>
@@ -48,6 +64,7 @@ const Signup = () => {
               <h1 className="text-5xl">{formData.fullName}</h1>
               <p className="text-base w-full">
                 Ditt konto är skapat! Logga in på din profil och sök LIA
+                <span>{countdown}</span>
               </p>
             </div>
             <Link to="/login">
