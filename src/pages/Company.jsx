@@ -27,7 +27,7 @@ const Company = () => {
   const [answer, setAnswer] = useState({
     name: "",
     sector: "",
-    employees: 0,
+    employees: "",
     focusAreas: {},
     url: "",
     type: "",
