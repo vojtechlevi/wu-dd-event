@@ -87,21 +87,21 @@ const Company = () => {
   const message = ["Preview", "Confirmation", "Stats"];
 
   return (
-    <section className="flex h-screen w-full flex-col ">
-      <div className="h-[50px] w-full bg-yrgo-red"></div>
-      <div className="mx-4 mb-8 flex h-full flex-col border-x-2 border-yrgo-red">
-        <div className="flex w-full justify-between border-b-2 border-yrgo-red">
-          <p className="ml-4 font-extrabold uppercase  text-yrgo-red">
+    <section className="flex h-screen w-full flex-col">
+      <div className=" h-12 bg-yrgo-red"></div>
+      <div className=" mx-4 mb-4 flex h-full flex-col border-x-2 border-yrgo-red">
+        <div className=" flex w-full justify-between border-b-2 border-yrgo-red">
+          <p className="my-1 ml-4 font-extrabold uppercase  text-yrgo-red">
             yrgo event 24 april
           </p>
           <div className="border border-yrgo-red"></div>
-          <p className="mr-4 font-extrabold uppercase text-yrgo-red">
+          <p className=" my-1 mr-4 font-extrabold uppercase text-yrgo-red">
             {counter < formQuestions.length
               ? `fråga ${counter}/${formQuestions.length - 1}`
               : message[counter - formQuestions.length]}
           </p>
         </div>
-        <div className=" flex h-[25px] w-full justify-between border-b-2 border-yrgo-red">
+        <div className=" flex h-6 w-full justify-between border-b-2 border-yrgo-red">
           {formQuestions.map((x) => {
             return (
               <div
@@ -111,39 +111,35 @@ const Company = () => {
             );
           })}
         </div>
-        <div className="flex h-full flex-col items-center justify-center ">
-          {/* content */}
-          <div className="relative h-full w-full">
-            <div className="flex h-full flex-col items-center justify-center gap-4 p-8">
-              <FormPage
-                counter={counter}
-                setCounter={setCounter}
-                answer={answer}
-                setAnswer={setAnswer}
-              />
-            </div>
-          </div>
-          {/* content end */}
+        {/* content */}
+        <div className="flex h-full flex-col items-center justify-center gap-4 ">
+          <FormPage
+            counter={counter}
+            setCounter={setCounter}
+            answer={answer}
+            setAnswer={setAnswer}
+          />
         </div>
-        <div className="flex h-[58px] border-b-2 border-t-2 border-yrgo-red">
-          <div
-            className="ml-4 flex h-full w-1/2 items-center justify-start border-r border-yrgo-red"
+        {/* content end */}
+        <div className="flex border-b-2 border-t-2 border-yrgo-red">
+          <button
+            className="ml-4 flex  w-1/2 items-center justify-start border-r border-yrgo-red py-4"
             onClick={() => setCounter(counter > 0 ? counter - 1 : counter)}
           >
             <MoveLeft className=" stroke-yrgo-red" />
             <p className="ml-4 font-extrabold uppercase  text-yrgo-red">
               tillbaka
             </p>
-          </div>
-          <div
-            className="mr-4 flex h-full w-1/2 items-center justify-end border-yrgo-red"
+          </button>
+          <button
+            className="mr-4 flex w-1/2 items-center justify-end border-l border-yrgo-red py-4"
             onClick={() => setCounter(counter + 1)}
           >
             <p className="mr-4 font-extrabold uppercase  text-yrgo-red">
               nästa
             </p>
             <MoveRight className=" stroke-yrgo-red" />
-          </div>
+          </button>
         </div>
       </div>
     </section>
