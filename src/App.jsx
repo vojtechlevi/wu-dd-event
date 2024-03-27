@@ -28,11 +28,11 @@ function App() {
         const user = session?.user ?? null;
         setUser(user);
 
-        setTimeout(() => {
-          if (user) {
+        if (user && window.location.pathname !== "/signup") {
+          setTimeout(() => {
             navigate("/student");
-          }
-        }, 3000);
+          }, 2000);
+        }
       },
     );
 
