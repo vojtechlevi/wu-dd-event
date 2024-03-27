@@ -25,8 +25,15 @@ function App() {
 
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (event, session) => {
-        setUser(session?.user ?? null);
-      }
+        const user = session?.user ?? null;
+        setUser(user);
+
+        setTimeout(() => {
+          if (user) {
+            navigate("/student");
+          }
+        }, 3000);
+      },
     );
 
     // Cleanup the listener
@@ -39,7 +46,6 @@ function App() {
     <>
       <UserContext.Provider value={userContextValue}>
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/company" element={<Company />} />
@@ -52,6 +58,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/" element={<Home />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </UserContext.Provider>

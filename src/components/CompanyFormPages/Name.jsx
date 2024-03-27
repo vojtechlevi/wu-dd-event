@@ -1,6 +1,6 @@
 const Name = ({ counter, setCounter, answer, setAnswer }) => {
   const handleChange = (event) => {
-    setAnswer({ name: event.target.value });
+    setAnswer({ ...answer, name: event.target.value });
   };
 
   return (
@@ -9,6 +9,7 @@ const Name = ({ counter, setCounter, answer, setAnswer }) => {
       <input
         type="text"
         placeholder="företagsnamn"
+        value={answer.name || ""}
         className="bg-gray-200"
         onChange={handleChange}
       />

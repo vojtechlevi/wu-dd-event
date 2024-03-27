@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Type = ({ counter, setCounter, answer, setAnswer }) => {
-  const [type, setType] = useState("");
+  const [type, setType] = useState(answer.type || "");
 
   const updateType = (event) => {
     if (type === event.target.textContent) {

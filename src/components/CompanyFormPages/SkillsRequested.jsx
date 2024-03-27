@@ -13,6 +13,7 @@ const SkillsRequested = ({ counter, setCounter, answer, setAnswer }) => {
         Är det några speciella skills ni söker just nu?
       </h2>
       <textarea
+        defaultValue={answer.skillsRequested || ""}
         onChange={updateSkills}
         className="bg-gray-200"
         cols="30"

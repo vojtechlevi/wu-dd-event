@@ -6,7 +6,11 @@ const InternCount = ({ counter, setCounter, answer, setAnswer }) => {
   return (
     <>
       <h2 className="text-4xl">Hur många kan ni ta emot?</h2>
-      <select name="count" onChange={handleChange}>
+      <select
+        name="count"
+        onChange={handleChange}
+        defaultValue={answer.internCount || 1}
+      >
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
