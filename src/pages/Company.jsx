@@ -111,36 +111,12 @@ const Company = () => {
             );
           })}
         </div>
-        {/* content */}
-        <div className="flex h-full flex-col items-center justify-center gap-4 ">
-          <FormPage
-            counter={counter}
-            setCounter={setCounter}
-            answer={answer}
-            setAnswer={setAnswer}
-          />
-        </div>
-        {/* content end */}
-        <div className="flex border-b-2 border-t-2 border-yrgo-red">
-          <button
-            className="ml-4 flex  w-1/2 items-center justify-start border-r border-yrgo-red py-4"
-            onClick={() => setCounter(counter > 0 ? counter - 1 : counter)}
-          >
-            <MoveLeft className=" stroke-yrgo-red" />
-            <p className="ml-4 font-extrabold uppercase  text-yrgo-red">
-              tillbaka
-            </p>
-          </button>
-          <button
-            className="mr-4 flex w-1/2 items-center justify-end border-l border-yrgo-red py-4"
-            onClick={() => setCounter(counter + 1)}
-          >
-            <p className="mr-4 font-extrabold uppercase  text-yrgo-red">
-              nästa
-            </p>
-            <MoveRight className=" stroke-yrgo-red" />
-          </button>
-        </div>
+        <FormPage
+          counter={counter}
+          setCounter={setCounter}
+          answer={answer}
+          setAnswer={setAnswer}
+        />
       </div>
     </section>
   );
