@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 
-import { MoveLeft, MoveRight } from "lucide-react";
+import ButtonArrowRight from "../components/Buttons/ButtonArrowRight";
+import ButtonArrowLeft from "../components/Buttons/ButtonArrowLeft";
 
 import Greeting from "../components/CompanyFormPages/Greeting";
 import Name from "../components/CompanyFormPages/Name";
@@ -87,36 +88,55 @@ const Company = () => {
   const message = ["Preview", "Confirmation", "Stats"];
 
   return (
-    <section className="flex h-screen w-full flex-col">
-      <div className=" h-12 bg-yrgo-red"></div>
-      <div className=" mx-4 mb-4 flex h-full flex-col border-x-2 border-yrgo-red">
-        <div className=" flex w-full justify-between border-b-2 border-yrgo-red">
-          <p className="my-1 ml-4 font-extrabold uppercase  text-yrgo-red">
-            yrgo event 24 april
-          </p>
-          <div className="border border-yrgo-red"></div>
-          <p className=" my-1 mr-4 font-extrabold uppercase text-yrgo-red">
-            {counter < formQuestions.length
-              ? `fråga ${counter}/${formQuestions.length - 1}`
-              : message[counter - formQuestions.length]}
-          </p>
+    <section className="relative grid h-full w-full grid-rows-layout">
+      <div className=" w-full bg-white">
+        <div className=" h-12 w-full bg-yrgo-red"></div>
+        <div className="mx-4 border-x-2  border-yrgo-red">
+          <div className="flex justify-between  border-b-2 border-yrgo-red px-4">
+            <p className="my-1 font-extrabold uppercase  text-yrgo-red">
+              yrgo event 24 april
+            </p>
+            <div className="border border-yrgo-red"></div>
+            <p className=" my-1 font-extrabold uppercase text-yrgo-red">
+              {counter < formQuestions.length
+                ? `fråga ${counter}/${formQuestions.length - 1}`
+                : message[counter - formQuestions.length]}
+            </p>
+          </div>
+          <div className=" flex h-6 w-full justify-between border-b-2 border-yrgo-red">
+            {formQuestions.map((x) => {
+              return (
+                <div
+                  className={`${formQuestions.indexOf(x) < counter ? "bg-yrgo-red" : ""} w-full`}
+                  key={formQuestions.indexOf(x)}
+                ></div>
+              );
+            })}
+          </div>
         </div>
-        <div className=" flex h-6 w-full justify-between border-b-2 border-yrgo-red">
-          {formQuestions.map((x) => {
-            return (
-              <div
-                className={`${formQuestions.indexOf(x) < counter ? "bg-yrgo-red" : ""} w-full`}
-                key={formQuestions.indexOf(x)}
-              ></div>
-            );
-          })}
-        </div>
-        <FormPage
-          counter={counter}
-          setCounter={setCounter}
-          answer={answer}
-          setAnswer={setAnswer}
-        />
+      </div>
+
+      <FormPage
+        counter={counter}
+        setCounter={setCounter}
+        answer={answer}
+        setAnswer={setAnswer}
+      />
+
+      <div className="mb-4 flex w-full px-4">
+        <ButtonArrowLeft
+          onClick={() => setCounter(counter > 0 ? counter - 1 : counter)}
+        >
+          tillbaka
+        </ButtonArrowLeft>
+        <ButtonArrowRight
+          onClick={() => {
+            setCounter(counter + 1);
+            // setAnswer({ ...answer, focusAreas: focusAreas });
+          }}
+        >
+          nästa
+        </ButtonArrowRight>
       </div>
     </section>
   );

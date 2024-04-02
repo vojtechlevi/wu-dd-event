@@ -4,71 +4,89 @@ const FocusAreas = ({ counter, setCounter, answer, setAnswer }) => {
   const [focusAreas, setFocusAreas] = useState(answer.focusAreas || []);
 
   const choices = [
-    "Motion design",
-    "Graphic design",
-    "Web design",
-    "UX design",
-    "Product design",
-    "UI design",
-    "3D design",
-    "Industrial design",
+    "Motion",
+    "UX",
+    "UI",
+    "Digitala plattformar",
+    "Service design",
+    "Film",
+    "Branding",
+    "E-commerce",
+    "Annat",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
   ];
 
   const handleClick = (event) => {
-    if (
-      Array.isArray(focusAreas) &&
-      focusAreas.includes(event.target.textContent)
-    ) {
+    if (Array.isArray(focusAreas) && focusAreas.includes(event.target.value)) {
       // if the button is already selected, deselect it.
 
-      event.target.classList.remove("bg-black", "text-white");
-
       const updatedFocusAreas = focusAreas.filter((focusArea) => {
-        return focusArea !== event.target.textContent;
+        return focusArea !== event.target.value;
       });
 
       setFocusAreas(updatedFocusAreas);
     } else {
       // if the button is not selected, add it to array focusAreas.
 
-      event.target.classList.add("bg-black", "text-white");
-
       const updatedFocusAreas = Array.isArray(focusAreas)
-        ? [...focusAreas, event.target.textContent]
-        : [event.target.textContent];
+        ? [...focusAreas, event.target.value]
+        : [event.target.value];
+
       setFocusAreas(updatedFocusAreas);
     }
+
+    setAnswer({ ...answer, focusAreas: focusAreas });
   };
 
   return (
     <>
-      <h2 className="text-4xl">Vad sysslar ni med?</h2>
-      <div className="grid grid-cols-2 gap-4">
-        {choices.map((choice) => {
-          return (
-            <button
-              key={choice}
-              className={`border border-black p-2 ${
-                Array.isArray(focusAreas) && focusAreas.includes(choice)
-                  ? "bg-black text-white"
-                  : ""
-              }`}
-              onClick={handleClick}
-            >
-              {choice}
-            </button>
-          );
-        })}
+      <div className=" mx-4 overflow-y-auto border-x-2 border-yrgo-red pt-8">
+        <h2 className="border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
+          VILKA TYPER AV TJÄNSTER ERBJUDER NI?
+        </h2>
+        <ul>
+          {choices.map((choice) => {
+            return (
+              <li
+                key={choice}
+                className={` ${choices.indexOf(choice) == 0 ? "border-y-2 " : "border-b-2"} align-center flex border-yrgo-red p-4`}
+              >
+                <input
+                  defaultChecked={
+                    Array.isArray(focusAreas) && focusAreas.includes(choice)
+                      ? true
+                      : false
+                  }
+                  className=" my-auto h-4 w-4 appearance-none rounded-full border-2 border-yrgo-red checked:bg-yrgo-red"
+                  type="checkbox"
+                  value={choice}
+                  onClick={handleClick}
+                  id={choice}
+                />
+                <label
+                  htmlFor={choice}
+                  className="pl-4 font-extrabold uppercase text-yrgo-red"
+                >
+                  {choice}
+                </label>
+                <br />
+              </li>
+            );
+          })}
+        </ul>
       </div>
-      <button
-        onClick={() => {
-          setCounter(counter + 1);
-          setAnswer({ ...answer, focusAreas: focusAreas });
-        }}
-        className="border border-black p-2"
-      >
-        Nästa
-      </button>
     </>
   );
 };

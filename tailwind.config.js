@@ -6,6 +6,9 @@ module.exports = {
       colors: {
         "yrgo-red": "#F52A3B",
       },
+      gridTemplateRows: {
+        layout: "auto 1fr auto",
+      },
     },
     fontFamily: {
       sans: ["inter", "ui-sans-serif", "system-ui"],
