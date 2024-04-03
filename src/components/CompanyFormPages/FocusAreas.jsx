@@ -10,22 +10,12 @@ const FocusAreas = ({ answer, setAnswer }) => {
     "Digitala plattformar",
     "Service design",
     "Film",
+    "Apputveckling",
+    "Webbutveckling",
+    "Systemutveckling",
     "Branding",
     "E-commerce",
     "Annat",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "11",
-    "12",
-    "13",
   ];
 
   const handleClick = (event) => {
@@ -52,7 +42,7 @@ const FocusAreas = ({ answer, setAnswer }) => {
 
   return (
     <>
-      <h2 className="border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
+      <h2 className="border-b-2 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
         VILKA TYPER AV TJÄNSTER ERBJUDER NI?
       </h2>
       <ul>
