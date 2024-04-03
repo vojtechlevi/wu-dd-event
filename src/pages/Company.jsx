@@ -11,7 +11,8 @@ import Employees from "../components/CompanyFormPages/Employees";
 import FocusAreas from "../components/CompanyFormPages/FocusAreas";
 import Url from "../components/CompanyFormPages/Url";
 import Type from "../components/CompanyFormPages/Type";
-import Software from "../components/CompanyFormPages/Software";
+import SoftwaresDesign from "../components/CompanyFormPages/SoftwaresDesign";
+import SoftwaresDev from "../components/CompanyFormPages/SoftwaresDev";
 import QuickQuestions from "../components/CompanyFormPages/QuickQuestions";
 import InternType from "../components/CompanyFormPages/InternType";
 import InternCount from "../components/CompanyFormPages/InternCount";
@@ -30,9 +31,10 @@ const Company = () => {
     sector: "",
     employees: "",
     focusAreas: {},
+    SoftwaresDesign: {},
+    SoftwaresDev: {},
     url: "",
     type: "",
-    software: {},
     quickQuestions: {},
     internType: {},
     internCount: 1,
@@ -49,9 +51,10 @@ const Company = () => {
     Sector,
     Employees,
     FocusAreas,
+    SoftwaresDesign,
+    SoftwaresDev,
     Url,
     Type,
-    Software,
     QuickQuestions,
     InternType,
     InternCount,
@@ -73,9 +76,10 @@ const Company = () => {
     Sector,
     Employees,
     FocusAreas,
+    SoftwaresDesign,
+    SoftwaresDev,
     Url,
     Type,
-    Software,
     QuickQuestions,
     InternType,
     InternCount,

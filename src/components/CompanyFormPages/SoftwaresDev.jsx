@@ -1,22 +1,26 @@
 import { useState } from "react";
 
-const Software = ({ answer, setAnswer }) => {
-  const [software, setSoftware] = useState(answer.software || []);
+const SoftwaresDev = ({ answer, setAnswer }) => {
+  const [software, setSoftware] = useState(answer.softwaresDev || []);
 
   const choices = [
-    "Figma",
-    "Webflow",
+    "JavaScript",
+    "TypeScript",
+    "PHP",
+    "C#",
+    "Java",
+    "React",
+    "Vue",
+    "Angular",
+    "Svelte",
+    "Laravel",
+    "Node.js",
+    ".NET",
     "Wordpress",
-    "After Effects",
-    "Photoshop",
-    "XD",
-    "Indesign",
-    "Premiere Pro",
-    "Linearity Move",
-    "Spline",
-    "Blender",
-    "Canva",
-    "Annat",
+    "Sanity",
+    "Storyblok",
+    "Andra CMS",
+    "Andra tekniker",
   ];
 
   const handleClick = (event) => {
@@ -28,7 +32,7 @@ const Software = ({ answer, setAnswer }) => {
       });
 
       setSoftware(updatedSoftware);
-      setAnswer({ ...answer, software: updatedSoftware });
+      setAnswer({ ...answer, softwaresDev: updatedSoftware });
     } else {
       // if the button is not selected, add it to array software.
 
@@ -37,14 +41,14 @@ const Software = ({ answer, setAnswer }) => {
         : [event.target.value];
 
       setSoftware(updatedSoftware);
-      setAnswer({ ...answer, software: updatedSoftware });
+      setAnswer({ ...answer, softwaresDev: updatedSoftware });
     }
   };
 
   return (
     <>
       <h2 className="border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
-        Vilka program jobbar ni i?
+        Vilka tekniker jobbar era utvecklare med?
       </h2>
       <ul>
         {choices.map((choice) => {
@@ -80,8 +84,4 @@ const Software = ({ answer, setAnswer }) => {
   );
 };
 
-export default Software;
-
-// TODO
-// change file name to SoftwareDesigner
-// make similar file for SoftwareDeveloper
+export default SoftwaresDev;
