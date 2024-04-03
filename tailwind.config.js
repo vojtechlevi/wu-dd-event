@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         "yrgo-red": "#F52A3B",
+        "placeholder-grey": "#BDBDBD",
       },
       gridTemplateRows: {
         layout: "auto 1fr auto",

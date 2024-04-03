@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const FocusAreas = ({ counter, setCounter, answer, setAnswer }) => {
+const FocusAreas = ({ answer, setAnswer }) => {
   const [focusAreas, setFocusAreas] = useState(answer.focusAreas || []);
 
   const choices = [
@@ -37,6 +37,7 @@ const FocusAreas = ({ counter, setCounter, answer, setAnswer }) => {
       });
 
       setFocusAreas(updatedFocusAreas);
+      setAnswer({ ...answer, focusAreas: updatedFocusAreas });
     } else {
       // if the button is not selected, add it to array focusAreas.
 
@@ -45,48 +46,45 @@ const FocusAreas = ({ counter, setCounter, answer, setAnswer }) => {
         : [event.target.value];
 
       setFocusAreas(updatedFocusAreas);
+      setAnswer({ ...answer, focusAreas: updatedFocusAreas });
     }
-
-    setAnswer({ ...answer, focusAreas: focusAreas });
   };
 
   return (
     <>
-      <div className=" mx-4 overflow-y-auto border-x-2 border-yrgo-red pt-8">
-        <h2 className="border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
-          VILKA TYPER AV TJÄNSTER ERBJUDER NI?
-        </h2>
-        <ul>
-          {choices.map((choice) => {
-            return (
-              <li
-                key={choice}
-                className={` ${choices.indexOf(choice) == 0 ? "border-y-2 " : "border-b-2"} align-center flex border-yrgo-red p-4`}
+      <h2 className="border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
+        VILKA TYPER AV TJÄNSTER ERBJUDER NI?
+      </h2>
+      <ul>
+        {choices.map((choice) => {
+          return (
+            <li
+              key={choice}
+              className={` ${choices.indexOf(choice) == 0 ? "border-y-2 " : "border-b-2"} align-center flex border-yrgo-red p-4`}
+            >
+              <input
+                defaultChecked={
+                  Array.isArray(focusAreas) && focusAreas.includes(choice)
+                    ? true
+                    : false
+                }
+                className=" my-auto h-4 w-4 appearance-none rounded-full border-2 border-yrgo-red checked:bg-yrgo-red"
+                type="checkbox"
+                value={choice}
+                onClick={handleClick}
+                id={choice}
+              />
+              <label
+                htmlFor={choice}
+                className="pl-4 font-extrabold uppercase text-yrgo-red"
               >
-                <input
-                  defaultChecked={
-                    Array.isArray(focusAreas) && focusAreas.includes(choice)
-                      ? true
-                      : false
-                  }
-                  className=" my-auto h-4 w-4 appearance-none rounded-full border-2 border-yrgo-red checked:bg-yrgo-red"
-                  type="checkbox"
-                  value={choice}
-                  onClick={handleClick}
-                  id={choice}
-                />
-                <label
-                  htmlFor={choice}
-                  className="pl-4 font-extrabold uppercase text-yrgo-red"
-                >
-                  {choice}
-                </label>
-                <br />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+                {choice}
+              </label>
+              <br />
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 };

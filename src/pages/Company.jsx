@@ -116,12 +116,14 @@ const Company = () => {
         </div>
       </div>
 
+      <div className=" mx-4 overflow-y-auto border-x-2 border-yrgo-red pt-8">
       <FormPage
         counter={counter}
         setCounter={setCounter}
         answer={answer}
         setAnswer={setAnswer}
       />
+      </div>
 
       <div className="mb-4 flex w-full px-4">
         <ButtonArrowLeft
