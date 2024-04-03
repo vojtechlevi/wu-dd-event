@@ -5,7 +5,7 @@ const Name = ({ answer, setAnswer }) => {
 
   return (
     <>
-      <h2 className="mt-32 p-4 text-2xl font-extrabold uppercase text-yrgo-red">
+      <h2 className="mt-32 border-b-2 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red">
         Vilket företag kommer du från?
       </h2>
       <input

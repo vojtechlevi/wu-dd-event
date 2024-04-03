@@ -21,7 +21,7 @@ const Employees = ({ answer, setAnswer }) => {
   ];
   return (
     <>
-      <h2 className="p-4 text-2xl font-extrabold uppercase text-yrgo-red ">
+      <h2 className="border-b-2 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red ">
         Hur många jobbar hos er?
       </h2>
       <ul>
