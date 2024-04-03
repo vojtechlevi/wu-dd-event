@@ -1,77 +1,87 @@
 import { useState } from "react";
 
-const Software = ({ counter, setCounter, answer, setAnswer }) => {
+const Software = ({ answer, setAnswer }) => {
   const [software, setSoftware] = useState(answer.software || []);
 
   const choices = [
     "Figma",
     "Webflow",
-    "React",
-    "Adobe",
-    "Exempel1",
-    "Exempel2",
-    "Exempel3",
-    "Exempel4",
-    "Exempel",
+    "Wordpress",
+    "After Effects",
+    "Photoshop",
+    "XD",
+    "Indesign",
+    "Premiere Pro",
+    "Linearity Move",
+    "Spline",
+    "Blender",
+    "Canva",
+    "Annat",
   ];
 
   const handleClick = (event) => {
-    if (
-      Array.isArray(software) &&
-      software.includes(event.target.textContent)
-    ) {
+    if (Array.isArray(software) && software.includes(event.target.value)) {
       // if the button is already selected, deselect it.
 
-      event.target.classList.remove("bg-black", "text-white");
-
       const updatedSoftware = software.filter((sw) => {
-        return sw !== event.target.textContent;
+        return sw !== event.target.value;
       });
 
       setSoftware(updatedSoftware);
+      setAnswer({ ...answer, software: updatedSoftware });
     } else {
       // if the button is not selected, add it to array software.
 
-      event.target.classList.add("bg-black", "text-white");
-
       const updatedSoftware = Array.isArray(software)
-        ? [...software, event.target.textContent]
-        : [event.target.textContent];
+        ? [...software, event.target.value]
+        : [event.target.value];
+
       setSoftware(updatedSoftware);
+      setAnswer({ ...answer, software: updatedSoftware });
     }
   };
 
   return (
     <>
-      <h2 className="text-4xl">Vilka program jobbar ni i?</h2>
-      <div className="grid grid-cols-2 gap-4">
+      <h2 className="border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
+        Vilka program jobbar ni i?
+      </h2>
+      <ul>
         {choices.map((choice) => {
           return (
-            <button
+            <li
               key={choice}
-              className={`border border-black p-2 ${
-                Array.isArray(software) && software.includes(choice)
-                  ? "bg-black text-white"
-                  : ""
-              }`}
-              onClick={handleClick}
+              className={` ${choices.indexOf(choice) == 0 ? "border-y-2 " : "border-b-2"} align-center flex border-yrgo-red p-4`}
             >
-              {choice}
-            </button>
+              <input
+                defaultChecked={
+                  Array.isArray(software) && software.includes(choice)
+                    ? true
+                    : false
+                }
+                className=" my-auto h-4 w-4 appearance-none rounded-full border-2 border-yrgo-red checked:bg-yrgo-red"
+                type="checkbox"
+                value={choice}
+                onClick={handleClick}
+                id={choice}
+              />
+              <label
+                htmlFor={choice}
+                className="pl-4 font-extrabold uppercase text-yrgo-red"
+              >
+                {choice}
+              </label>
+              <br />
+            </li>
           );
         })}
-      </div>
-      <button
-        onClick={() => {
-          setCounter(counter + 1);
-          setAnswer({ ...answer, software: software });
-        }}
-        className="border border-black p-2"
-      >
-        Nästa
-      </button>
+      </ul>
     </>
   );
 };
 
 export default Software;
+
+// TODO
+// change file name to SoftwareDesigner
+// make similar file for SoftwareDeveloper
