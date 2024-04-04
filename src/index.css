@@ -19,3 +19,20 @@
     scrollbar-width: none; /* Firefox */
   }
 }
+
+@layer base {
+  /* CUSTOM RANGE SLIDER STYLES  */
+  /* track */
+  input[type="range"] {
+    @apply h-1 w-full appearance-none bg-yrgo-red;
+  }
+
+  /* thumb */
+  input[type="range"]::-webkit-slider-thumb {
+    @apply -my-8 h-4 w-4 cursor-pointer appearance-none bg-yrgo-red;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    @apply -my-8 h-4 w-4 cursor-pointer appearance-none bg-yrgo-red;
+  }
+}
