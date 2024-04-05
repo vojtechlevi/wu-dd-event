@@ -15,7 +15,7 @@ const Home = () => {
           <p>Loading...</p>
         </div>
       ) : ( */}
-      <main className="flex h-screen w-full flex-col items-center justify-around">
+      <main className="flex h-full w-full flex-col items-center justify-around">
         <div className=" flex h-[50px] w-full items-center justify-center bg-yrgo-red">
           <img src={yrgologo} alt="Yrgo logo text" />
         </div>
