@@ -1,28 +1,27 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
-const ThemeBox = ({ children, btnOne, btnTwo, ...rest }) => {
-  console.log();
+const ThemeBox = ({ children, backBtn }) => {
   return (
     <>
-      <section className="w-full h-screen flex flex-col">
-        <div className="w-full h-[50px] bg-[#F52A3B]"></div>
-        <div className="mx-4 h-full mb-8 border-x-2 border-[#F52A3B] flex flex-col">
-          <div className="h-[50px] border-b-2 border-[#F52A3B] ">
-            <p className="uppercase text-[#F52A3B] font-bold ml-2">
-              yrgo event 24 april
-            </p>
+      <section className="flex h-screen w-full flex-col">
+        <div className=" h-[50px] w-full bg-yrgo-blue"></div>
+        <div className="relative mx-4 mb-8 flex h-full flex-col border-x-2 border-b-2 border-yrgo-blue text-yrgo-blue">
+          <div className="h-[43px] border-b-2 border-yrgo-blue  ">
+            <p className="ml-2 font-bold uppercase ">yrgo event 24 april</p>
           </div>
-          <div className="h-full flex flex-col justify-center items-center ">
+          <div className="flex h-full flex-col items-center justify-center ">
             {children}
           </div>
-          <div className="h-[58px] border-t-2 border-b-2 border-[#F52A3B] flex">
-            <div className="w-1/2 h-full border-r border-[#F52A3B] ml-4 flex justify-start items-center">
-              hej
-            </div>
-            <div className="w-1/2 h-full border-l border-[#F52A3B] mr-4 flex justify-end items-center">
-              hej
-            </div>
-          </div>
+          {backBtn ? (
+            <Link
+              to={backBtn}
+              className="absolute bottom-0 left-0 flex h-14 w-14 items-center justify-center border-r-2 border-t-2 border-yrgo-blue"
+            >
+              <ArrowLeft />
+            </Link>
+          ) : null}
         </div>
       </section>
     </>

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { MoveLeft } from "lucide-react";
 
 import { supabase } from "../client";
+import ThemeBox from "../components/ThemeBox";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -59,7 +60,7 @@ const Signup = () => {
         setErrorMessage(translateErrorMessage(error.message));
       } else if (data) {
         setIsSubmitted(true);
-        setCountdown(5);
+        setCountdown(10);
         // Sign the user out after sign-up
         await supabase.auth.signOut();
       }
@@ -81,14 +82,16 @@ const Signup = () => {
 
   return (
     <>
-      {isSubmitted ? (
-        <section className="w-full h-screen flex flex-col justify-center items-center">
-          <div className="px-16 flex flex-col gap-6">
-            <div className="w-full flex flex-col gap-6">
-              <p className="text-base w-full">
+      <ThemeBox backBtn="/login">
+        {isSubmitted ? (
+          <div className="flex flex-col gap-6">
+            <div className="flex w-full flex-col gap-6 px-16">
+              <p className="w-full text-xl">
                 Ditt konto är skapat! <br />
               </p>
-              <h1 className="text-5xl">{formData.fullName}</h1>
+              <h1 className="text-5xl font-extrabold uppercase">
+                {formData.fullName}
+              </h1>
               <p>
                 Logga in på din profil och sök bland företag och kanske hitta en
                 LIA plats?
@@ -96,64 +99,62 @@ const Signup = () => {
               <p className="text-xs">Du omdirigeras om: {countdown}</p>
             </div>
             <Link to="/login">
-              <button className="border border-black rounded-[32px] px-4 py-3">
+              <button className=" border-yrgo-blue bg-yrgo-blue w-full border-y-2 px-4 py-3 font-extrabold uppercase text-white">
                 Logga In
               </button>
             </Link>
           </div>
-        </section>
-      ) : (
-        <section className="w-full h-screen flex flex-col justify-center items-center">
-          <div className="px-4 w-[320px]">
-            <div className="w-full mb-8 text-[#d2d2d2]">
-              <Link to="/login">
-                <MoveLeft size={32} />
-              </Link>
+        ) : (
+          <div className="w-full">
+            <div className="mb-8 pl-2">
+              <h2 className=" text-5xl font-extrabold uppercase">
+                Skapa Konto
+              </h2>
+              <p>Kort text om varför skapa konto: spara favoriter,</p>
             </div>
-            <div className="w-full flex flex-col gap-6 justify-center px-8">
-              <h1 className="text-6xl">Skapa Konto</h1>
-              <p className="text-base w-full justify-center">
-                Kort text om varför skapa konto: spara favoriter,
-              </p>
-            </div>
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-col gap-6 my-20 w-full items-center"
-            >
+            <form onSubmit={handleSubmit} className="flex w-full flex-col ">
               <input
                 type="text"
                 name="fullName"
                 placeholder="Namn"
                 onChange={handleChange}
-                className="bg-[#DEDEDE] rounded-lg p-2 w-[250px]"
+                className="border-yrgo-blue w-full border-t-2 px-4 py-6 focus:outline-none"
               />
               <input
                 type="email"
                 name="email"
                 placeholder="Mailadress"
                 onChange={handleChange}
-                className="bg-[#DEDEDE] rounded-lg p-2 w-[250px]"
+                className="border-yrgo-blue w-full border-t-2 px-4 py-6 focus:outline-none"
               />
               <input
                 type="password"
                 name="password"
                 placeholder="Lösenord"
                 onChange={handleChange}
-                className="bg-[#DEDEDE] rounded-lg p-2 w-[250px]"
+                className="border-yrgo-blue w-full border-t-2 px-4 py-6 focus:outline-none"
               />
-              <p className="text-xs text-center text-red-600">{errorMessage}</p>
+              {errorMessage ? (
+                <div className="border-yrgo-blue w-full border-t-2 ">
+                  <p className="text-yrgo-blue py-4 text-center">
+                    {errorMessage}
+                  </p>
+                </div>
+              ) : (
+                ""
+              )}
               <div className="flex justify-start">
                 <button
                   type="submit"
-                  className="w-full border border-black rounded-[32px] px-4 py-3 text-xl text-white bg-black"
+                  className="border-yrgo-blue bg-yrgo-blue flex h-12 w-full items-center justify-center border-y-2 font-extrabold uppercase text-white"
                 >
                   Skapa Konto
                 </button>
               </div>
             </form>
           </div>
-        </section>
-      )}
+        )}
+      </ThemeBox>
     </>
   );
 };
