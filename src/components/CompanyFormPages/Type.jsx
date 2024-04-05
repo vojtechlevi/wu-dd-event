@@ -20,7 +20,7 @@ const ListItem = ({ sliderName, sliderText }) => {
         min="1"
         max="10"
         defaultValue="5"
-        class="w-full"
+        className="w-full"
         id="myRange"
       />
       <div className="flex justify-between">
