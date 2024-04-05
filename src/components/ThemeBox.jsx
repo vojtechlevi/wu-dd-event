@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 const ThemeBox = ({ children, backBtn }) => {
   return (
     <>
-      <section className="flex h-screen w-full flex-col">
+      <section className="flex h-full w-full flex-col">
         <div className=" h-[50px] w-full bg-yrgo-blue"></div>
         <div className="relative mx-4 mb-8 flex h-full flex-col border-x-2 border-b-2 border-yrgo-blue text-yrgo-blue">
           <div className="h-[43px] border-b-2 border-yrgo-blue  ">
