@@ -1,49 +1,54 @@
 import { useState } from "react";
 
-const FocusAreas = ({ answer, setAnswer }) => {
-  const [focusAreas, setFocusAreas] = useState(answer.focusAreas || []);
+const SoftwaresDev = ({ answer, setAnswer }) => {
+  const [software, setSoftware] = useState(answer.softwaresDev || []);
 
   const choices = [
-    "Motion",
-    "UX",
-    "UI",
-    "Digitala plattformar",
-    "Service design",
-    "Film",
-    "Apputveckling",
-    "Webbutveckling",
-    "Systemutveckling",
-    "Branding",
-    "E-commerce",
-    "Annat",
+    "JavaScript",
+    "TypeScript",
+    "PHP",
+    "C#",
+    "Java",
+    "React",
+    "Vue",
+    "Angular",
+    "Svelte",
+    "Laravel",
+    "Node.js",
+    ".NET",
+    "Wordpress",
+    "Sanity",
+    "Storyblok",
+    "Andra CMS",
+    "Andra tekniker",
   ];
 
   const handleClick = (event) => {
-    if (Array.isArray(focusAreas) && focusAreas.includes(event.target.value)) {
+    if (Array.isArray(software) && software.includes(event.target.value)) {
       // if the button is already selected, deselect it.
 
-      const updatedFocusAreas = focusAreas.filter((focusArea) => {
-        return focusArea !== event.target.value;
+      const updatedSoftware = software.filter((sw) => {
+        return sw !== event.target.value;
       });
 
-      setFocusAreas(updatedFocusAreas);
-      setAnswer({ ...answer, focusAreas: updatedFocusAreas });
+      setSoftware(updatedSoftware);
+      setAnswer({ ...answer, softwaresDev: updatedSoftware });
     } else {
-      // if the button is not selected, add it to array focusAreas.
+      // if the button is not selected, add it to array software.
 
-      const updatedFocusAreas = Array.isArray(focusAreas)
-        ? [...focusAreas, event.target.value]
+      const updatedSoftware = Array.isArray(software)
+        ? [...software, event.target.value]
         : [event.target.value];
 
-      setFocusAreas(updatedFocusAreas);
-      setAnswer({ ...answer, focusAreas: updatedFocusAreas });
+      setSoftware(updatedSoftware);
+      setAnswer({ ...answer, softwaresDev: updatedSoftware });
     }
   };
 
   return (
     <>
       <h2 className="border-b-2 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
-        VILKA TYPER AV TJÄNSTER ERBJUDER NI?
+        Vilka tekniker jobbar era utvecklare med?
       </h2>
       <ul>
         {choices.map((choice) => {
@@ -51,14 +56,14 @@ const FocusAreas = ({ answer, setAnswer }) => {
             <li
               key={choice}
               className={` ${
-                Array.isArray(focusAreas) && focusAreas.includes(choice)
+                Array.isArray(software) && software.includes(choice)
                   ? "border-white bg-yrgo-red"
                   : "border-yrgo-red bg-white"
               } align-center flex border-b-2 p-4`}
             >
               <input
                 defaultChecked={
-                  Array.isArray(focusAreas) && focusAreas.includes(choice)
+                  Array.isArray(software) && software.includes(choice)
                     ? true
                     : false
                 }
@@ -71,7 +76,7 @@ const FocusAreas = ({ answer, setAnswer }) => {
               <label
                 htmlFor={choice}
                 className={` ${
-                  Array.isArray(focusAreas) && focusAreas.includes(choice)
+                  Array.isArray(software) && software.includes(choice)
                     ? "text-white"
                     : "text-yrgo-red"
                 } cursor-pointer pl-4 font-extrabold uppercase`}
@@ -87,4 +92,4 @@ const FocusAreas = ({ answer, setAnswer }) => {
   );
 };
 
-export default FocusAreas;
+export default SoftwaresDev;

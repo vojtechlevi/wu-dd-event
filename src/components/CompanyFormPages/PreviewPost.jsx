@@ -4,21 +4,41 @@ const PreviewPost = ({ counter, setCounter, answer }) => {
   async function writeToDatabase() {
     try {
       const { error } = await supabase.from("companies").insert({
-        name: answer.name,
-        bransch: answer.sector,
-        employees: answer.employees,
-        employees: answer.employees,
-        focusareas: answer.focusAreas,
-        companyURL: answer.url,
-        companyType: answer.type,
-        softwares: answer.software,
-        top5: answer.quickQuestions,
-        internType: answer.internType,
-        internCount: answer.internCount,
-        internshipStartDate: answer.internshipStartDate,
-        internshipEndDate: answer.internshipEndDate,
-        internshipSkillReq: answer.skillsRequested,
-        description: answer.description,
+        contact: [
+          {
+            url: "www.hej.se",
+            name: "företagsnamn",
+            email: "ojsojsoj@hansson.se",
+          },
+        ],
+        employees: "5-10",
+        focusAreas: ["UX111", "UIKOFEOMEF", "JFOJE"],
+        softwaresDesign: ["oijwad", "838", "modom"],
+        softwaresDev: ["hejhejh", "123e4wrf3", "mdodomdmod"],
+        top5: [
+          {
+            flexTime: false,
+            dogFriendly: false,
+            OfficeInSweden: true,
+            companyTypeInhouse: false,
+            remoteWorkFriendly: false,
+          },
+        ],
+        companyType: [
+          {
+            cool: 4,
+            fast: 8,
+            stable: 2,
+          },
+        ],
+        internTypeCount: [
+          {
+            Webbutvecklare: 3,
+            "Digital Designer": 0,
+          },
+        ],
+        internshipStartDate: "2020-02-12",
+        internshipEndDate: "2025-05-11",
       });
       if (error) {
         console.error("Error inserting data:", error);
@@ -37,7 +57,7 @@ const PreviewPost = ({ counter, setCounter, answer }) => {
       <button
         onClick={() => {
           setCounter(counter + 1);
-          writeToDatabase();
+          // writeToDatabase();
         }}
         className="border border-black p-2"
       >

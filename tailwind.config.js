@@ -6,6 +6,10 @@ module.exports = {
       colors: {
         "yrgo-red": "#F52A3B",
         "yrgo-blue": "#001A52",
+        "placeholder-grey": "#BDBDBD",
+      },
+      gridTemplateRows: {
+        layout: "auto 1fr auto",
       },
     },
     fontFamily: {
