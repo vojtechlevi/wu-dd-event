@@ -1,70 +1,72 @@
-import React from "react";
 import { useState } from "react";
 
 import ButtonArrowRight from "../components/Buttons/ButtonArrowRight";
 import ButtonArrowLeft from "../components/Buttons/ButtonArrowLeft";
 
 import Greeting from "../components/CompanyFormPages/Greeting";
-import Name from "../components/CompanyFormPages/Name";
-import Sector from "../components/CompanyFormPages/Sector";
+// todo: make Greeting a separate page instead of a form page
+
+import Contact from "../components/CompanyFormPages/Contact";
 import Employees from "../components/CompanyFormPages/Employees";
 import FocusAreas from "../components/CompanyFormPages/FocusAreas";
-import Url from "../components/CompanyFormPages/Url";
-import Type from "../components/CompanyFormPages/Type";
 import SoftwaresDesign from "../components/CompanyFormPages/SoftwaresDesign";
 import SoftwaresDev from "../components/CompanyFormPages/SoftwaresDev";
 import QuickQuestions from "../components/CompanyFormPages/QuickQuestions";
-import InternType from "../components/CompanyFormPages/InternType";
-import InternCount from "../components/CompanyFormPages/InternCount";
+import Type from "../components/CompanyFormPages/Type";
+import InternTypeCount from "../components/CompanyFormPages/InternTypeCount";
 import InternshipDuration from "../components/CompanyFormPages/InternshipDuration";
-import SkillsRequested from "../components/CompanyFormPages/SkillsRequested";
-import Description from "../components/CompanyFormPages/Description";
 import PreviewPost from "../components/CompanyFormPages/PreviewPost";
 import Confirmation from "../components/CompanyFormPages/Confirmation";
 import EventStats from "../components/CompanyFormPages/EventStats";
-// import more form pages as needed
 
 const Company = () => {
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(6);
   const [answer, setAnswer] = useState({
-    name: "",
-    sector: "",
+    contact: [],
     employees: "",
-    focusAreas: {},
-    SoftwaresDesign: {},
-    SoftwaresDev: {},
-    url: "",
-    type: "",
-    quickQuestions: {},
-    internType: {},
-    internCount: 1,
-    internshipDurationAnswer: "", // not written to db
+    focusAreas: [],
+    softwaresDesign: [],
+    softwaresDev: [],
+    top5: [
+      {
+        flexTime: null,
+        dogFriendly: null,
+        OfficeInSweden: null,
+        companyTypeInhouse: null,
+        remoteWorkFriendly: null,
+      },
+    ],
+    companyType: [
+      {
+        cool: null,
+        fast: null,
+        stable: null,
+      },
+    ],
+    internTypeCount: [
+      {
+        Webbutvecklare: null,
+        "Digital Designer": null,
+      },
+    ],
     internshipStartDate: "",
     internshipEndDate: "",
-    skillsRequested: "",
-    description: "",
   });
 
   const formPages = [
     Greeting,
-    Name,
-    Sector,
+    Contact,
     Employees,
     FocusAreas,
     SoftwaresDesign,
     SoftwaresDev,
-    Url,
-    Type,
     QuickQuestions,
-    InternType,
-    InternCount,
+    Type,
+    InternTypeCount,
     InternshipDuration,
-    SkillsRequested,
-    Description,
     PreviewPost,
     Confirmation,
     EventStats,
-    // add more form pages as needed
   ];
 
   const FormPage = formPages[counter];
@@ -72,20 +74,15 @@ const Company = () => {
   const formQuestions = [
     // these are counted in the progress bar (last 3 from above excluded)
     Greeting,
-    Name,
-    Sector,
+    Contact,
     Employees,
     FocusAreas,
     SoftwaresDesign,
     SoftwaresDev,
-    Url,
-    Type,
     QuickQuestions,
-    InternType,
-    InternCount,
+    Type,
+    InternTypeCount,
     InternshipDuration,
-    SkillsRequested,
-    Description,
   ];
 
   // Instead of "Fråga X/Y", for the last pages that aren't questions:
@@ -121,12 +118,12 @@ const Company = () => {
       </div>
 
       <div className=" mx-4 overflow-y-auto border-x-2 border-yrgo-red pt-8">
-      <FormPage
-        counter={counter}
-        setCounter={setCounter}
-        answer={answer}
-        setAnswer={setAnswer}
-      />
+        <FormPage
+          counter={counter}
+          setCounter={setCounter}
+          answer={answer}
+          setAnswer={setAnswer}
+        />
       </div>
 
       <div className="mb-4 flex w-full px-4">
@@ -138,7 +135,6 @@ const Company = () => {
         <ButtonArrowRight
           onClick={() => {
             setCounter(counter + 1);
-            // setAnswer({ ...answer, focusAreas: focusAreas });
           }}
         >
           nästa
