@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @supports (-webkit-touch-callout: none) {
-  .h-screen, .h-full {
+  .h-screen {
     height: -webkit-fill-available;
   }
 }
