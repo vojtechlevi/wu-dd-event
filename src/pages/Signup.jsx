@@ -60,7 +60,7 @@ const Signup = () => {
         setErrorMessage(translateErrorMessage(error.message));
       } else if (data) {
         setIsSubmitted(true);
-        setCountdown(5);
+        setCountdown(10);
         // Sign the user out after sign-up
         await supabase.auth.signOut();
       }
