@@ -29,7 +29,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
   const updateAnswer = (question, value) => {
     setAnswer({
       ...answer,
-      quickQuestions: {
+      top5: {
         dogPolicy: question === "dogPolicy" ? value : dogPolicy,
         remoteWorkPolicy:
           question === "remoteWorkPolicy" ? value : remoteWorkPolicy,
@@ -41,9 +41,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
   };
 
   // dog policy
-  const [dogPolicy, setDogPolicy] = useState(
-    answer.quickQuestions.dogPolicy || "",
-  );
+  const [dogPolicy, setDogPolicy] = useState(answer.top5.dogPolicy || "");
   const updateDogPolicy = (event) => {
     setDogPolicy(event.target.value);
     updateAnswer("dogPolicy", event.target.value);
@@ -51,7 +49,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
 
   // remote work policy
   const [remoteWorkPolicy, setRemoteWorkPolicy] = useState(
-    answer.quickQuestions.remoteWorkPolicy || "",
+    answer.top5.remoteWorkPolicy || "",
   );
   const updateRemoteWorkPolicy = (event) => {
     setRemoteWorkPolicy(event.target.value);
@@ -60,7 +58,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
 
   // office location
   const [officeLocation, setOfficeLocation] = useState(
-    answer.quickQuestions.officeLocation || "",
+    answer.top5.officeLocation || "",
   );
   const updateOfficeLocation = (event) => {
     setOfficeLocation(event.target.value);
@@ -68,9 +66,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
   };
 
   // company type
-  const [companyType, setCompanyType] = useState(
-    answer.quickQuestions.companyType || "",
-  );
+  const [companyType, setCompanyType] = useState(answer.top5.companyType || "");
 
   const updateCompanyType = (event) => {
     setCompanyType(event.target.value);
@@ -78,9 +74,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
   };
 
   // office type
-  const [officeType, setOfficeType] = useState(
-    answer.quickQuestions.officeType || "",
-  );
+  const [officeType, setOfficeType] = useState(answer.top5.officeType || "");
 
   const updateOfficeType = (event) => {
     setOfficeType(event.target.value);
@@ -96,34 +90,26 @@ const QuickQuestions = ({ answer, setAnswer }) => {
         <ListItem
           item="hund = ja!"
           onClick={updateDogPolicy}
-          defaultChecked={
-            answer.quickQuestions.dogPolicy === "hund = ja!" ? true : false
-          }
+          defaultChecked={answer.top5.dogPolicy === "hund = ja!" ? true : false}
         />
         <ListItem
           item="no dogs :)"
           onClick={updateDogPolicy}
-          defaultChecked={
-            answer.quickQuestions.dogPolicy === "no dogs :)" ? true : false
-          }
+          defaultChecked={answer.top5.dogPolicy === "no dogs :)" ? true : false}
         />
 
         <ListItem
           item="remote work = no"
           onClick={updateRemoteWorkPolicy}
           defaultChecked={
-            answer.quickQuestions.remoteWorkPolicy === "remote work = no"
-              ? true
-              : false
+            answer.top5.remoteWorkPolicy === "remote work = no" ? true : false
           }
         />
         <ListItem
           item="remote work = yes"
           onClick={updateRemoteWorkPolicy}
           defaultChecked={
-            answer.quickQuestions.remoteWorkPolicy === "remote work = yes"
-              ? true
-              : false
+            answer.top5.remoteWorkPolicy === "remote work = yes" ? true : false
           }
         />
 
@@ -131,50 +117,40 @@ const QuickQuestions = ({ answer, setAnswer }) => {
           item="kontor i sverige"
           onClick={updateOfficeLocation}
           defaultChecked={
-            answer.quickQuestions.officeLocation === "kontor i sverige"
-              ? true
-              : false
+            answer.top5.officeLocation === "kontor i sverige" ? true : false
           }
         />
         <ListItem
           item="kontor utomlands"
           onClick={updateOfficeLocation}
           defaultChecked={
-            answer.quickQuestions.officeLocation === "kontor utomlands"
-              ? true
-              : false
+            answer.top5.officeLocation === "kontor utomlands" ? true : false
           }
         />
 
         <ListItem
           item="inhouse"
           onClick={updateCompanyType}
-          defaultChecked={
-            answer.quickQuestions.companyType === "inhouse" ? true : false
-          }
+          defaultChecked={answer.top5.companyType === "inhouse" ? true : false}
         />
         <ListItem
           item="byrå"
           onClick={updateCompanyType}
-          defaultChecked={
-            answer.quickQuestions.companyType === "byrå" ? true : false
-          }
+          defaultChecked={answer.top5.companyType === "byrå" ? true : false}
         />
 
         <ListItem
           item="eget kontor"
           onClick={updateOfficeType}
           defaultChecked={
-            answer.quickQuestions.officeType === "eget kontor" ? true : false
+            answer.top5.officeType === "eget kontor" ? true : false
           }
         />
         <ListItem
           item="kontors-landskap"
           onClick={updateOfficeType}
           defaultChecked={
-            answer.quickQuestions.officeType === "kontors-landskap"
-              ? true
-              : false
+            answer.top5.officeType === "kontors-landskap" ? true : false
           }
         />
       </ul>
