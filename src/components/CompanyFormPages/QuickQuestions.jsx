@@ -1,159 +1,120 @@
 import { useState } from "react";
 
 const QuickQuestions = ({ answer, setAnswer }) => {
-  const ListItem = ({ item, onClick, defaultChecked }) => {
-    return (
-      <li
-        key={item}
-        className={"align-center flex  border-yrgo-red bg-white p-4"}
-      >
-        <input
-          className="my-auto h-4 w-4 shrink-0 appearance-none rounded-full border-2 border-yrgo-red bg-white checked:bg-yrgo-red"
-          type="checkbox"
-          value={item}
-          id={item}
-          onClick={onClick}
-          defaultChecked={defaultChecked}
-        />
-        <label
-          htmlFor={item}
-          className="my-auto pl-4 font-extrabold uppercase text-yrgo-red"
-        >
-          {item}
-        </label>
-        <br />
-      </li>
-    );
+  const [selectedChoices, setSelectedChoices] = useState({
+    dogFriendly: answer.top5.dogPolicy || null,
+    remoteWorkFriendly: answer.top5.remoteWorkFriendly || null,
+    OfficeInSweden: answer.top5.OfficeInSweden || null,
+    companyTypeInhouse: answer.top5.companyTypeInhouse || null,
+    flexTime: answer.top5.flexTime || null,
+    // add other choices here...
+  });
+
+  const handleChoiceChange = (choiceName, event) => {
+    const updatedChoices = {
+      ...selectedChoices,
+      [choiceName]: event.target.value === "true",
+    };
+    setSelectedChoices(updatedChoices);
+    setAnswer({ ...answer, top5: updatedChoices });
   };
 
-  const updateAnswer = (question, value) => {
-    setAnswer({
-      ...answer,
-      top5: {
-        dogPolicy: question === "dogPolicy" ? value : dogPolicy,
-        remoteWorkPolicy:
-          question === "remoteWorkPolicy" ? value : remoteWorkPolicy,
-        officeLocation: question === "officeLocation" ? value : officeLocation,
-        companyType: question === "companyType" ? value : companyType,
-        officeType: question === "officeType" ? value : officeType,
-      },
-    });
-  };
-
-  // dog policy
-  const [dogPolicy, setDogPolicy] = useState(answer.top5.dogPolicy || "");
-  const updateDogPolicy = (event) => {
-    setDogPolicy(event.target.value);
-    updateAnswer("dogPolicy", event.target.value);
-  };
-
-  // remote work policy
-  const [remoteWorkPolicy, setRemoteWorkPolicy] = useState(
-    answer.top5.remoteWorkPolicy || "",
-  );
-  const updateRemoteWorkPolicy = (event) => {
-    setRemoteWorkPolicy(event.target.value);
-    updateAnswer("remoteWorkPolicy", event.target.value);
-  };
-
-  // office location
-  const [officeLocation, setOfficeLocation] = useState(
-    answer.top5.officeLocation || "",
-  );
-  const updateOfficeLocation = (event) => {
-    setOfficeLocation(event.target.value);
-    updateAnswer("officeLocation", event.target.value);
-  };
-
-  // company type
-  const [companyType, setCompanyType] = useState(answer.top5.companyType || "");
-
-  const updateCompanyType = (event) => {
-    setCompanyType(event.target.value);
-    updateAnswer("companyType", event.target.value);
-  };
-
-  // office type
-  const [officeType, setOfficeType] = useState(answer.top5.officeType || "");
-
-  const updateOfficeType = (event) => {
-    setOfficeType(event.target.value);
-    updateAnswer("officeType", event.target.value);
-  };
+  const choices = [
+    {
+      name: "dogFriendly",
+      updateFunction: (event) => handleChoiceChange("dogFriendly", event),
+      textBoolTrue: "hund = ja!",
+      textBoolFalse: "no dogs :(",
+    },
+    {
+      name: "remoteWorkFriendly",
+      updateFunction: (event) =>
+        handleChoiceChange("remoteWorkFriendly", event),
+      textBoolTrue: "jobba hemma",
+      textBoolFalse: "kontor är bäst",
+    },
+    {
+      name: "OfficeInSweden",
+      updateFunction: (event) => handleChoiceChange("OfficeInSweden", event),
+      textBoolTrue: "bara sverige",
+      textBoolFalse: "kontor utomlands",
+    },
+    {
+      name: "companyTypeInhouse",
+      updateFunction: (event) =>
+        handleChoiceChange("companyTypeInhouse", event),
+      textBoolTrue: "inhouse",
+      textBoolFalse: "byrå",
+    },
+    {
+      name: "flexTime",
+      updateFunction: (event) => handleChoiceChange("flexTime", event),
+      textBoolTrue: "flex",
+      textBoolFalse: "workin 9–5, 4-ever",
+    },
+  ];
 
   return (
     <>
       <h2 className="mt-16 border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
         5 snabba!
       </h2>
-      <ul className="grid grid-cols-2 gap-0.5 border-b-2 border-yrgo-red bg-yrgo-red">
-        <ListItem
-          item="hund = ja!"
-          onClick={updateDogPolicy}
-          defaultChecked={answer.top5.dogPolicy === "hund = ja!" ? true : false}
-        />
-        <ListItem
-          item="no dogs :)"
-          onClick={updateDogPolicy}
-          defaultChecked={answer.top5.dogPolicy === "no dogs :)" ? true : false}
-        />
 
-        <ListItem
-          item="remote work = no"
-          onClick={updateRemoteWorkPolicy}
-          defaultChecked={
-            answer.top5.remoteWorkPolicy === "remote work = no" ? true : false
-          }
-        />
-        <ListItem
-          item="remote work = yes"
-          onClick={updateRemoteWorkPolicy}
-          defaultChecked={
-            answer.top5.remoteWorkPolicy === "remote work = yes" ? true : false
-          }
-        />
+      {choices.map((choice, index) => {
+        return (
+          <form key={choice.name} className={"grid grid-cols-2"}>
+            <div
+              className={`${
+                answer.top5[choice.name] === true
+                  ? "border-white bg-yrgo-red"
+                  : "border-yrgo-red bg-white"
+              } flex items-center border-b-2 border-r border-r-yrgo-red p-4 
+              ${index === 4 ? " border-yrgo-red" : null}
+              `}
+            >
+              <input
+                className=" shrink-0 checked:border-white "
+                type="radio"
+                value={true}
+                id={choice.textBoolTrue}
+                onChange={choice.updateFunction}
+                checked={answer.top5[choice.name] === true ? true : false}
+              />
+              <label
+                htmlFor={choice.textBoolTrue}
+                className={`${answer.top5[choice.name] === true ? "text-white" : "text-yrgo-red"} cursor-pointer pl-4 font-extrabold uppercase`}
+              >
+                {choice.textBoolTrue}
+              </label>
+            </div>
 
-        <ListItem
-          item="kontor i sverige"
-          onClick={updateOfficeLocation}
-          defaultChecked={
-            answer.top5.officeLocation === "kontor i sverige" ? true : false
-          }
-        />
-        <ListItem
-          item="kontor utomlands"
-          onClick={updateOfficeLocation}
-          defaultChecked={
-            answer.top5.officeLocation === "kontor utomlands" ? true : false
-          }
-        />
-
-        <ListItem
-          item="inhouse"
-          onClick={updateCompanyType}
-          defaultChecked={answer.top5.companyType === "inhouse" ? true : false}
-        />
-        <ListItem
-          item="byrå"
-          onClick={updateCompanyType}
-          defaultChecked={answer.top5.companyType === "byrå" ? true : false}
-        />
-
-        <ListItem
-          item="eget kontor"
-          onClick={updateOfficeType}
-          defaultChecked={
-            answer.top5.officeType === "eget kontor" ? true : false
-          }
-        />
-        <ListItem
-          item="kontors-landskap"
-          onClick={updateOfficeType}
-          defaultChecked={
-            answer.top5.officeType === "kontors-landskap" ? true : false
-          }
-        />
-      </ul>
+            <div
+              className={`${
+                answer.top5[choice.name] === false
+                  ? "border-white bg-yrgo-red"
+                  : "border-yrgo-red bg-white"
+              } flex items-center border-b-2 border-l border-l-yrgo-red p-4
+              ${index === 4 ? " border-yrgo-red" : null}
+              `}
+            >
+              <input
+                className=" shrink-0 checked:border-white "
+                type="radio"
+                value={false}
+                id={choice.textBoolFalse}
+                onChange={choice.updateFunction}
+                checked={answer.top5[choice.name] === false ? true : false}
+              />
+              <label
+                htmlFor={choice.textBoolFalse}
+                className={`${answer.top5[choice.name] === false ? "text-white" : "text-yrgo-red"} cursor-pointer pl-4 font-extrabold uppercase`}
+              >
+                {choice.textBoolFalse}
+              </label>
+            </div>
+          </form>
+        );
+      })}
     </>
   );
 };
