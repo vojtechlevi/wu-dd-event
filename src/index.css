@@ -35,4 +35,21 @@
   input[type="range"]::-moz-range-thumb {
     @apply -my-8 h-4 w-4 cursor-pointer appearance-none bg-yrgo-red;
   }
+
+  /* CUSTOM CHECKBOX AND RADIO STYLES  */
+  input[type="radio"],
+  input[type="checkbox"] {
+    @apply my-auto grid h-4 w-4 cursor-pointer appearance-none place-content-center rounded-full border-2 border-yrgo-red;
+  }
+
+  input[type="radio"]::before,
+  input[type="checkbox"]::before {
+    @apply h-10 w-10 opacity-0;
+    content: url("./assets/X.svg");
+  }
+
+  input[type="radio"]:checked::before,
+  input[type="checkbox"]:checked::before {
+    @apply opacity-100;
+  }
 }

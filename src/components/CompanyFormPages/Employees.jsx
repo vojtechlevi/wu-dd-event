@@ -29,11 +29,11 @@ const Employees = ({ answer, setAnswer }) => {
           return (
             <li
               key={choice}
-              className={` ${choices.indexOf(choice) == 0 ? "border-y-2 " : "border-b-2"} align-center flex border-yrgo-red p-4`}
+              className={`${answer.employees === choice ? "border-white bg-yrgo-red" : "border-yrgo-red bg-white"} align-center flex border-b-2  p-4`}
             >
               <input
                 checked={employeesCount === choice ? true : false}
-                className=" my-auto h-4 w-4 appearance-none rounded-full border-2 border-yrgo-red checked:bg-yrgo-red"
+                className=" checked:border-white"
                 type="radio"
                 value={choice}
                 name=""
@@ -42,7 +42,7 @@ const Employees = ({ answer, setAnswer }) => {
               />
               <label
                 htmlFor={choice}
-                className="pl-4 font-extrabold uppercase text-yrgo-red"
+                className={`${answer.employees === choice ? "text-white" : "text-yrgo-red"} cursor-pointer pl-4 font-extrabold uppercase`}
               >
                 {choice}
               </label>
