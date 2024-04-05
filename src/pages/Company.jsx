@@ -1,66 +1,72 @@
-import React from "react";
 import { useState } from "react";
 
-import { MoveLeft, MoveRight } from "lucide-react";
+import ButtonArrowRight from "../components/Buttons/ButtonArrowRight";
+import ButtonArrowLeft from "../components/Buttons/ButtonArrowLeft";
 
 import Greeting from "../components/CompanyFormPages/Greeting";
-import Name from "../components/CompanyFormPages/Name";
-import Sector from "../components/CompanyFormPages/Sector";
+// todo: make Greeting a separate page instead of a form page
+
+import Contact from "../components/CompanyFormPages/Contact";
 import Employees from "../components/CompanyFormPages/Employees";
 import FocusAreas from "../components/CompanyFormPages/FocusAreas";
-import Url from "../components/CompanyFormPages/Url";
-import Type from "../components/CompanyFormPages/Type";
-import Software from "../components/CompanyFormPages/Software";
+import SoftwaresDesign from "../components/CompanyFormPages/SoftwaresDesign";
+import SoftwaresDev from "../components/CompanyFormPages/SoftwaresDev";
 import QuickQuestions from "../components/CompanyFormPages/QuickQuestions";
-import InternType from "../components/CompanyFormPages/InternType";
-import InternCount from "../components/CompanyFormPages/InternCount";
+import Type from "../components/CompanyFormPages/Type";
+import InternTypeCount from "../components/CompanyFormPages/InternTypeCount";
 import InternshipDuration from "../components/CompanyFormPages/InternshipDuration";
-import SkillsRequested from "../components/CompanyFormPages/SkillsRequested";
-import Description from "../components/CompanyFormPages/Description";
 import PreviewPost from "../components/CompanyFormPages/PreviewPost";
 import Confirmation from "../components/CompanyFormPages/Confirmation";
 import EventStats from "../components/CompanyFormPages/EventStats";
-// import more form pages as needed
 
 const Company = () => {
   const [counter, setCounter] = useState(0);
   const [answer, setAnswer] = useState({
-    name: "",
-    sector: "",
-    employees: 0,
-    focusAreas: {},
-    url: "",
-    type: "",
-    software: {},
-    quickQuestions: {},
-    internType: {},
-    internCount: 1,
-    internshipDurationAnswer: "", // not written to db
+    contact: [],
+    employees: "",
+    focusAreas: [],
+    softwaresDesign: [],
+    softwaresDev: [],
+    top5: [
+      {
+        flexTime: null,
+        dogFriendly: null,
+        OfficeInSweden: null,
+        companyTypeInhouse: null,
+        remoteWorkFriendly: null,
+      },
+    ],
+    companyType: [
+      {
+        cool: null,
+        fast: null,
+        stable: null,
+      },
+    ],
+    internTypeCount: [
+      {
+        Webbutvecklare: null,
+        "Digital Designer": null,
+      },
+    ],
     internshipStartDate: "",
     internshipEndDate: "",
-    skillsRequested: "",
-    description: "",
   });
 
   const formPages = [
     Greeting,
-    Name,
-    Sector,
+    Contact,
     Employees,
     FocusAreas,
-    Url,
-    Type,
-    Software,
+    SoftwaresDesign,
+    SoftwaresDev,
     QuickQuestions,
-    InternType,
-    InternCount,
+    Type,
+    InternTypeCount,
     InternshipDuration,
-    SkillsRequested,
-    Description,
     PreviewPost,
     Confirmation,
     EventStats,
-    // add more form pages as needed
   ];
 
   const FormPage = formPages[counter];
@@ -68,83 +74,71 @@ const Company = () => {
   const formQuestions = [
     // these are counted in the progress bar (last 3 from above excluded)
     Greeting,
-    Name,
-    Sector,
+    Contact,
     Employees,
     FocusAreas,
-    Url,
-    Type,
-    Software,
+    SoftwaresDesign,
+    SoftwaresDev,
     QuickQuestions,
-    InternType,
-    InternCount,
+    Type,
+    InternTypeCount,
     InternshipDuration,
-    SkillsRequested,
-    Description,
   ];
 
   // Instead of "Fråga X/Y", for the last pages that aren't questions:
   const message = ["Preview", "Confirmation", "Stats"];
 
   return (
-    <section className="flex h-screen w-full flex-col ">
-      <div className="h-[50px] w-full bg-yrgo-red"></div>
-      <div className="mx-4 mb-8 flex h-full flex-col border-x-2 border-yrgo-red">
-        <div className="flex w-full justify-between border-b-2 border-yrgo-red">
-          <p className="ml-4 font-extrabold uppercase  text-yrgo-red">
-            yrgo event 24 april
-          </p>
-          <div className="border border-yrgo-red"></div>
-          <p className="mr-4 font-extrabold uppercase text-yrgo-red">
-            {counter < formQuestions.length
-              ? `fråga ${counter}/${formQuestions.length - 1}`
-              : message[counter - formQuestions.length]}
-          </p>
-        </div>
-        <div className=" flex h-[25px] w-full justify-between border-b-2 border-yrgo-red">
-          {formQuestions.map((x) => {
-            return (
-              <div
-                className={`${formQuestions.indexOf(x) < counter ? "bg-yrgo-red" : ""} w-full`}
-                key={formQuestions.indexOf(x)}
-              ></div>
-            );
-          })}
-        </div>
-        <div className="flex h-full flex-col items-center justify-center ">
-          {/* content */}
-          <div className="relative h-full w-full">
-            <div className="flex h-full flex-col items-center justify-center gap-4 p-8">
-              <FormPage
-                counter={counter}
-                setCounter={setCounter}
-                answer={answer}
-                setAnswer={setAnswer}
-              />
-            </div>
-          </div>
-          {/* content end */}
-        </div>
-        <div className="flex h-[58px] border-b-2 border-t-2 border-yrgo-red">
-          <div
-            className="ml-4 flex h-full w-1/2 items-center justify-start border-r border-yrgo-red"
-            onClick={() => setCounter(counter > 0 ? counter - 1 : counter)}
-          >
-            <MoveLeft className=" stroke-yrgo-red" />
-            <p className="ml-4 font-extrabold uppercase  text-yrgo-red">
-              tillbaka
+    <section className="relative grid h-full w-full grid-rows-layout">
+      <div className=" w-full bg-white">
+        <div className=" h-12 w-full bg-yrgo-red"></div>
+        <div className="mx-4 border-x-2  border-yrgo-red">
+          <div className="flex justify-between  border-b-2 border-yrgo-red px-4">
+            <p className="my-1 font-extrabold uppercase  text-yrgo-red">
+              yrgo event 24 april
+            </p>
+            <div className="border border-yrgo-red"></div>
+            <p className=" my-1 font-extrabold uppercase text-yrgo-red">
+              {counter < formQuestions.length
+                ? `fråga ${counter}/${formQuestions.length - 1}`
+                : message[counter - formQuestions.length]}
             </p>
           </div>
-          <div
-            className="mr-4 flex h-full w-1/2 items-center justify-end border-yrgo-red"
-            onClick={() => setCounter(counter + 1)}
-          >
-            <p className="mr-4 font-extrabold uppercase  text-yrgo-red">
-              nästa
-            </p>
-            <MoveRight className=" stroke-yrgo-red" />
+          <div className=" flex h-6 w-full justify-between border-b-2 border-yrgo-red">
+            {formQuestions.map((x) => {
+              return (
+                <div
+                  className={`${formQuestions.indexOf(x) < counter ? "bg-yrgo-red" : ""} w-full`}
+                  key={formQuestions.indexOf(x)}
+                ></div>
+              );
+            })}
           </div>
         </div>
+      </div>
+
+      <div className=" mx-4 overflow-y-auto border-x-2 border-yrgo-red pt-8">
+        <FormPage
+          counter={counter}
+          setCounter={setCounter}
+          answer={answer}
+          setAnswer={setAnswer}
+        />
+      </div>
+
+      <div className="mb-4 flex w-full px-4">
+        <ButtonArrowLeft
+          onClick={() => setCounter(counter > 0 ? counter - 1 : counter)}
+        >
+          tillbaka
+        </ButtonArrowLeft>
+        <ButtonArrowRight
+          onClick={() => {
+            setCounter(counter + 1);
+          }}
+        >
+          nästa
+        </ButtonArrowRight>
       </div>
     </section>
   );

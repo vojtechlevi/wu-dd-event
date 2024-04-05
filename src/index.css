@@ -20,6 +20,42 @@
   }
 }
 
+@layer base {
+  /* CUSTOM RANGE SLIDER STYLES  */
+  /* track */
+  input[type="range"] {
+    @apply h-1 w-full appearance-none bg-yrgo-red;
+  }
+
+  /* thumb */
+  input[type="range"]::-webkit-slider-thumb {
+    @apply -my-8 h-4 w-4 cursor-pointer appearance-none bg-yrgo-red;
+    background: url("./assets/temp-slider-icon.svg");
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    @apply -my-8 h-4 w-4 cursor-pointer appearance-none bg-yrgo-red;
+    background: url("./assets/temp-slider-icon.svg");
+  }
+
+  /* CUSTOM CHECKBOX AND RADIO STYLES  */
+  input[type="radio"],
+  input[type="checkbox"] {
+    @apply my-auto grid h-4 w-4 cursor-pointer appearance-none place-content-center rounded-full border-2 border-yrgo-red;
+  }
+
+  input[type="radio"]::before,
+  input[type="checkbox"]::before {
+    @apply h-10 w-10 opacity-0;
+    content: url("./assets/X.svg");
+  }
+
+  input[type="radio"]:checked::before,
+  input[type="checkbox"]:checked::before {
+    @apply opacity-100;
+  }
+}
+
 .rotate {
   animation: rotation 2s infinite linear;
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const InternType = ({ counter, setCounter, answer, setAnswer }) => {
+const InternTypeCount = ({ counter, setCounter, answer, setAnswer }) => {
   const [internType, setInternType] = useState(answer.internType || []);
 
   const choices = ["Digital designer", "Webbutvecklare"];
@@ -33,12 +33,41 @@ const InternType = ({ counter, setCounter, answer, setAnswer }) => {
 
   return (
     <>
-      <h2 className="text-4xl">Vilken typ av praktikant söker ni?</h2>
+      <h2 className="mt-16 border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
+        Vilken typ av praktikant söker ni?
+      </h2>
+      <ul>
+        {choices.map((choice) => {
+          return (
+            <li
+              key={choice}
+              className={` ${choices.indexOf(choice) == 0 ? "border-y-2 " : "border-b-2"} align-center flex border-yrgo-red p-4`}
+            >
+              <input
+                // checked={employeesCount === choice ? true : false}
+                className=" my-auto h-4 w-4 appearance-none rounded-full border-2 border-yrgo-red checked:bg-yrgo-red"
+                type="radio"
+                value={choice}
+                name={choice}
+                // onChange={handleChoiceChange}
+                id={choice}
+              />
+              <label
+                htmlFor={choice}
+                className="pl-4 font-extrabold uppercase text-yrgo-red"
+              >
+                {choice}
+              </label>
+              <br />
+            </li>
+          );
+        })}
+      </ul>
       {choices.map((choice) => {
         return (
           <button
             key={choice}
-            className={`border border-black p-2 self-start ${
+            className={`self-start border border-black p-2 ${
               Array.isArray(internType) && internType.includes(choice)
                 ? "bg-black text-white"
                 : ""
@@ -62,4 +91,4 @@ const InternType = ({ counter, setCounter, answer, setAnswer }) => {
   );
 };
 
-export default InternType;
+export default InternTypeCount;
