@@ -54,8 +54,8 @@
   input[type="checkbox"]:checked::before {
     @apply opacity-100;
   }
+}
 
-    
 .rotate {
   animation: rotation 2s infinite linear;
 }

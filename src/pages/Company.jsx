@@ -20,7 +20,7 @@ import Confirmation from "../components/CompanyFormPages/Confirmation";
 import EventStats from "../components/CompanyFormPages/EventStats";
 
 const Company = () => {
-  const [counter, setCounter] = useState(6);
+  const [counter, setCounter] = useState(0);
   const [answer, setAnswer] = useState({
     contact: [],
     employees: "",
