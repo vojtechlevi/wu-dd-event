@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         "yrgo-red": "#F52A3B",
+        "yrgo-blue": "#001A52",
       },
     },
     fontFamily: {

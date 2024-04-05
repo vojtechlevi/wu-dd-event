@@ -3,22 +3,14 @@ import { Link } from "react-router-dom";
 import { Menu, X, Heart } from "lucide-react";
 
 import { supabase } from "../client";
-
 import UserContext from "../UserContext";
-import yrgo from "../assets/yrgo.png";
+import CompanyDetails from "./CompanyDetails";
 
 const Student = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const [menu, setMenu] = useState(true);
   const [companies, setCompanies] = useState([]);
-
-  let name;
-  /* if (user && user.user_metadata.full_name) {
-    name = user.user_metadata.full_name;
-  }
-  if (user && user.user_metadata && user.user_metadata.user_name) {
-    name = user.user_metadata.user_name;
-  } */
+  const [selectedCompany, setSelectedCompany] = useState(null);
 
   useEffect(() => {
     getCompanies();
@@ -28,8 +20,6 @@ const Student = () => {
     const { data } = await supabase.from("companies").select();
     setCompanies(data);
   }
-  console.log(companies);
-
   function handleMenu() {
     setMenu(!menu);
   }
@@ -39,79 +29,85 @@ const Student = () => {
     setUser(null);
   }
 
-  return (
-    <section className="">
-      <div className=" px-4 w-full h-12 flex justify-between items-center">
-        <img src={yrgo} alt="yrgo-logo" />
-        {menu ? (
-          <Menu onClick={handleMenu} className="cursor-pointer" />
+  return selectedCompany ? (
+    <CompanyDetails
+      details={selectedCompany}
+      setSelectedCompany={setSelectedCompany}
+    />
+  ) : (
+    <section className="h-screen w-full select-none">
+      <div className=" bg-yrgo-blue h-[50px] w-full"></div>
+      <div className=" mx-4 mb-8 flex flex-col">
+        <div className="border-yrgo-blue flex h-[43px] items-center justify-between border-x-2 border-b-2 px-2">
+          <p className="text-yrgo-blue font-extrabold uppercase ">
+            yrgo event 24 april
+          </p>
+          {menu ? (
+            <Menu onClick={handleMenu} className="cursor-pointer" />
+          ) : (
+            <X onClick={handleMenu} className="cursor-pointer" />
+          )}
+        </div>
+        {!menu ? (
+          <div className="border-yrgo-blue  w-full border-x-2 border-b-2 px-4 text-right">
+            <p className="cursor-pointer">Sparade Favoriter</p>
+            <Link to="/" className="cursor-pointer">
+              <button onClick={signOut}>Logga ut</button>
+            </Link>
+          </div>
         ) : (
-          <X onClick={handleMenu} className="cursor-pointer" />
+          ""
         )}
-      </div>
-      {!menu ? (
-        <div className="text-right w-full mb-4 px-4">
-          <p className="cursor-pointer">Sparade Favoriter</p>
-          <Link to="/" className="cursor-pointer">
-            <button onClick={signOut}>Logga ut</button>
-          </Link>
-        </div>
-      ) : (
-        ""
-      )}
-      <div className="px-4">
-        <div className="flex gap-4 mt-4">
-          <input
-            type="text"
-            name="search"
-            placeholder="Sök"
-            className="bg-[#DEDEDE] rounded-lg p-2 w-full"
-          />
-          <button className="border border-black text-lg rounded-[32px] px-4 py-2">
-            Sök
-          </button>
-        </div>
-        <p className="uppercase underline mt-2 pl-2 text-xs cursor-pointer">
-          filtrera sökning
+
+        <p className="mt-2 cursor-pointer pl-2 text-xs uppercase underline">
+          filtrera listan
         </p>
-      </div>
-      <div className=" bg-red max-h-[550px] my-8 border-t border-b rounded-md  overflow-scroll no-scrollbar scroll-smooth">
-        <ul>
-          {companies.map((company) => (
-            <li key={company.id} className="mt-4 px-4">
-              <h3 className="text-lg flex justify-between items-center mb-2">
-                {company.name}
-                <Heart size={16} /* fill="red" stroke="black"  */ />
-              </h3>
-              {company && company.internType.length > 0 ? (
-                Array.isArray(company.internType) &&
-                company.internType.length > 0 ? (
-                  <div className="flex items-center gap-2 ">
-                    <p className=" text-xs">Vi söker:</p>
-                    {company.internType.map((type, index) => (
-                      <p
-                        key={index}
-                        className="border px-2 py-1 rounded-lg text-xs"
-                      >
-                        {type}
-                      </p>
-                    ))}
+        <div className=" bg-red no-scrollbar my-4 max-h-[620px] overflow-scroll scroll-smooth">
+          <ul>
+            {companies.map((company) => (
+              <li
+                key={company.id}
+                className="mt-4 cursor-pointer bg-[#F0F0F0] p-3"
+                onClick={() => setSelectedCompany(company)}
+              >
+                <h3 className="mb-2 flex items-center justify-between text-xl font-bold">
+                  {company.contact[0].name}
+                  <Heart
+                    size={20}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      console.log("Heart clicked");
+
+                      // Add any additional logic for when the Heart is clicked
+                    }} /* fill="red" stroke="black"  */
+                  />
+                </h3>
+                {company.internTypeCount !== null &&
+                Object.values(company.internTypeCount[0]).some(
+                  (count) => count > 0,
+                ) ? (
+                  <div className="flex items-center gap-1 min-[375px]:gap-2">
+                    <p className=" text-xs min-[375px]:text-sm">Söker: </p>
+                    {company.internTypeCount[0] &&
+                      Object.entries(company.internTypeCount[0]).map(
+                        ([type, count], index) => (
+                          <div key={index}>
+                            {count > 0 ? (
+                              <p className=" border-[0.5px] border-black px-2 py-1 text-xs min-[375px]:text-sm">
+                                {type}
+                              </p>
+                            ) : null}
+                          </div>
+                        ),
+                      )}
                   </div>
                 ) : (
-                  <div className="flex items-center">
-                    <p className="mr-2 text-xs">Vi söker:</p>
-                    <p className="border px-2 py-1 rounded-lg text-xs">
-                      {company.internType}
-                    </p>
-                  </div>
-                )
-              ) : (
-                <p className="text-xs">Söker ej</p>
-              )}
-              <div className="w-full h-[1px] bg-gray-200 mt-4"></div>
-            </li>
-          ))}
-        </ul>
+                  <p className="text-xs min-[375px]:text-sm">Söker ej</p>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
