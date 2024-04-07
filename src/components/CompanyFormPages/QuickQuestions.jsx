@@ -63,7 +63,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
       {choices.map((choice, index) => {
         return (
           <form key={choice.name} className={"grid grid-cols-2"}>
-            <div
+            <label
               className={`${
                 answer.top5[choice.name] === true
                   ? "border-white bg-yrgo-red"
@@ -80,15 +80,14 @@ const QuickQuestions = ({ answer, setAnswer }) => {
                 onChange={choice.updateFunction}
                 checked={answer.top5[choice.name] === true ? true : false}
               />
-              <label
-                htmlFor={choice.textBoolTrue}
+              <span
                 className={`${answer.top5[choice.name] === true ? "text-white" : "text-yrgo-red"} cursor-pointer pl-4 font-extrabold uppercase`}
               >
                 {choice.textBoolTrue}
-              </label>
-            </div>
+              </span>
+            </label>
 
-            <div
+            <label
               className={`${
                 answer.top5[choice.name] === false
                   ? "border-white bg-yrgo-red"
@@ -105,13 +104,12 @@ const QuickQuestions = ({ answer, setAnswer }) => {
                 onChange={choice.updateFunction}
                 checked={answer.top5[choice.name] === false ? true : false}
               />
-              <label
-                htmlFor={choice.textBoolFalse}
+              <span
                 className={`${answer.top5[choice.name] === false ? "text-white" : "text-yrgo-red"} cursor-pointer pl-4 font-extrabold uppercase`}
               >
                 {choice.textBoolFalse}
-              </label>
-            </div>
+              </span>
+            </label>
           </form>
         );
       })}

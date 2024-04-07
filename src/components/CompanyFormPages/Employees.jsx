@@ -27,26 +27,25 @@ const Employees = ({ answer, setAnswer }) => {
       <ul>
         {choices.map((choice) => {
           return (
-            <li
-              key={choice}
-              className={`${answer.employees === choice ? "border-white bg-yrgo-red" : "border-yrgo-red bg-white"} align-center flex border-b-2  p-4`}
-            >
-              <input
-                checked={employeesCount === choice ? true : false}
-                className=" checked:border-white"
-                type="radio"
-                value={choice}
-                name=""
-                onChange={handleChoiceChange}
-                id={choice}
-              />
+            <li key={choice}>
               <label
-                htmlFor={choice}
-                className={`${answer.employees === choice ? "text-white" : "text-yrgo-red"} cursor-pointer pl-4 font-extrabold uppercase`}
+                className={`${answer.employees === choice ? "border-white bg-yrgo-red" : "border-yrgo-red bg-white"} align-center flex border-b-2  p-4`}
               >
-                {choice}
+                <input
+                  checked={employeesCount === choice ? true : false}
+                  className=" checked:border-white"
+                  type="radio"
+                  value={choice}
+                  name=""
+                  onChange={handleChoiceChange}
+                  id={choice}
+                />
+                <span
+                  className={`${answer.employees === choice ? "text-white" : "text-yrgo-red"} cursor-pointer pl-4 font-extrabold uppercase`}
+                >
+                  {choice}
+                </span>
               </label>
-              <br />
             </li>
           );
         })}
