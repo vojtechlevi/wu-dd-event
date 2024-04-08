@@ -3,8 +3,8 @@ import { useState } from "react";
 import ButtonArrowRight from "../components/Buttons/ButtonArrowRight";
 import ButtonArrowLeft from "../components/Buttons/ButtonArrowLeft";
 
-import Greeting from "../components/CompanyFormPages/Greeting";
 // todo: make Greeting a separate page instead of a form page
+import Greeting from "../components/CompanyFormPages/Greeting";
 
 import Contact from "../components/CompanyFormPages/Contact";
 import Employees from "../components/CompanyFormPages/Employees";
@@ -16,7 +16,11 @@ import Type from "../components/CompanyFormPages/Type";
 import InternTypeCount from "../components/CompanyFormPages/InternTypeCount";
 import InternshipDuration from "../components/CompanyFormPages/InternshipDuration";
 import PreviewPost from "../components/CompanyFormPages/PreviewPost";
+
+// todo: make Confirmation a popup from preview post instead
 import Confirmation from "../components/CompanyFormPages/Confirmation";
+
+// todo: make EventStats a separate page  instead of a form page
 import EventStats from "../components/CompanyFormPages/EventStats";
 
 const Company = () => {
@@ -43,12 +47,10 @@ const Company = () => {
         stable: null,
       },
     ],
-    internTypeCount: [
-      {
-        Webbutvecklare: null,
-        "Digital Designer": null,
-      },
-    ],
+    internTypeCount: {
+      "Digital designer": 0,
+      Webbutvecklare: 0,
+    },
     internshipStartDate: "",
     internshipEndDate: "",
   });
