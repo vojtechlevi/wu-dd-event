@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 input {
-        -webkit-border-radius: 0;
-     -khtml-border-radius: 0;
-       -moz-border-radius: 0;
-            border-radius: 0;
-  }
+  -webkit-border-radius: 0;
+  -khtml-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
 
 @supports (-webkit-touch-callout: none) {
   .h-screen {
@@ -60,6 +60,12 @@ input {
   input[type="radio"]:checked::before,
   input[type="checkbox"]:checked::before {
     @apply opacity-100;
+  }
+
+  /* CUSTOM DATE PICKER  */
+  /* make sure calender icon is white (webkit) or light (moz) */
+  input[type="date"] {
+    color-scheme: dark;
   }
 }
 

@@ -53,6 +53,7 @@ const Company = () => {
     },
     internshipStartDate: "",
     internshipEndDate: "",
+    internshipDuration: "", // not written to db
   });
 
   const formPages = [

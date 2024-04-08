@@ -1,99 +1,124 @@
 import { useState } from "react";
 
-const InternshipDuration = ({ counter, setCounter, answer, setAnswer }) => {
+const InternshipDuration = ({ answer, setAnswer }) => {
   const [durationAnswer, setDurationAnswer] = useState(
-    answer.internshipDurationAnswer || ""
+    answer.internshipDuration || "",
   );
-  const [startDate, setStartDate] = useState("2024-11-01");
-  const [endDate, setEndDate] = useState("2025-05-31");
+
+  const choices = ["hela perioden", "delar av perioden", "vet mer senare"];
 
   const handleChoiceChange = (event) => {
-    setDurationAnswer(event.target.value);
+    const newDurationAnswer = event.target.value;
+    setDurationAnswer(newDurationAnswer);
 
-    if (event.target.value == "Yes") {
-      setStartDate("2024-11-01");
-      setEndDate("2025-05-31");
-    } else if (event.target.value == "Maybe") {
-      setStartDate(null);
-      setEndDate(null);
+    if (event.target.value === "hela perioden") {
+      setAnswer((prevState) => ({
+        ...prevState,
+        internshipDuration: "hela perioden",
+        internshipStartDate: "2024-11-25",
+        internshipEndDate: "2025-05-30",
+      }));
+    } else if (event.target.value === "vet mer senare") {
+      setAnswer((prevState) => ({
+        ...prevState,
+        internshipDuration: "vet mer senare",
+        internshipStartDate: null,
+        internshipEndDate: null,
+      }));
     }
   };
 
-  // for "Nej, delar av perioden" value:
+  // for "delar av perioden" value:
   const handleStartDateChange = (event) => {
-    setStartDate(event.target.value);
+    const newStartDate = event.target.value;
+
+    setAnswer((prevState) => ({
+      ...prevState,
+      internshipDuration: "delar av perioden",
+      internshipStartDate: newStartDate,
+    }));
   };
 
   const handleEndDateChange = (event) => {
-    setEndDate(event.target.value);
+    const newEndDate = event.target.value;
+
+    setAnswer((prevState) => ({
+      ...prevState,
+      internshipDuration: "delar av perioden",
+      internshipEndDate: newEndDate,
+    }));
   };
 
   return (
     <>
-      <h2 className="text-4xl">Hela perioden eller delar?</h2>
-      <p>Vår praktikperiod löper mellan 1 november 2024 – 31 maj 2025. </p>
-      <p>Har ni möjlighet att ta emot ... </p>
+      <h2 className="mt-16 border-b-2 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
+        Hela perioden eller delar?
+      </h2>
+      <p className="cursor-pointer border-b-2 border-yrgo-red  p-4 font-extrabold uppercase  text-yrgo-red">
+        Vår praktikperiod löper mellan 25 november 2024 – 30 maj 2025.
+        <br />
+        <br />
+        Har ni möjlighet att ta emot under...
+      </p>
       <form>
-        <input
-          checked={durationAnswer === "Yes" ? true : false}
-          type="radio"
-          value="Yes"
-          name="duration"
-          onChange={handleChoiceChange}
-        />
-        <label htmlFor="Yes">Ja, hela perioden</label>
-        <br />
-        <input
-          checked={durationAnswer === "No" ? true : false}
-          type="radio"
-          value="No"
-          name="duration"
-          onChange={handleChoiceChange}
-        />
-        <label htmlFor="No">Nej, delar av perioden</label>
-        <br />
-        {durationAnswer == "No" ? (
-          <>
-            <input
-              defaultValue={answer.internshipStartDate || ""}
-              type="date"
-              name="durationStartDate"
-              onChange={handleStartDateChange}
-            />
-            <br />
-            <input
-              defaultValue={answer.internshipEndDate || ""}
-              type="date"
-              name="durationEndDate"
-              onChange={handleEndDateChange}
-            />
-            <br />
-          </>
-        ) : null}
-        <input
-          checked={durationAnswer === "Maybe" ? true : false}
-          type="radio"
-          value="Maybe"
-          name="duration"
-          onChange={handleChoiceChange}
-        />
-        <label htmlFor="Maybe">Vet mer senare</label>
-        <br />
+        {choices.map((choice) => {
+          return (
+            <div
+              key={choice}
+              className={` ${
+                durationAnswer === choice
+                  ? "border-white bg-yrgo-red"
+                  : "border-yrgo-red bg-white"
+              }  border-b-2 p-4`}
+            >
+              <label className="align-center flex">
+                <input
+                  checked={durationAnswer === choice ? true : false}
+                  className=" checked:border-white"
+                  type="radio"
+                  value={choice}
+                  name={choice}
+                  onChange={handleChoiceChange}
+                  id={choice}
+                />
+                <span
+                  className={` ${
+                    durationAnswer === choice ? "text-white" : "text-yrgo-red"
+                  } cursor-pointer pl-4 font-extrabold uppercase`}
+                >
+                  {choice}
+                </span>
+              </label>
+              {choice == "delar av perioden" &&
+              durationAnswer == "delar av perioden" ? (
+                <div className="m-4 ml-8 flex flex-col">
+                  <span className="mb-1 text-sm font-normal capitalize text-white">
+                    från:
+                  </span>
+                  <input
+                    className=" w-min appearance-none border-2 border-white bg-transparent px-2 py-1 font-extrabold uppercase text-white focus:outline-none"
+                    defaultValue={answer.internshipStartDate || ""}
+                    type="date"
+                    name="durationStartDate"
+                    onChange={handleStartDateChange}
+                  />
+                  <br />
+                  <span className="mb-1 text-sm font-normal capitalize text-white">
+                    till:
+                  </span>
+                  <input
+                    className=" w-min appearance-none border-2 border-white bg-transparent px-2 py-1 font-extrabold uppercase text-white focus:outline-none"
+                    defaultValue={answer.internshipEndDate || ""}
+                    type="date"
+                    name="durationEndDate"
+                    onChange={handleEndDateChange}
+                  />
+                </div>
+              ) : null}
+            </div>
+          );
+        })}
       </form>
-      <button
-        onClick={() => {
-          setCounter(counter + 1);
-          setAnswer({
-            ...answer,
-            internshipDurationAnswer: durationAnswer,
-            internshipStartDate: startDate,
-            internshipEndDate: endDate,
-          });
-        }}
-        className="border border-black p-2"
-      >
-        Nästa
-      </button>
     </>
   );
 };
