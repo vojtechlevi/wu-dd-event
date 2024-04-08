@@ -7,6 +7,7 @@ import UserContext from "./UserContext";
 import Home from "./pages/Home";
 import Student from "./pages/Student";
 import Company from "./pages/Company";
+import CompanyForm from "./pages/CompanyForm";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PageNotFound from "./pages/PageNotFound";
@@ -49,6 +50,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/company" element={<Company />} />
+          <Route path="/company-form" element={<CompanyForm />} />
           <Route path="/test" element={<Test />} />
           <Route
             path="/student"
