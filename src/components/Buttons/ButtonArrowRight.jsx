@@ -14,9 +14,9 @@ export default function ButtonArrowRight({
           to={linkTo}
           className=" flex w-1/2 items-center justify-end border-2 border-yrgo-red bg-white p-4"
         >
-          <p className="mr-4 font-extrabold uppercase  text-yrgo-red">
+          <div className="mr-4 font-extrabold uppercase  text-yrgo-red">
             {children}
-          </p>
+          </div>
           <MoveRight className=" stroke-yrgo-red" />
         </Link>
       ) : (
@@ -24,9 +24,9 @@ export default function ButtonArrowRight({
           onClick={onClick}
           className=" flex w-1/2 items-center justify-end border-2 border-yrgo-red bg-white p-4"
         >
-          <p className="mr-4 font-extrabold uppercase  text-yrgo-red">
+          <div className="mr-4 font-extrabold uppercase  text-yrgo-red">
             {children}
-          </p>
+          </div>
           <MoveRight className=" stroke-yrgo-red" />
         </button>
       )}
