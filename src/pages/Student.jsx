@@ -36,10 +36,10 @@ const Student = () => {
     />
   ) : (
     <section className="h-screen w-full select-none">
-      <div className=" bg-yrgo-blue h-[50px] w-full"></div>
+      <div className=" h-[50px] w-full bg-yrgo-blue"></div>
       <div className=" mx-4 mb-8 flex flex-col">
-        <div className="border-yrgo-blue flex h-[43px] items-center justify-between border-x-2 border-b-2 px-2">
-          <p className="text-yrgo-blue font-extrabold uppercase ">
+        <div className="flex h-[43px] items-center justify-between border-x-2 border-b-2 border-yrgo-blue px-2">
+          <p className="font-extrabold uppercase text-yrgo-blue ">
             yrgo event 24 april
           </p>
           {menu ? (
@@ -49,7 +49,7 @@ const Student = () => {
           )}
         </div>
         {!menu ? (
-          <div className="border-yrgo-blue  w-full border-x-2 border-b-2 px-4 text-right">
+          <div className="flex w-full flex-col gap-4 border-x-2 border-b-2 border-yrgo-blue px-4 py-4 text-right">
             <p className="cursor-pointer">Sparade Favoriter</p>
             <Link to="/" className="cursor-pointer">
               <button onClick={signOut}>Logga ut</button>
@@ -59,10 +59,19 @@ const Student = () => {
           ""
         )}
 
-        <p className="mt-2 cursor-pointer pl-2 text-xs uppercase underline">
+        <p className="mt-8 cursor-pointer text-sm uppercase underline">
           filtrera listan
         </p>
-        <div className=" bg-red no-scrollbar my-4 max-h-[620px] overflow-scroll scroll-smooth">
+        <div className="flex w-full flex-col">
+          <h2 className="my-2 text-2xl font-extrabold uppercase text-yrgo-red">
+            Hitta din Lia
+          </h2>
+          <p className="">
+            Här kan du läsa mer om olika företag som söker praktikanter. Använd
+            filtrera-funktionen om du är intresserad av något speciellt!
+          </p>
+        </div>
+        <div className=" bg-red no-scrollbar my-4 overflow-scroll scroll-smooth">
           <ul>
             {companies.map((company) => (
               <li

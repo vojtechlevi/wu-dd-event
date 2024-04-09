@@ -4,12 +4,14 @@ import { MoveLeft } from "lucide-react";
 
 import { supabase } from "../client";
 import ThemeBox from "../components/ThemeBox";
+import Modal from "../components/GDPR/Modal";
 
 const Signup = () => {
   const navigate = useNavigate();
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [countdown, setCountdown] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const [countdown, setCountdown] = useState(null);
+  const [modal, setModal] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -17,6 +19,7 @@ const Signup = () => {
   });
 
   function handleChange(event) {
+    modal ? setModal(false) : null;
     setErrorMessage("");
     setFormData((prevFormData) => {
       return {
@@ -28,6 +31,9 @@ const Signup = () => {
 
   function translateErrorMessage(message) {
     const errorTranslations = {
+      "Unable to validate email address: invalid format":
+        "Ogiltigt e-post format",
+      "Anonymous sign-ins are disabled": "Anonyma konton är inte tillåtet",
       "User already registered":
         "En användare med denna e-postadress finns redan",
       "Signup requires a valid password":
@@ -39,13 +45,9 @@ const Signup = () => {
     return errorTranslations[message] || message;
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+  async function handleSubmit(event) {
+    event.preventDefault();
 
-    if (formData.fullName.trim() === "") {
-      setErrorMessage("Du behöver ange ditt namn");
-      return;
-    }
     try {
       const { data, error } = await supabase.auth.signUp({
         email: formData.email,
@@ -58,7 +60,9 @@ const Signup = () => {
       });
       if (error) {
         setErrorMessage(translateErrorMessage(error.message));
+        setModal(false);
       } else if (data) {
+        setModal(false);
         setIsSubmitted(true);
         setCountdown(10);
         // Sign the user out after sign-up
@@ -66,6 +70,15 @@ const Signup = () => {
       }
     } catch (error) {
       alert(error);
+    }
+  }
+
+  function handleButtonClick(event) {
+    event.preventDefault();
+
+    // Check if there are no error messages
+    if (!errorMessage) {
+      setModal(true);
     }
   }
 
@@ -82,10 +95,18 @@ const Signup = () => {
 
   return (
     <>
+      {modal ? (
+        <Modal
+          modal={modal}
+          setModal={setModal}
+          handleSubmit={handleSubmit}
+          color={"yrgo-blue"}
+        />
+      ) : null}
       <ThemeBox backBtn="/login">
         {isSubmitted ? (
-          <div className="flex flex-col gap-6">
-            <div className="flex w-full flex-col gap-6 px-16">
+          <div className="flex w-full flex-col gap-6">
+            <div className="flex w-full flex-col gap-6 pl-2">
               <p className="w-full text-xl">
                 Ditt konto är skapat! <br />
               </p>
@@ -99,7 +120,7 @@ const Signup = () => {
               <p className="text-xs">Du omdirigeras om: {countdown}</p>
             </div>
             <Link to="/login">
-              <button className=" border-yrgo-blue bg-yrgo-blue w-full border-y-2 px-4 py-3 font-extrabold uppercase text-white">
+              <button className=" w-full border-y-2 border-yrgo-blue bg-yrgo-blue px-4 py-3 font-extrabold uppercase text-white">
                 Logga In
               </button>
             </Link>
@@ -110,33 +131,32 @@ const Signup = () => {
               <h2 className=" text-5xl font-extrabold uppercase">
                 Skapa Konto
               </h2>
-              <p>Kort text om varför skapa konto: spara favoriter,</p>
             </div>
-            <form onSubmit={handleSubmit} className="flex w-full flex-col ">
+            <form className="flex w-full flex-col ">
               <input
                 type="text"
                 name="fullName"
                 placeholder="Namn"
                 onChange={handleChange}
-                className="border-yrgo-blue w-full border-t-2 px-4 py-6 focus:outline-none"
+                className="w-full border-t-2 border-yrgo-blue px-4 py-6 focus:outline-none"
               />
               <input
                 type="email"
                 name="email"
                 placeholder="Mailadress"
                 onChange={handleChange}
-                className="border-yrgo-blue w-full border-t-2 px-4 py-6 focus:outline-none"
+                className="w-full border-t-2 border-yrgo-blue px-4 py-6 focus:outline-none"
               />
               <input
                 type="password"
                 name="password"
                 placeholder="Lösenord"
                 onChange={handleChange}
-                className="border-yrgo-blue w-full border-t-2 px-4 py-6 focus:outline-none"
+                className="w-full border-t-2 border-yrgo-blue px-4 py-6 focus:outline-none"
               />
               {errorMessage ? (
-                <div className="border-yrgo-blue w-full border-t-2 ">
-                  <p className="text-yrgo-blue py-4 text-center">
+                <div className="w-full border-t-2 border-yrgo-blue bg-[#f2f2f2]">
+                  <p className="py-4 text-center text-yrgo-blue">
                     {errorMessage}
                   </p>
                 </div>
@@ -145,8 +165,8 @@ const Signup = () => {
               )}
               <div className="flex justify-start">
                 <button
-                  type="submit"
-                  className="border-yrgo-blue bg-yrgo-blue flex h-12 w-full items-center justify-center border-y-2 font-extrabold uppercase text-white"
+                  onClick={handleButtonClick}
+                  className="flex h-12 w-full items-center justify-center border-y-2 border-yrgo-blue bg-yrgo-blue font-extrabold uppercase text-white"
                 >
                   Skapa Konto
                 </button>

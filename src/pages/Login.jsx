@@ -64,46 +64,49 @@ const Login = () => {
   return (
     <>
       <ThemeBox backBtn="/">
-        <div className="mb-8 pl-2">
-          <h2 className=" text-5xl font-extrabold uppercase">Logga in</h2>
-          <p>Kort text om varför skapa konto: spara favoriter,</p>
-        </div>
-        <form onSubmit={signInWithEmail} className="flex w-full flex-col">
-          <input
-            onChange={handleChange}
-            type="email"
-            name="email"
-            placeholder="Mailadress"
-            className="w-full border-t-2 border-yrgo-blue px-4 py-6 outline-none"
-          />
-          <input
-            onChange={handleChange}
-            type="password"
-            name="password"
-            placeholder="Lösenord"
-            className="w-full border-t-2 border-yrgo-blue px-4 py-6 outline-none"
-          />
-          {errorMessage ? (
-            <div className="w-full border-t-2 border-yrgo-blue ">
-              <p className="py-4 text-center text-yrgo-blue">{errorMessage}</p>
-            </div>
-          ) : (
-            ""
-          )}
-          <div className="flex h-12 w-full border-y-2 border-yrgo-blue">
-            <button
-              className="h-full w-1/2 bg-yrgo-blue px-2 font-extrabold uppercase text-white"
-              type="submit"
-            >
-              Logga In
-            </button>
-            <Link to="/signup" className="h-full w-1/2 ">
-              <button className=" h-full w-full px-2 font-extrabold uppercase text-yrgo-blue">
-                Skapa Konto
-              </button>
-            </Link>
+        <div className="w-full">
+          <div className="mb-8 pl-2">
+            <h2 className=" text-5xl font-extrabold uppercase">Logga in</h2>
           </div>
-        </form>
+          <form onSubmit={signInWithEmail} className="flex w-full flex-col">
+            <input
+              onChange={handleChange}
+              type="email"
+              name="email"
+              placeholder="Mailadress"
+              className="w-full border-t-2 border-yrgo-blue px-4 py-6 outline-none"
+            />
+            <input
+              onChange={handleChange}
+              type="password"
+              name="password"
+              placeholder="Lösenord"
+              className="w-full border-t-2 border-yrgo-blue px-4 py-6 outline-none"
+            />
+            {errorMessage ? (
+              <div className="w-full border-t-2 border-yrgo-blue ">
+                <p className="py-4 text-center text-yrgo-blue">
+                  {errorMessage}
+                </p>
+              </div>
+            ) : (
+              ""
+            )}
+            <div className="flex h-12 w-full border-y-2 border-yrgo-blue">
+              <button
+                className="h-full w-1/2 bg-yrgo-blue px-2 font-extrabold uppercase text-white"
+                type="submit"
+              >
+                Logga In
+              </button>
+              <Link to="/signup" className="h-full w-1/2 ">
+                <button className=" h-full w-full px-2 font-extrabold uppercase text-yrgo-blue">
+                  Skapa Konto
+                </button>
+              </Link>
+            </div>
+          </form>
+        </div>
       </ThemeBox>
     </>
   );
