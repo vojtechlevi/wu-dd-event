@@ -64,7 +64,7 @@ const CompanyForm = () => {
 
   return (
     <main className="relative grid h-full w-full grid-rows-layout">
-      <section className=" w-full bg-white">
+      <header className=" w-full bg-white">
         <div className=" h-12 w-full bg-yrgo-red"></div>
         <div className="mx-4 border-x-2  border-yrgo-red">
           <div className="flex justify-between  border-b-2 border-yrgo-red px-4">
@@ -87,7 +87,7 @@ const CompanyForm = () => {
             })}
           </div>
         </div>
-      </section>
+      </header>
 
       <section className=" mx-4 overflow-y-auto border-x-2 border-yrgo-red pt-8">
         <FormPage

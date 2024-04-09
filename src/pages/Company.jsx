@@ -6,12 +6,12 @@ import yrgologo from "../assets/yrgo-text-white.png";
 
 const Company = () => {
   return (
-    <section className="relative grid h-full w-full grid-rows-layout">
-      <div className=" flex h-12 w-full items-center justify-center bg-yrgo-red">
+    <main className="relative grid h-full w-full grid-rows-layout">
+      <header className=" flex h-12 w-full items-center justify-center bg-yrgo-red">
         <img src={yrgologo} alt="Yrgo logo text" />
-      </div>
+      </header>
 
-      <div className=" mx-4 mt-32 overflow-y-auto ">
+      <section className=" mx-4 mt-32 overflow-y-auto ">
         <h1 className="p-4 text-6xl font-extrabold uppercase text-yrgo-red">
           hej!
         </h1>
@@ -32,17 +32,17 @@ const Company = () => {
             Yes! Ta mig till frågorna
           </ButtonTextCentered>
         </div>
-      </div>
+      </section>
 
-      <div className="m-4 mb-8 px-4">
+      <section className="m-4 mb-8 px-4">
         <Link
           to={"/"}
           className="flex h-14 w-14 items-center justify-center border-2 border-yrgo-red"
         >
           <ArrowLeft className="stroke-yrgo-red" />
         </Link>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 };
 
