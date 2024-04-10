@@ -5,6 +5,7 @@ import { supabase } from "../client";
 import ButtonArrowRight from "../components/Buttons/ButtonArrowRight";
 import ButtonArrowLeft from "../components/Buttons/ButtonArrowLeft";
 import SuccessModal from "../components/Modals/SuccessModal";
+import GdprModal from "../components/Modals/GdprModal";
 
 import Contact from "../components/CompanyFormPages/Contact";
 import Employees from "../components/CompanyFormPages/Employees";
@@ -20,6 +21,7 @@ import PreviewPost from "../components/CompanyFormPages/PreviewPost";
 const CompanyForm = () => {
   const [counter, setCounter] = useState(0);
   const [successModal, setSuccessModal] = useState(false);
+  const [gdprModal, setGdprModal] = useState(false);
   const [answer, setAnswer] = useState({
     contact: {
       name: "",
@@ -89,8 +91,18 @@ const CompanyForm = () => {
         <SuccessModal
           modal={successModal}
           setModal={setSuccessModal}
-          linkTo={"/"}
-          color={"yrgo-blue"}
+          linkTo={"/event-info"}
+        />
+      ) : null}
+      {gdprModal ? (
+        <GdprModal
+          modal={gdprModal}
+          setModal={setGdprModal}
+          color={"yrgo-red"}
+          handleSubmit={() => {
+            setCounter(counter + 1);
+            setGdprModal(!gdprModal);
+          }}
         />
       ) : null}
       <main className="relative grid h-full w-full grid-rows-layout">
@@ -134,7 +146,7 @@ const CompanyForm = () => {
         )}
 
         <section className="mb-4 flex w-full px-4">
-          {counter === 0 ? (
+          {counter === 0 ? ( // first form page
             <ButtonArrowLeft isLink={true} linkTo={"/company"}>
               tillbaka
             </ButtonArrowLeft>
@@ -143,7 +155,16 @@ const CompanyForm = () => {
               tillbaka
             </ButtonArrowLeft>
           )}
-          {counter === formPages.length - 1 ? (
+
+          {counter === 0 ? ( // first form page
+            <ButtonArrowRight
+              onClick={() => {
+                setGdprModal(true);
+              }}
+            >
+              nästa
+            </ButtonArrowRight>
+          ) : counter === formPages.length - 1 ? ( // last page
             <ButtonArrowRight
               onClick={() => {
                 setSuccessModal(true);
