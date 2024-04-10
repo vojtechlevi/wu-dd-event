@@ -1,6 +1,15 @@
+import { useState } from "react";
+
 const Contact = ({ answer, setAnswer }) => {
+  const [selectedChoices, setSelectedChoices] = useState(answer.contact || "");
+
   const handleChange = (event) => {
-    // setAnswer({ ...answer, name: event.target.value });
+    const updatedChoices = {
+      ...selectedChoices,
+      [event.target.name]: event.target.value,
+    };
+    setSelectedChoices(updatedChoices);
+    setAnswer({ ...answer, contact: updatedChoices });
   };
 
   return (
@@ -10,23 +19,26 @@ const Contact = ({ answer, setAnswer }) => {
       </h2>
       <input
         type="text"
-        placeholder="Företagsnamn..."
-        // value={answer.name || ""}
-        className="w-full border-b-2 border-yrgo-red p-4 placeholder:text-placeholder-grey "
+        name="name"
+        placeholder="Företag..."
+        defaultValue={answer.contact.name || ""}
+        className="w-full border-b-2 border-yrgo-red p-4 font-medium uppercase text-yrgo-red placeholder:text-placeholder-grey focus:outline-none"
         onChange={handleChange}
       />
       <input
-        type="text"
+        type="url"
+        name="url"
         placeholder="www.hemsida.se"
-        // value={answer.name || ""}
-        className="w-full border-b-2 border-yrgo-red p-4 placeholder:text-placeholder-grey "
+        value={answer.contact.url || ""}
+        className="w-full border-b-2 border-yrgo-red p-4 font-medium uppercase text-yrgo-red placeholder:text-placeholder-grey focus:outline-none"
         onChange={handleChange}
       />
       <input
-        type="text"
+        type="email"
+        name="email"
         placeholder="info@mail.com"
-        // value={answer.name || ""}
-        className="w-full border-b-2 border-yrgo-red p-4 placeholder:text-placeholder-grey "
+        value={answer.contact.email || ""}
+        className="w-full border-b-2 border-yrgo-red p-4 font-medium uppercase text-yrgo-red placeholder:text-placeholder-grey focus:outline-none"
         onChange={handleChange}
       />
     </>

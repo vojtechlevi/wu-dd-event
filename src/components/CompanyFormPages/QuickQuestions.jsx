@@ -4,7 +4,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
   const [selectedChoices, setSelectedChoices] = useState({
     dogFriendly: answer.top5.dogPolicy || null,
     remoteWorkFriendly: answer.top5.remoteWorkFriendly || null,
-    OfficeInSweden: answer.top5.OfficeInSweden || null,
+    officeInSweden: answer.top5.officeInSweden || null,
     companyTypeInhouse: answer.top5.companyTypeInhouse || null,
     flexTime: answer.top5.flexTime || null,
     // add other choices here...
@@ -34,8 +34,8 @@ const QuickQuestions = ({ answer, setAnswer }) => {
       textBoolFalse: "kontor är bäst",
     },
     {
-      name: "OfficeInSweden",
-      updateFunction: (event) => handleChoiceChange("OfficeInSweden", event),
+      name: "officeInSweden",
+      updateFunction: (event) => handleChoiceChange("officeInSweden", event),
       textBoolTrue: "bara sverige",
       textBoolFalse: "kontor utomlands",
     },
