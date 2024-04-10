@@ -13,7 +13,7 @@ export default function ButtonArrowRight({
       {isLink === true ? (
         <Link
           to={linkTo}
-          className={`flex w-1/2 items-center justify-start border-2 border-yrgo-${color} bg-white p-4`}
+          className={`flex w-1/2 items-center justify-end border-2 border-yrgo-${color} bg-white p-4`}
         >
           <div className={`text-yrgo-${color} mr-4 font-extrabold  uppercase`}>
             {children}
@@ -23,7 +23,7 @@ export default function ButtonArrowRight({
       ) : (
         <button
           onClick={onClick}
-          className={`flex w-1/2 items-center justify-start border-2 border-yrgo-${color} bg-white p-4`}
+          className={`flex w-1/2 items-center justify-end border-2 border-yrgo-${color} bg-white p-4`}
         >
           <div className={`text-yrgo-${color} mr-4 font-extrabold uppercase`}>
             {children}
