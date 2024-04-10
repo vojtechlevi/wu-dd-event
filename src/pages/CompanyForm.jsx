@@ -1,7 +1,10 @@
 import { useState } from "react";
 
+import { supabase } from "../client";
+
 import ButtonArrowRight from "../components/Buttons/ButtonArrowRight";
 import ButtonArrowLeft from "../components/Buttons/ButtonArrowLeft";
+import SuccessModal from "../components/Modals/SuccessModal";
 
 import Contact from "../components/CompanyFormPages/Contact";
 import Employees from "../components/CompanyFormPages/Employees";
@@ -16,8 +19,13 @@ import PreviewPost from "../components/CompanyFormPages/PreviewPost";
 
 const CompanyForm = () => {
   const [counter, setCounter] = useState(0);
+  const [successModal, setSuccessModal] = useState(false);
   const [answer, setAnswer] = useState({
-    contact: [],
+    contact: {
+      name: "",
+      url: "",
+      email: "",
+    },
     employees: "",
     focusAreas: [],
     softwaresDesign: [],
@@ -26,7 +34,7 @@ const CompanyForm = () => {
       {
         flexTime: null,
         dogFriendly: null,
-        OfficeInSweden: null,
+        officeInSweden: null,
         companyTypeInhouse: null,
         remoteWorkFriendly: null,
       },
@@ -62,68 +70,100 @@ const CompanyForm = () => {
 
   const FormPage = formPages[counter];
 
+  async function writeToDatabase() {
+    try {
+      const { error } = await supabase.from("companies").insert(answer);
+      if (error) {
+        console.error("Error inserting data:", error);
+      } else {
+        console.log("Data inserted successfully");
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+    }
+  }
+
   return (
-    <main className="relative grid h-full w-full grid-rows-layout">
-      <header className=" w-full bg-white">
-        <div className=" h-12 w-full bg-yrgo-red"></div>
-        <div className="mx-4 border-x-2  border-yrgo-red">
-          <div className="flex justify-between  border-b-2 border-yrgo-red px-4">
-            <p className="my-1 font-extrabold uppercase  text-yrgo-red">
-              yrgo event 24 april
-            </p>
-            <div className="border border-yrgo-red"></div>
-            <p className=" my-1 font-extrabold uppercase text-yrgo-red">
-              fråga {counter + 1}/{formPages.length - 1}
-            </p>
-          </div>
-          <div className=" flex h-6 w-full justify-between border-b-2 border-yrgo-red">
-            {formPages.map((page) => {
-              return (
-                <div
-                  className={`${formPages.indexOf(page) <= counter ? "bg-yrgo-red" : ""} w-full`}
-                  key={formPages.indexOf(page)}
-                ></div>
-              );
-            })}
-          </div>
-        </div>
-      </header>
-
-      <section className=" mx-4 overflow-y-auto border-x-2 border-yrgo-red pt-8">
-        <FormPage
-          counter={counter}
-          setCounter={setCounter}
-          answer={answer}
-          setAnswer={setAnswer}
+    <>
+      {successModal ? (
+        <SuccessModal
+          modal={successModal}
+          setModal={setSuccessModal}
+          linkTo={"/"}
+          color={"yrgo-blue"}
         />
-      </section>
+      ) : null}
+      <main className="relative grid h-full w-full grid-rows-layout">
+        <header className=" w-full bg-white">
+          <div className=" h-12 w-full bg-yrgo-red"></div>
+          {counter !== formPages.length - 1 ? (
+            <div className="mx-4 border-x-2  border-yrgo-red">
+              <div className="flex justify-between  border-b-2 border-yrgo-red px-4">
+                <p className="my-1 font-extrabold uppercase  text-yrgo-red">
+                  yrgo event 24 april
+                </p>
+                <div className="border border-yrgo-red"></div>
+                <p className=" my-1 font-extrabold uppercase text-yrgo-red">
+                  fråga {counter + 1}/{formPages.length - 1}
+                </p>
+              </div>
+              <div className=" flex h-6 w-full justify-between border-b-2 border-yrgo-red">
+                {formPages.map((page) => {
+                  return (
+                    <div
+                      className={`${formPages.indexOf(page) <= counter ? "bg-yrgo-red" : ""} w-full`}
+                      key={formPages.indexOf(page)}
+                    ></div>
+                  );
+                })}
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+        </header>
 
-      <section className="mb-4 flex w-full px-4">
-        {counter === 0 ? (
-          <ButtonArrowLeft isLink={true} linkTo={"/company"}>
-            tillbaka
-          </ButtonArrowLeft>
+        {counter !== formPages.length - 1 ? (
+          <section className="mx-4 overflow-y-auto border-x-2 border-yrgo-red pt-8">
+            <FormPage answer={answer} setAnswer={setAnswer} />
+          </section>
         ) : (
-          <ButtonArrowLeft onClick={() => setCounter(counter - 1)}>
-            tillbaka
-          </ButtonArrowLeft>
+          <section className="overflow-y-auto px-4 ">
+            <FormPage answer={answer} setAnswer={setAnswer} />
+          </section>
         )}
 
-        {counter === formPages.length - 1 ? (
-          <ButtonArrowRight isLink={true} linkTo={"/event-info"}>
-            klar
-          </ButtonArrowRight>
-        ) : (
-          <ButtonArrowRight
-            onClick={() => {
-              setCounter(counter + 1);
-            }}
-          >
-            nästa
-          </ButtonArrowRight>
-        )}
-      </section>
-    </main>
+        <section className="mb-4 flex w-full px-4">
+          {counter === 0 ? (
+            <ButtonArrowLeft isLink={true} linkTo={"/company"}>
+              tillbaka
+            </ButtonArrowLeft>
+          ) : (
+            <ButtonArrowLeft onClick={() => setCounter(counter - 1)}>
+              tillbaka
+            </ButtonArrowLeft>
+          )}
+          {counter === formPages.length - 1 ? (
+            <ButtonArrowRight
+              onClick={() => {
+                setSuccessModal(true);
+                writeToDatabase();
+              }}
+            >
+              klar
+            </ButtonArrowRight>
+          ) : (
+            <ButtonArrowRight
+              onClick={() => {
+                setCounter(counter + 1);
+              }}
+            >
+              nästa
+            </ButtonArrowRight>
+          )}
+        </section>
+      </main>
+    </>
   );
 };
 
