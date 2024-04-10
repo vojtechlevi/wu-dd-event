@@ -74,7 +74,7 @@ const InternshipDuration = ({ answer, setAnswer }) => {
               <label className="align-center flex">
                 <input
                   checked={durationAnswer === choice ? true : false}
-                  className=" checked:border-white"
+                  className=" border-yrgo-red checked:border-white"
                   type="radio"
                   value={choice}
                   name={choice}

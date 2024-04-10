@@ -33,7 +33,7 @@ const Employees = ({ answer, setAnswer }) => {
               >
                 <input
                   checked={employeesCount === choice ? true : false}
-                  className=" checked:border-white"
+                  className=" border-yrgo-red checked:border-white"
                   type="radio"
                   value={choice}
                   name=""

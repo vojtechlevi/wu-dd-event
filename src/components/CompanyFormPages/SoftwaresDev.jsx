@@ -67,7 +67,7 @@ const SoftwaresDev = ({ answer, setAnswer }) => {
                       ? true
                       : false
                   }
-                  className=" checked:border-white"
+                  className=" border-yrgo-red checked:border-white"
                   type="checkbox"
                   value={choice}
                   onClick={handleClick}

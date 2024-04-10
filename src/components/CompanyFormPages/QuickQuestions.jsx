@@ -73,7 +73,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
               `}
             >
               <input
-                className=" shrink-0 checked:border-white "
+                className=" shrink-0 border-yrgo-blue checked:border-white"
                 type="radio"
                 value={true}
                 id={choice.textBoolTrue}
@@ -97,7 +97,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
               `}
             >
               <input
-                className=" shrink-0 checked:border-white "
+                className=" shrink-0 border-yrgo-blue checked:border-white"
                 type="radio"
                 value={false}
                 id={choice.textBoolFalse}

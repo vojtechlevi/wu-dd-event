@@ -48,7 +48,7 @@ input {
   /* CUSTOM CHECKBOX AND RADIO STYLES  */
   input[type="radio"],
   input[type="checkbox"] {
-    @apply my-auto grid h-4 w-4 cursor-pointer appearance-none place-content-center rounded-full border-2 border-yrgo-red;
+    @apply my-auto grid h-4 w-4 cursor-pointer appearance-none place-content-center rounded-full border-2;
   }
 
   input[type="radio"]::before,

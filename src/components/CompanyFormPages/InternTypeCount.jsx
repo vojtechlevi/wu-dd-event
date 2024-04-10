@@ -73,7 +73,7 @@ const InternTypeCount = ({ answer, setAnswer }) => {
               <label className="align-center flex">
                 <input
                   checked={internTypeCount[choice] > 0 ? true : false}
-                  className=" checked:border-white"
+                  className=" border-yrgo-red checked:border-white"
                   type="checkbox"
                   value={choice}
                   name={choice}
