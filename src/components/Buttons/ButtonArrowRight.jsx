@@ -6,28 +6,29 @@ export default function ButtonArrowRight({
   onClick,
   isLink = false,
   linkTo,
+  color = "red",
 }) {
   return (
     <>
       {isLink === true ? (
         <Link
           to={linkTo}
-          className=" flex w-1/2 items-center justify-end border-2 border-yrgo-red bg-white p-4"
+          className={`flex w-1/2 items-center justify-end border-2 border-yrgo-${color} bg-white p-4`}
         >
-          <div className="mr-4 font-extrabold uppercase  text-yrgo-red">
+          <div className={`text-yrgo-${color} mr-4 font-extrabold  uppercase`}>
             {children}
           </div>
-          <MoveRight className=" stroke-yrgo-red" />
+          <MoveRight className={`stroke-yrgo-${color}`} />
         </Link>
       ) : (
         <button
           onClick={onClick}
-          className=" flex w-1/2 items-center justify-end border-2 border-yrgo-red bg-white p-4"
+          className={`flex w-1/2 items-center justify-end border-2 border-yrgo-${color} bg-white p-4`}
         >
-          <div className="mr-4 font-extrabold uppercase  text-yrgo-red">
+          <div className={`text-yrgo-${color} mr-4 font-extrabold uppercase`}>
             {children}
           </div>
-          <MoveRight className=" stroke-yrgo-red" />
+          <MoveRight className={`stroke-yrgo-${color}`} />
         </button>
       )}
     </>

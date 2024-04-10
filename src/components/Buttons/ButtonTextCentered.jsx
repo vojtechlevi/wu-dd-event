@@ -6,24 +6,29 @@ export default function ButtonTextCentered({
   isLink = false,
   linkTo,
   fullWidth = false,
+  color = "red",
 }) {
   return (
     <>
       {isLink === true ? (
         <Link
           to={linkTo}
-          className={`flex items-center justify-start border-2 border-yrgo-red bg-white p-4 ${fullWidth ? "w-full" : ""}`}
+          className={`flex items-center justify-start border-2 border-yrgo-${color} bg-white p-4 ${fullWidth ? "w-full" : ""}`}
         >
-          <div className="mx-auto font-extrabold uppercase text-yrgo-red">
+          <div
+            className={`text-yrgo-${color} mx-auto font-extrabold uppercase`}
+          >
             {children}
           </div>
         </Link>
       ) : (
         <button
           onClick={onClick}
-          className={`flex items-center justify-start border-2 border-yrgo-red bg-white p-4 ${fullWidth ? "w-full" : ""}`}
+          className={`flex items-center justify-start border-2 border-yrgo-${color} bg-white p-4 ${fullWidth ? "w-full" : ""}`}
         >
-          <div className="mx-auto font-extrabold uppercase  text-yrgo-red">
+          <div
+            className={`text-yrgo-${color} mx-auto font-extrabold  uppercase`}
+          >
             {children}
           </div>
         </button>

@@ -53,6 +53,7 @@ const EventInfo = () => {
 
         <div className="mb-12 flex flex-col gap-4">
           <ButtonTextCentered
+            color="blue"
             fullWidth={true}
             isLink={true}
             linkTo={"https://www.yrgo.se/program/webbutvecklare/"}
@@ -63,6 +64,7 @@ const EventInfo = () => {
             </div>
           </ButtonTextCentered>
           <ButtonTextCentered
+            color="blue"
             fullWidth={true}
             isLink={true}
             linkTo={"https://www.yrgo.se/program/digital-designer/"}
