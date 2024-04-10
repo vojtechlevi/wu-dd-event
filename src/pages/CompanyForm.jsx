@@ -2,11 +2,14 @@ import { useState } from "react";
 
 import { supabase } from "../client";
 
+// Buttons and Modals
 import ButtonArrowRight from "../components/Buttons/ButtonArrowRight";
 import ButtonArrowLeft from "../components/Buttons/ButtonArrowLeft";
-import SuccessModal from "../components/Modals/SuccessModal";
 import GdprModal from "../components/Modals/GdprModal";
+import BlueQuestionsModal from "../components/Modals/BlueQuestionsModal";
+import SuccessModal from "../components/Modals/SuccessModal";
 
+// Form pages
 import Contact from "../components/CompanyFormPages/Contact";
 import Employees from "../components/CompanyFormPages/Employees";
 import FocusAreas from "../components/CompanyFormPages/FocusAreas";
@@ -20,8 +23,7 @@ import PreviewPost from "../components/CompanyFormPages/PreviewPost";
 
 const CompanyForm = () => {
   const [counter, setCounter] = useState(0);
-  const [successModal, setSuccessModal] = useState(false);
-  const [gdprModal, setGdprModal] = useState(false);
+
   const [answer, setAnswer] = useState({
     contact: {
       name: "",
@@ -56,6 +58,11 @@ const CompanyForm = () => {
     internshipEndDate: "",
     internshipDuration: "", // not written to db
   });
+
+  // modals:
+  const [successModal, setSuccessModal] = useState(false);
+  const [gdprModal, setGdprModal] = useState(false);
+  const [blueQuestionsModal, setBlueQuestionsModal] = useState(false);
 
   const formPages = [
     Contact,
@@ -93,13 +100,6 @@ const CompanyForm = () => {
 
   return (
     <>
-      {successModal ? (
-        <SuccessModal
-          modal={successModal}
-          setModal={setSuccessModal}
-          linkTo={"/event-info"}
-        />
-      ) : null}
       {gdprModal ? (
         <GdprModal
           modal={gdprModal}
@@ -111,6 +111,30 @@ const CompanyForm = () => {
           }}
         />
       ) : null}
+
+      {blueQuestionsModal ? (
+        <BlueQuestionsModal
+          modal={gdprModal}
+          setModal={setGdprModal}
+          color={"yrgo-blue"}
+          goBack={() => {
+            setBlueQuestionsModal(!blueQuestionsModal);
+          }}
+          continue={() => {
+            setCounter(counter + 1);
+            setBlueQuestionsModal(!blueQuestionsModal);
+          }}
+        />
+      ) : null}
+
+      {successModal ? (
+        <SuccessModal
+          modal={successModal}
+          setModal={setSuccessModal}
+          linkTo={"/event-info"}
+        />
+      ) : null}
+
       <main className="relative grid h-full w-full grid-rows-layout">
         <header className=" w-full bg-white">
           <div
@@ -185,6 +209,14 @@ const CompanyForm = () => {
             <ButtonArrowRight
               onClick={() => {
                 setGdprModal(true);
+              }}
+            >
+              nästa
+            </ButtonArrowRight>
+          ) : counter === 4 ? ( // page before the blue pages
+            <ButtonArrowRight
+              onClick={() => {
+                setBlueQuestionsModal(true);
               }}
             >
               nästa
