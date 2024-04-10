@@ -85,6 +85,12 @@ const CompanyForm = () => {
     }
   }
 
+  // the default is red theme. only pages 5 and 6 have the blue theme
+  let blueTheme = false;
+  if (counter === 5 || counter == 6) {
+    blueTheme = true;
+  }
+
   return (
     <>
       {successModal ? (
@@ -107,23 +113,37 @@ const CompanyForm = () => {
       ) : null}
       <main className="relative grid h-full w-full grid-rows-layout">
         <header className=" w-full bg-white">
-          <div className=" h-12 w-full bg-yrgo-red"></div>
+          <div
+            className={`h-12 w-full ${blueTheme ? "bg-yrgo-blue" : "bg-yrgo-red"}`}
+          ></div>
           {counter !== formPages.length - 1 ? (
-            <div className="mx-4 border-x-2  border-yrgo-red">
-              <div className="flex justify-between  border-b-2 border-yrgo-red px-4">
-                <p className="my-1 font-extrabold uppercase  text-yrgo-red">
+            <div
+              className={`mx-4 border-x-2  ${blueTheme ? "border-yrgo-blue" : "border-yrgo-red"}`}
+            >
+              <div
+                className={`flex justify-between  border-b-2 ${blueTheme ? "border-yrgo-blue" : "border-yrgo-red"} px-4`}
+              >
+                <p
+                  className={`my-1 font-extrabold uppercase  ${blueTheme ? "text-yrgo-blue" : "text-yrgo-red"}`}
+                >
                   yrgo event 24 april
                 </p>
-                <div className="border border-yrgo-red"></div>
-                <p className=" my-1 font-extrabold uppercase text-yrgo-red">
+                <div
+                  className={`border ${blueTheme ? "border-yrgo-blue" : "border-yrgo-red"}`}
+                ></div>
+                <p
+                  className={`py-1 font-extrabold uppercase ${blueTheme ? "text-yrgo-blue" : "text-yrgo-red"}`}
+                >
                   fråga {counter + 1}/{formPages.length - 1}
                 </p>
               </div>
-              <div className=" flex h-6 w-full justify-between border-b-2 border-yrgo-red">
+              <div
+                className={`flex h-6 w-full justify-between border-b-2 ${blueTheme ? "border-yrgo-blue" : "border-yrgo-red"}`}
+              >
                 {formPages.map((page) => {
                   return (
                     <div
-                      className={`${formPages.indexOf(page) <= counter ? "bg-yrgo-red" : ""} w-full`}
+                      className={`${formPages.indexOf(page) <= counter && blueTheme ? "bg-yrgo-blue" : formPages.indexOf(page) <= counter ? "bg-yrgo-red" : ""} w-full`}
                       key={formPages.indexOf(page)}
                     ></div>
                   );
@@ -136,7 +156,9 @@ const CompanyForm = () => {
         </header>
 
         {counter !== formPages.length - 1 ? (
-          <section className="mx-4 overflow-y-auto border-x-2 border-yrgo-red pt-8">
+          <section
+            className={`mx-4 overflow-y-auto border-x-2 ${blueTheme ? "border-yrgo-blue" : "border-yrgo-red"} pt-8`}
+          >
             <FormPage answer={answer} setAnswer={setAnswer} />
           </section>
         ) : (
@@ -151,7 +173,10 @@ const CompanyForm = () => {
               tillbaka
             </ButtonArrowLeft>
           ) : (
-            <ButtonArrowLeft onClick={() => setCounter(counter - 1)}>
+            <ButtonArrowLeft
+              onClick={() => setCounter(counter - 1)}
+              color={blueTheme ? "blue" : "red"}
+            >
               tillbaka
             </ButtonArrowLeft>
           )}
@@ -175,6 +200,7 @@ const CompanyForm = () => {
             </ButtonArrowRight>
           ) : (
             <ButtonArrowRight
+              color={blueTheme ? "blue" : "red"}
               onClick={() => {
                 setCounter(counter + 1);
               }}
