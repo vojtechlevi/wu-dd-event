@@ -11,7 +11,7 @@ const Company = () => {
         <img src={yrgologo} alt="Yrgo logo text" />
       </header>
 
-      <section className=" mx-4 mt-32 overflow-y-auto ">
+      <section className=" mx-4 my-auto overflow-y-auto ">
         <h1 className="p-4 text-6xl font-extrabold uppercase text-yrgo-red">
           hej!
         </h1>

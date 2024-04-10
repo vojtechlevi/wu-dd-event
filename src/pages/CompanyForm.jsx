@@ -181,7 +181,7 @@ const CompanyForm = () => {
 
         {counter !== formPages.length - 1 ? (
           <section
-            className={`mx-4 overflow-y-auto border-x-2 ${blueTheme ? "border-yrgo-blue" : "border-yrgo-red"} pt-8`}
+            className={`mx-4 overflow-y-auto border-x-2 ${blueTheme ? "border-yrgo-blue" : "border-yrgo-red"} py-8`}
           >
             <FormPage answer={answer} setAnswer={setAnswer} />
           </section>

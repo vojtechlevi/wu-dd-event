@@ -56,7 +56,7 @@ const InternTypeCount = ({ answer, setAnswer }) => {
 
   return (
     <>
-      <h2 className="mt-16 border-b-2 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
+      <h2 className="mt-16 border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
         Vilken typ av praktikant söker ni?
       </h2>
       <ul>
