@@ -7,7 +7,6 @@ const QuickQuestions = ({ answer, setAnswer }) => {
     officeInSweden: answer.top5.officeInSweden || null,
     companyTypeInhouse: answer.top5.companyTypeInhouse || null,
     flexTime: answer.top5.flexTime || null,
-    // add other choices here...
   });
 
   const handleChoiceChange = (choiceName, event) => {
@@ -56,7 +55,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
 
   return (
     <>
-      <h2 className="mt-16 border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
+      <h2 className="mt-16 border-b-4 border-yrgo-blue p-4 text-2xl font-extrabold uppercase text-yrgo-blue  ">
         5 snabba!
       </h2>
 
@@ -66,14 +65,14 @@ const QuickQuestions = ({ answer, setAnswer }) => {
             <label
               className={`${
                 answer.top5[choice.name] === true
-                  ? "border-white bg-yrgo-red"
-                  : "border-yrgo-red bg-white"
-              } flex items-center border-b-2 border-r border-r-yrgo-red p-4 
-              ${index === 4 ? " border-yrgo-red" : null}
+                  ? "border-white bg-yrgo-blue"
+                  : "border-yrgo-blue bg-white"
+              } flex items-center border-b-2 border-r border-r-yrgo-blue p-4 
+              ${index === 4 ? " border-yrgo-blue" : null}
               `}
             >
               <input
-                className=" shrink-0 checked:border-white "
+                className=" shrink-0 border-yrgo-blue checked:border-white"
                 type="radio"
                 value={true}
                 id={choice.textBoolTrue}
@@ -81,7 +80,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
                 checked={answer.top5[choice.name] === true ? true : false}
               />
               <span
-                className={`${answer.top5[choice.name] === true ? "text-white" : "text-yrgo-red"} cursor-pointer pl-4 font-extrabold uppercase`}
+                className={`${answer.top5[choice.name] === true ? "text-white" : "text-yrgo-blue"} cursor-pointer pl-4 font-extrabold uppercase`}
               >
                 {choice.textBoolTrue}
               </span>
@@ -90,14 +89,14 @@ const QuickQuestions = ({ answer, setAnswer }) => {
             <label
               className={`${
                 answer.top5[choice.name] === false
-                  ? "border-white bg-yrgo-red"
-                  : "border-yrgo-red bg-white"
-              } flex items-center border-b-2 border-l border-l-yrgo-red p-4
-              ${index === 4 ? " border-yrgo-red" : null}
+                  ? "border-white bg-yrgo-blue"
+                  : "border-yrgo-blue bg-white"
+              } flex items-center border-b-2 border-l border-l-yrgo-blue p-4
+              ${index === 4 ? " border-yrgo-blue" : null}
               `}
             >
               <input
-                className=" shrink-0 checked:border-white "
+                className=" shrink-0 border-yrgo-blue checked:border-white"
                 type="radio"
                 value={false}
                 id={choice.textBoolFalse}
@@ -105,7 +104,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
                 checked={answer.top5[choice.name] === false ? true : false}
               />
               <span
-                className={`${answer.top5[choice.name] === false ? "text-white" : "text-yrgo-red"} cursor-pointer pl-4 font-extrabold uppercase`}
+                className={`${answer.top5[choice.name] === false ? "text-white" : "text-yrgo-blue"} cursor-pointer pl-4 font-extrabold uppercase`}
               >
                 {choice.textBoolFalse}
               </span>

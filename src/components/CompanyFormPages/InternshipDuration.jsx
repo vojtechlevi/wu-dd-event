@@ -51,7 +51,7 @@ const InternshipDuration = ({ answer, setAnswer }) => {
 
   return (
     <>
-      <h2 className="mt-16 border-b-2 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
+      <h2 className="mt-16 border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
         Hela perioden eller delar?
       </h2>
       <p className="cursor-pointer border-b-2 border-yrgo-red  p-4 font-extrabold uppercase  text-yrgo-red">
@@ -74,7 +74,7 @@ const InternshipDuration = ({ answer, setAnswer }) => {
               <label className="align-center flex">
                 <input
                   checked={durationAnswer === choice ? true : false}
-                  className=" checked:border-white"
+                  className=" border-yrgo-red checked:border-white"
                   type="radio"
                   value={choice}
                   name={choice}

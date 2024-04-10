@@ -42,7 +42,7 @@ const FocusAreas = ({ answer, setAnswer }) => {
 
   return (
     <>
-      <h2 className="border-b-2 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
+      <h2 className="border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
         VILKA TYPER AV TJÄNSTER ERBJUDER NI?
       </h2>
       <ul>
@@ -62,7 +62,7 @@ const FocusAreas = ({ answer, setAnswer }) => {
                       ? true
                       : false
                   }
-                  className=" checked:border-white"
+                  className=" border-yrgo-red checked:border-white"
                   type="checkbox"
                   value={choice}
                   onClick={handleClick}

@@ -12,7 +12,7 @@ import { useState } from "react";
 const ListItem = ({ sliderName, sliderText }) => {
   return (
     <li key={sliderName} className="m-4 mt-8">
-      <p className="mb-8 font-extrabold uppercase text-yrgo-red">
+      <p className="mb-8 font-extrabold uppercase text-yrgo-blue">
         {sliderText}
       </p>
       <input
@@ -24,8 +24,8 @@ const ListItem = ({ sliderName, sliderText }) => {
         id="myRange"
       />
       <div className="flex justify-between">
-        <p className="font-bold text-yrgo-red">1</p>
-        <p className="font-bold text-yrgo-red">10</p>
+        <p className="font-bold text-yrgo-blue">1</p>
+        <p className="font-bold text-yrgo-blue">10</p>
       </div>
     </li>
   );
@@ -36,7 +36,7 @@ const Type = ({ answer, setAnswer }) => {
 
   return (
     <>
-      <h2 className="mt-16 border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
+      <h2 className="mt-16 border-b-4 border-yrgo-blue p-4 text-2xl font-extrabold uppercase text-yrgo-blue  ">
         Vilken rörelse är ditt företag?
       </h2>
       <ul>
