@@ -36,19 +36,19 @@ input {
 
   /* thumb */
   input[type="range"]::-webkit-slider-thumb {
-    @apply -my-12 h-12 w-12 cursor-pointer appearance-none fill-yrgo-blue;
+    @apply -my-12 h-12 w-12 cursor-pointer appearance-none border-none fill-yrgo-blue;
     background: url("./assets/slider-icon.svg");
   }
 
   input[type="range"]::-moz-range-thumb {
-    @apply -my-12 h-12 w-12 cursor-pointer appearance-none fill-yrgo-blue;
+    @apply -my-12 h-12 w-12 cursor-pointer appearance-none border-none fill-yrgo-blue;
     background: url("./assets/slider-icon.svg");
   }
 
   /* CUSTOM CHECKBOX AND RADIO STYLES  */
   input[type="radio"],
   input[type="checkbox"] {
-    @apply my-auto  flex h-4 w-4 cursor-pointer appearance-none items-center justify-center rounded-full border-2 bg-none;
+    @apply my-auto flex h-4 w-4 cursor-pointer appearance-none items-center justify-center rounded-full border-2 bg-none;
   }
 
   input[type="radio"]::before,
