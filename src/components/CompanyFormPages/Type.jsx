@@ -1,15 +1,6 @@
 import { useState } from "react";
 
-// defaultFormValues:
-// companyType:
-//   {
-//     cool: null,
-//     fast: null,
-//     stable: null,
-//   },
-// ,
-
-const ListItem = ({ sliderName, sliderText }) => {
+const ListItem = ({ sliderName, sliderText, onChange }) => {
   return (
     <li key={sliderName} className="m-4 mt-8">
       <p className="mb-8 font-extrabold uppercase text-yrgo-blue">
@@ -20,8 +11,10 @@ const ListItem = ({ sliderName, sliderText }) => {
         min="1"
         max="10"
         defaultValue="5"
+        onChange={onChange}
         className="w-full"
-        id="myRange"
+        id={sliderName}
+        name={sliderName}
       />
       <div className="flex justify-between">
         <p className="font-bold text-yrgo-blue">1</p>
@@ -32,7 +25,18 @@ const ListItem = ({ sliderName, sliderText }) => {
 };
 
 const Type = ({ answer, setAnswer }) => {
-  const [type, setType] = useState(answer.type || "");
+  const [selectedChoices, setSelectedChoices] = useState(
+    answer.companyType || "",
+  );
+
+  const handleChange = (event) => {
+    const updatedChoices = {
+      ...selectedChoices,
+      [event.target.name]: event.target.value,
+    };
+    setSelectedChoices(updatedChoices);
+    setAnswer({ ...answer, companyType: updatedChoices });
+  };
 
   return (
     <>
@@ -40,9 +44,21 @@ const Type = ({ answer, setAnswer }) => {
         Vilken rörelse är ditt företag?
       </h2>
       <ul>
-        <ListItem sliderName={"cool"} sliderText={"cool som en katt"} />
-        <ListItem sliderName={"fast"} sliderText={"snabb som blixten"} />
-        <ListItem sliderName={"stable"} sliderText={"stadig och stabil"} />
+        <ListItem
+          sliderName={"cool"}
+          sliderText={"cool som en katt"}
+          onChange={handleChange}
+        />
+        <ListItem
+          sliderName={"fast"}
+          sliderText={"snabb som blixten"}
+          onChange={handleChange}
+        />
+        <ListItem
+          sliderName={"stable"}
+          sliderText={"stadig och stabil"}
+          onChange={handleChange}
+        />
       </ul>
     </>
   );
