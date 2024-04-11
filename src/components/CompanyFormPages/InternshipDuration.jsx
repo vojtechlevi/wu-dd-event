@@ -97,7 +97,7 @@ const InternshipDuration = ({ answer, setAnswer }) => {
                   </span>
                   <input
                     className=" w-min appearance-none border-2 border-white bg-transparent px-2 py-1 font-extrabold uppercase text-white focus:outline-none"
-                    defaultValue={answer.internshipStartDate || ""}
+                    defaultValue={answer.internshipStartDate || "2024-11-25"}
                     type="date"
                     name="durationStartDate"
                     onChange={handleStartDateChange}
@@ -108,7 +108,7 @@ const InternshipDuration = ({ answer, setAnswer }) => {
                   </span>
                   <input
                     className=" w-min appearance-none border-2 border-white bg-transparent px-2 py-1 font-extrabold uppercase text-white focus:outline-none"
-                    defaultValue={answer.internshipEndDate || ""}
+                    defaultValue={answer.internshipEndDate || "2025-05-30"}
                     type="date"
                     name="durationEndDate"
                     onChange={handleEndDateChange}

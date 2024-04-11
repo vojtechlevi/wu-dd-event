@@ -43,20 +43,19 @@ const CompanyForm = () => {
         remoteWorkFriendly: null,
       },
     ],
-    companyType: [
-      {
-        cool: null,
-        fast: null,
-        stable: null,
-      },
-    ],
+    companyType: {
+      cool: null,
+      fast: null,
+      stable: null,
+    },
+
     internTypeCount: {
       "Digital designer": 0,
       Webbutvecklare: 0,
     },
-    internshipStartDate: "",
-    internshipEndDate: "",
-    internshipDuration: "", // not written to db
+    internshipStartDate: "2024-11-25", // default
+    internshipEndDate: "2025-05-30", // default
+    internshipDuration: "",
   });
 
   // modals:
