@@ -34,15 +34,13 @@ const CompanyForm = () => {
     focusAreas: [],
     softwaresDesign: [],
     softwaresDev: [],
-    top5: [
-      {
+    top5: {
         flexTime: null,
         dogFriendly: null,
         officeInSweden: null,
         companyTypeInhouse: null,
         remoteWorkFriendly: null,
       },
-    ],
     companyType: {
       cool: null,
       fast: null,

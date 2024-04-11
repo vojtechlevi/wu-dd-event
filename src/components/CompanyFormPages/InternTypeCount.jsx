@@ -6,6 +6,7 @@ const InternTypeCount = ({ answer, setAnswer }) => {
   );
 
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
+  const [whichDropdownIsOpen, setWhichDropdownIsOpen] = useState("");
 
   const choices = ["Digital designer", "Webbutvecklare"];
 
@@ -94,7 +95,10 @@ const InternTypeCount = ({ answer, setAnswer }) => {
                     className="w-full cursor-pointer appearance-none border-2 border-white bg-yrgo-red px-4 py-2 font-extrabold uppercase text-white focus:outline-none"
                     name={choice}
                     id={choice}
-                    onClick={() => setDropdownIsOpen(!dropdownIsOpen)}
+                    onClick={() => {
+                      setDropdownIsOpen(!dropdownIsOpen);
+                      setWhichDropdownIsOpen(choice);
+                    }}
                     onChange={handleSelectNumber}
                     value={internTypeCount[choice]}
                   >
@@ -119,11 +123,17 @@ const InternTypeCount = ({ answer, setAnswer }) => {
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-2 flex items-center  text-white">
                     <svg
-                      className={`h-4 w-4 fill-current ${dropdownIsOpen ? "rotate-180" : ""}`}
+                      className={`h-8 w-8 fill-current ${dropdownIsOpen && whichDropdownIsOpen === choice ? "rotate-180" : ""}`}
+                      width="40"
+                      height="40"
+                      viewBox="0 0 40 40"
+                      fill="none"
                       xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
                     >
-                      <path d="M10 12l-6-6h12l-6 6z" />
+                      <path
+                        d="M27.7358 14L20.0486 21.6704L12.3614 14L10 16.3614L20.0486 26.41L30.0972 16.3614L27.7358 14Z"
+                        fill="white"
+                      />
                     </svg>
                   </div>
                 </form>
