@@ -13,7 +13,6 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PageNotFound from "./pages/PageNotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
-import ThemeBox from "./components/ThemeBox";
 import Test from "./pages/Test";
 
 function App() {
