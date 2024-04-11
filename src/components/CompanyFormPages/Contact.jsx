@@ -1,12 +1,15 @@
 import { useState } from "react";
+import DOMPurify from "dompurify";
 
 const Contact = ({ answer, setAnswer }) => {
   const [selectedChoices, setSelectedChoices] = useState(answer.contact || "");
 
   const handleChange = (event) => {
+    const cleanValue = DOMPurify.sanitize(event.target.value);
+
     const updatedChoices = {
       ...selectedChoices,
-      [event.target.name]: event.target.value,
+      [event.target.name]: cleanValue,
     };
     setSelectedChoices(updatedChoices);
     setAnswer({ ...answer, contact: updatedChoices });
