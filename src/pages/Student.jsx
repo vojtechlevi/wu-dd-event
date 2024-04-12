@@ -14,14 +14,26 @@ const Student = () => {
   const [menu, setMenu] = useState(true);
   const [filterList, setFilterList] = useState(false);
 
+  const [focusAreasFilter, setFocusAreasFilter] = useState([]);
+
   useEffect(() => {
     getCompanies();
-  }, []);
+  }, [focusAreasFilter]);
 
   async function getCompanies() {
     let { data } = await supabase.from("companies").select();
+
+    if (focusAreasFilter.length > 0) {
+      const filteredData = data.filter((row) => {
+        return focusAreasFilter.every((area) => row.focusAreas.includes(area));
+      });
+
+      data = filteredData;
+    }
+
     setCompanies(data);
   }
+
   function handleMenu() {
     setMenu(!menu);
   }
@@ -41,8 +53,8 @@ const Student = () => {
       ) : null}
       {filterList ? (
         <FilterList
-          companies={companies}
-          setCompanies={setCompanies}
+          focusAreasFilter={focusAreasFilter}
+          setFocusAreasFilter={setFocusAreasFilter}
           filterList={filterList}
           setFilterList={setFilterList}
         />
@@ -100,7 +112,7 @@ const Student = () => {
                     onClick={() => setSelectedCompany(company)}
                   >
                     <h3 className="mb-2 flex items-center justify-between text-xl font-bold">
-                      {company && company.contact.name}
+                      {company && company.contact?.name}
                       <Heart
                         size={20}
                         onClick={(event) => {

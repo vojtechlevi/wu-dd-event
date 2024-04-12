@@ -1,21 +1,36 @@
 import React, { useState } from "react";
 import { X } from "lucide-react";
 
+const choicesFocusAreas = [
+  "Motion",
+  "UX",
+  "UI",
+  "Digitala plattformar",
+  "Service design",
+  "Film",
+  "Apputveckling",
+  "Webbutveckling",
+  "Systemutveckling",
+  "Branding",
+  "E-commerce",
+  "Annat",
+];
+
 const FilterList = ({
-  companies,
-  setCompanies,
+  focusAreasFilter,
+  setFocusAreasFilter,
   filterList,
   setFilterList,
-  selectedTypes,
-  setSelectedTypes,
 }) => {
-  console.log(companies);
-  const handleTypeClick = (e, type) => {
-    const filteredData = companies.filter((company) => {
-      // Check if the internTypeCount for the selected type is greater than 0
-      return company.internTypeCount[type] > 0;
-    });
-    setCompanies(filteredData);
+  const handleFocusAreasFilterChange = (event) => {
+    if (event.target.checked) {
+      setFocusAreasFilter([...focusAreasFilter, event.target.value]);
+    } else {
+      const updatedFilter = focusAreasFilter.filter((checkedFilter) => {
+        return checkedFilter !== event.target.value;
+      });
+      setFocusAreasFilter(updatedFilter);
+    }
   };
 
   return (
@@ -36,17 +51,40 @@ const FilterList = ({
             <h2 className="uppercase">Typ av LIA-plats</h2>
             <div className="flex gap-2">
               <p
-                onClick={(e) => handleTypeClick(e, "Webbutvecklare")}
+                onClick={(e) =>
+                  handleTypeClick(e, "Webbutvecklare", "internType")
+                }
                 className={`border-[0.5px] border-yrgo-blue px-2 py-1`}
               >
                 Webbutvecklare
               </p>
               <p
-                onClick={(e) => handleTypeClick(e, "Digital designer")}
+                onClick={(e) =>
+                  handleTypeClick(e, "Digital designer", "internType")
+                }
                 className="border-[0.5px] border-yrgo-blue px-2 py-1"
               >
                 Digital Designer
               </p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2 px-4">
+            <h2 className="uppercase">Tjänster</h2>
+            <div className="flex flex-wrap gap-2">
+              {choicesFocusAreas.map((choice) => {
+                return (
+                  <label key={choice}>
+                    <input
+                      type="checkbox"
+                      name={choice}
+                      value={choice}
+                      onChange={handleFocusAreasFilterChange}
+                      className={`border-[0.5px] border-yrgo-blue px-2 py-1`}
+                    />
+                    <span>{choice}</span>
+                  </label>
+                );
+              })}
             </div>
           </div>
         </div>
