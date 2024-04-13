@@ -17,10 +17,16 @@ const Student = () => {
   const [focusAreasFilter, setFocusAreasFilter] = useState([]);
   const [softwareDesignFilter, setSoftwareDesignFilter] = useState([]);
   const [softwareDevelopFilter, setSoftwareDevelopFilter] = useState([]);
+  const [internTypeFilter, setInternTypeFilter] = useState([]);
 
   useEffect(() => {
     getCompanies();
-  }, [focusAreasFilter, softwareDesignFilter, softwareDevelopFilter]);
+  }, [
+    focusAreasFilter,
+    softwareDesignFilter,
+    softwareDevelopFilter,
+    internTypeFilter,
+  ]);
 
   async function getCompanies() {
     let { data } = await supabase.from("companies").select();
@@ -28,7 +34,8 @@ const Student = () => {
     if (
       focusAreasFilter.length > 0 ||
       softwareDesignFilter.length > 0 ||
-      softwareDevelopFilter.length > 0
+      softwareDevelopFilter.length > 0 ||
+      internTypeFilter.length > 0
     ) {
       let focusAreasFilteredData = [];
       if (focusAreasFilter.length > 0) {
@@ -55,18 +62,32 @@ const Student = () => {
         });
       }
 
-      const filteredData = [
+      let internTypeFilteredData = [];
+      if (internTypeFilter.length > 0) {
+        internTypeFilteredData = data.filter((row) => {
+          return internTypeFilter.some(
+            (filter) =>
+              row.internTypeCount2 &&
+              Array.isArray(row.internTypeCount2) &&
+              row.internTypeCount2.includes(filter),
+          );
+        });
+      }
+
+      let filteredData = [
         ...focusAreasFilteredData,
         ...softwareDesignFilteredData,
         ...softwareDevelopFilteredData,
+        ...internTypeFilteredData,
       ];
+      filteredData = [...new Set(filteredData)];
 
       setCompanies(filteredData);
     } else {
       setCompanies(data);
     }
-
     console.log(companies);
+    console.log(internTypeFilter);
   }
 
   function handleMenu() {
@@ -88,6 +109,8 @@ const Student = () => {
       ) : null}
       {filterList ? (
         <FilterList
+          internTypeFilter={internTypeFilter}
+          setInternTypeFilter={setInternTypeFilter}
           softwareDevelopFilter={softwareDevelopFilter}
           setSoftwareDevelopFilter={setSoftwareDevelopFilter}
           softwareDesignFilter={softwareDesignFilter}
@@ -162,28 +185,21 @@ const Student = () => {
                         }} /* fill="red" stroke="black"  */
                       />
                     </h3>
-                    {company.internTypeCount &&
-                    Object.values(company.internTypeCount).some(
-                      (count) => count > 0,
-                    ) ? (
-                      <div className="flex items-center gap-1 min-[375px]:gap-2">
-                        <p className=" text-xs min-[375px]:text-sm">Söker: </p>
-                        {company.internTypeCount &&
-                          Object.entries(company.internTypeCount).map(
-                            ([type, count], index) => (
-                              <div key={index}>
-                                {count > 0 ? (
-                                  <p className=" border-[0.5px] border-black px-2 py-1 text-xs min-[375px]:text-sm">
-                                    {type}
-                                  </p>
-                                ) : null}
-                              </div>
-                            ),
-                          )}
-                      </div>
-                    ) : (
-                      <p className="text-xs min-[375px]:text-sm">Söker ej</p>
-                    )}
+                    <div className="flex items-center gap-1 min-[375px]:gap-2">
+                      <p className=" text-xs min-[375px]:text-sm">Söker: </p>
+                      {company.internTypeCount2 &&
+                      company.internTypeCount2.length > 0 ? (
+                        company.internTypeCount2.map((type) => (
+                          <div key={type}>
+                            <p className="border-[0.5px] border-black px-2 py-1 text-xs min-[375px]:text-sm">
+                              {type}
+                            </p>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-xs min-[375px]:text-sm">Söker ej</p>
+                      )}
+                    </div>
                   </li>
                 ))}
             </ul>
