@@ -16,7 +16,47 @@ const choicesFocusAreas = [
   "Annat",
 ];
 
+const choicesSoftwareDesign = [
+  "Figma",
+  "Webflow",
+  "Wordpress",
+  "After Effects",
+  "Photoshop",
+  "XD",
+  "Indesign",
+  "Premiere Pro",
+  "Linearity Move",
+  "Spline",
+  "Blender",
+  "Canva",
+  "Annat",
+];
+
+const choicesSoftwareDevelop = [
+  "JavaScript",
+  "TypeScript",
+  "PHP",
+  "C#",
+  "Java",
+  "React",
+  "Vue",
+  "Angular",
+  "Svelte",
+  "Laravel",
+  "Node.js",
+  ".NET",
+  "Wordpress",
+  "Sanity",
+  "Storyblok",
+  "Andra CMS",
+  "Andra tekniker",
+];
+
 const FilterList = ({
+  softwareDevelopFilter,
+  setSoftwareDevelopFilter,
+  softwareDesignFilter,
+  setSoftwareDesignFilter,
   focusAreasFilter,
   setFocusAreasFilter,
   filterList,
@@ -24,6 +64,7 @@ const FilterList = ({
 }) => {
   const handleFocusAreasFilterChange = (event) => {
     if (event.target.checked) {
+      event.target.classList.toggle("bg-yrgo-blue");
       setFocusAreasFilter([...focusAreasFilter, event.target.value]);
     } else {
       const updatedFilter = focusAreasFilter.filter((checkedFilter) => {
@@ -32,6 +73,34 @@ const FilterList = ({
       setFocusAreasFilter(updatedFilter);
     }
   };
+  const handleSoftwareDesignFilterChange = (event) => {
+    if (event.target.checked) {
+      event.target.classList.toggle("bg-yrgo-blue");
+      setSoftwareDesignFilter([...softwareDesignFilter, event.target.value]);
+    } else {
+      const updatedFilter = softwareDesignFilter.filter((checkedFilter) => {
+        return checkedFilter !== event.target.value;
+      });
+      setSoftwareDesignFilter(updatedFilter);
+    }
+  };
+
+  const handleSoftwareDevelopFilterChange = (event) => {
+    if (event.target.checked) {
+      event.target.classList.toggle("bg-yrgo-blue");
+      setSoftwareDevelopFilter([...softwareDevelopFilter, event.target.value]);
+    } else {
+      setSoftwareDevelopFilter(
+        softwareDevelopFilter.filter((choice) => choice !== event.target.value),
+      );
+    }
+  };
+
+  function handleClear() {
+    setFocusAreasFilter([]);
+    setSoftwareDesignFilter([]);
+    setSoftwareDevelopFilter([]);
+  }
 
   return (
     <>
@@ -44,9 +113,14 @@ const FilterList = ({
               className="cursor-pointer text-white"
             />
           </p>
-          <p className="w-[90%] uppercase underline">Rensa</p>
+          <p
+            onClick={handleClear}
+            className="w-[90%] cursor-pointer uppercase underline"
+          >
+            Rensa
+          </p>
         </div>
-        <div className=" my-12 flex w-full flex-col gap-12">
+        <div className=" my-12 flex w-full flex-col gap-12 pb-12">
           <div className="flex flex-col gap-2 px-4">
             <h2 className="uppercase">Typ av LIA-plats</h2>
             <div className="flex gap-2">
@@ -73,13 +147,72 @@ const FilterList = ({
             <div className="flex flex-wrap gap-2">
               {choicesFocusAreas.map((choice) => {
                 return (
-                  <label key={choice}>
+                  <label
+                    key={choice}
+                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1  ${
+                      focusAreasFilter.includes(choice)
+                        ? "bg-yrgo-blue text-white"
+                        : ""
+                    } `}
+                  >
                     <input
                       type="checkbox"
                       name={choice}
                       value={choice}
                       onChange={handleFocusAreasFilterChange}
-                      className={`border-[0.5px] border-yrgo-blue px-2 py-1`}
+                      style={{ display: "none" }}
+                    />
+                    <span>{choice}</span>
+                  </label>
+                );
+              })}
+            </div>
+          </div>
+          <div className="flex flex-col gap-2 px-4">
+            <h2 className="uppercase">Design Verktyg</h2>
+            <div className="flex flex-wrap gap-2">
+              {choicesSoftwareDesign.map((choice) => {
+                return (
+                  <label
+                    key={choice}
+                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1  ${
+                      softwareDesignFilter.includes(choice)
+                        ? "bg-yrgo-blue text-white"
+                        : ""
+                    } `}
+                  >
+                    <input
+                      type="checkbox"
+                      name={choice}
+                      value={choice}
+                      onChange={handleSoftwareDesignFilterChange}
+                      style={{ display: "none" }}
+                    />
+                    <span>{choice}</span>
+                  </label>
+                );
+              })}
+            </div>
+          </div>
+          <div className="flex flex-col gap-2 px-4">
+            <h2 className="uppercase">Tech Stack</h2>
+            <div className="flex flex-wrap gap-2">
+              {choicesSoftwareDevelop.map((choice) => {
+                return (
+                  <label
+                    key={choice}
+                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1  ${
+                      softwareDevelopFilter.includes(choice)
+                        ? "bg-yrgo-blue text-white"
+                        : ""
+                    } `}
+                  >
+                    <input
+                      type="checkbox"
+                      name={choice}
+                      value={choice}
+                      onChange={handleSoftwareDevelopFilterChange}
+                      style={{ display: "none" }}
                     />
                     <span>{choice}</span>
                   </label>

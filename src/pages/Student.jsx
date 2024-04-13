@@ -15,23 +15,58 @@ const Student = () => {
   const [filterList, setFilterList] = useState(false);
 
   const [focusAreasFilter, setFocusAreasFilter] = useState([]);
+  const [softwareDesignFilter, setSoftwareDesignFilter] = useState([]);
+  const [softwareDevelopFilter, setSoftwareDevelopFilter] = useState([]);
 
   useEffect(() => {
     getCompanies();
-  }, [focusAreasFilter]);
+  }, [focusAreasFilter, softwareDesignFilter, softwareDevelopFilter]);
 
   async function getCompanies() {
     let { data } = await supabase.from("companies").select();
 
-    if (focusAreasFilter.length > 0) {
-      const filteredData = data.filter((row) => {
-        return focusAreasFilter.every((area) => row.focusAreas.includes(area));
-      });
+    if (
+      focusAreasFilter.length > 0 ||
+      softwareDesignFilter.length > 0 ||
+      softwareDevelopFilter.length > 0
+    ) {
+      let focusAreasFilteredData = [];
+      if (focusAreasFilter.length > 0) {
+        focusAreasFilteredData = data.filter((row) => {
+          return focusAreasFilter.some((area) => row.focusAreas.includes(area));
+        });
+      }
 
-      data = filteredData;
+      let softwareDesignFilteredData = [];
+      if (softwareDesignFilter.length > 0) {
+        softwareDesignFilteredData = data.filter((row) => {
+          return softwareDesignFilter.some((filter) =>
+            row.softwaresDesign.includes(filter),
+          );
+        });
+      }
+
+      let softwareDevelopFilteredData = [];
+      if (softwareDevelopFilter.length > 0) {
+        softwareDevelopFilteredData = data.filter((row) => {
+          return softwareDevelopFilter.some((filter) =>
+            row.softwaresDev.includes(filter),
+          );
+        });
+      }
+
+      const filteredData = [
+        ...focusAreasFilteredData,
+        ...softwareDesignFilteredData,
+        ...softwareDevelopFilteredData,
+      ];
+
+      setCompanies(filteredData);
+    } else {
+      setCompanies(data);
     }
 
-    setCompanies(data);
+    console.log(companies);
   }
 
   function handleMenu() {
@@ -53,6 +88,10 @@ const Student = () => {
       ) : null}
       {filterList ? (
         <FilterList
+          softwareDevelopFilter={softwareDevelopFilter}
+          setSoftwareDevelopFilter={setSoftwareDevelopFilter}
+          softwareDesignFilter={softwareDesignFilter}
+          setSoftwareDesignFilter={setSoftwareDesignFilter}
           focusAreasFilter={focusAreasFilter}
           setFocusAreasFilter={setFocusAreasFilter}
           filterList={filterList}
