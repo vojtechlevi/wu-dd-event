@@ -35,12 +35,12 @@ const CompanyForm = () => {
     softwaresDesign: [],
     softwaresDev: [],
     top5: {
-        flexTime: null,
-        dogFriendly: null,
-        officeInSweden: null,
-        companyTypeInhouse: null,
-        remoteWorkFriendly: null,
-      },
+      flexTime: null,
+      dogFriendly: null,
+      officeInSweden: null,
+      companyTypeInhouse: null,
+      remoteWorkFriendly: null,
+    },
     companyType: {
       cool: null,
       fast: null,
@@ -51,6 +51,7 @@ const CompanyForm = () => {
       "Digital designer": 0,
       Webbutvecklare: 0,
     },
+    internType: [],
     internshipStartDate: "2024-11-25", // default
     internshipEndDate: "2025-05-30", // default
     internshipDuration: "",

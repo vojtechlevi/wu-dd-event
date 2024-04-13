@@ -62,7 +62,7 @@ const Student = () => {
     if (internTypeFilter.length > 0) {
       filteredData = filteredData.filter((row) => {
         return internTypeFilter.every((internType) =>
-          row.internTypeCount2.includes(internType),
+          row.internType.includes(internType),
         );
       });
     }
@@ -167,9 +167,8 @@ const Student = () => {
                     </h3>
                     <div className="flex items-center gap-1 min-[375px]:gap-2">
                       <p className=" text-xs min-[375px]:text-sm">Söker: </p>
-                      {company.internTypeCount2 &&
-                      company.internTypeCount2.length > 0 ? (
-                        company.internTypeCount2.map((type) => (
+                      {company.internType && company.internType.length > 0 ? (
+                        company.internType.map((type) => (
                           <div key={type}>
                             <p className="border-[0.5px] border-black px-2 py-1 text-xs min-[375px]:text-sm">
                               {type}
