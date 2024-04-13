@@ -9,7 +9,7 @@ const CompanyDetails = ({ details, setSelectedCompany }) => {
         <div className="flex w-full flex-col items-center justify-center gap-20">
           <button onClick={() => setSelectedCompany(null)}>Back</button>
           <h3 className="text-2xl font-extrabold uppercase text-yrgo-blue">
-            {details.contact[0].name}
+            {details.contact.name}
           </h3>
           <div className="h-[4px] w-[90%] bg-yrgo-blue"></div>
           <div className="flex h-[278px] w-[90%] items-center justify-center border-2 border-yrgo-blue">
@@ -20,8 +20,8 @@ const CompanyDetails = ({ details, setSelectedCompany }) => {
             <h4 className="text-2xl font-bold uppercase text-yrgo-red">
               Kontakt & Webbplats
             </h4>
-            <p>{details.contact[0].email}</p>
-            <p>{details.contact[0].url}</p>
+            <p>{details.contact.email}</p>
+            <p>{details.contact.url}</p>
           </div>
           <div className="h-[2px] w-[90%] bg-yrgo-blue"></div>
           <h4 className="text-2xl font-bold uppercase text-yrgo-red">
@@ -81,15 +81,15 @@ const CompanyDetails = ({ details, setSelectedCompany }) => {
               Vi söker <br /> praktikanter inom
             </h4>
             {details.internTypeCount !== null &&
-            Object.values(details.internTypeCount[0]).some(
+            Object.values(details.internTypeCount).some(
               (count) => count > 0,
             ) ? (
               <div>
-                {details.internTypeCount[0] && (
+                {details.internTypeCount && (
                   <div
-                    className={`grid gap-4 ${Object.values(details.internTypeCount[0]).every((count) => count > 0) ? "grid-cols-2" : "grid-cols-1"}`}
+                    className={`grid gap-4 ${Object.values(details.internTypeCount).every((count) => count > 0) ? "grid-cols-2" : "grid-cols-1"}`}
                   >
-                    {Object.entries(details.internTypeCount[0]).map(
+                    {Object.entries(details.internTypeCount).map(
                       ([type, count], index) => (
                         <div key={index}>
                           {count > 0 ? (
@@ -124,7 +124,7 @@ const CompanyDetails = ({ details, setSelectedCompany }) => {
               Fem snabba
             </h4>
             <div className="grid grid-cols-2 gap-4">
-              {Object.entries(details.top5[0]).map(([key, value], index) => (
+              {Object.entries(details.top5).map(([key, value], index) => (
                 <div key={index}>
                   <p className="flex items-center justify-center border-2 border-yrgo-blue px-4 py-2">
                     {key}
