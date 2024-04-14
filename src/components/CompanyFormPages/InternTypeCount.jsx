@@ -4,6 +4,7 @@ const InternTypeCount = ({ answer, setAnswer }) => {
   const [internTypeCount, setInternTypeCount] = useState(
     answer.internTypeCount || [],
   );
+  const [internType, setInternType] = useState(answer.internType || []);
 
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
   const [whichDropdownIsOpen, setWhichDropdownIsOpen] = useState("");
@@ -12,10 +13,14 @@ const InternTypeCount = ({ answer, setAnswer }) => {
 
   const handleToggleChoice = (event) => {
     if (internTypeCount[event.target.value] === 0) {
+      // if the checkbox is toggled on:
+
       setInternTypeCount((prevState) => ({
         ...prevState,
         [event.target.value]: 1,
       }));
+
+      setInternType((prevState) => [...prevState, event.target.value]);
 
       setAnswer((prevState) => ({
         ...prevState,
@@ -23,12 +28,19 @@ const InternTypeCount = ({ answer, setAnswer }) => {
           ...prevState.internTypeCount,
           [event.target.value]: 1,
         },
+        internType: [...prevState.internType, event.target.value],
       }));
     } else {
+      // if the checkbox is toggled off:
+
       setInternTypeCount((prevState) => ({
         ...prevState,
         [event.target.value]: 0,
       }));
+
+      setInternType((prevState) =>
+        prevState.filter((item) => item !== event.target.value),
+      );
 
       setAnswer((prevState) => ({
         ...prevState,
@@ -36,6 +48,9 @@ const InternTypeCount = ({ answer, setAnswer }) => {
           ...prevState.internTypeCount,
           [event.target.value]: 0,
         },
+        internType: prevState.internType.filter(
+          (item) => item !== event.target.value,
+        ),
       }));
     }
   };
