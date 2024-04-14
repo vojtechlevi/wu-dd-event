@@ -61,8 +61,11 @@ const Student = () => {
     // internTypeFilter:
     if (internTypeFilter.length > 0) {
       filteredData = filteredData.filter((row) => {
-        return internTypeFilter.every((internType) =>
-          row.internType.includes(internType),
+        return internTypeFilter.every(
+          (internType) =>
+            row.internType &&
+            Array.isArray(row.internType) &&
+            row.internType.includes(internType),
         );
       });
     }
