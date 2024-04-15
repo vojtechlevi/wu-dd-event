@@ -51,16 +51,16 @@ const InternshipDuration = ({ answer, setAnswer }) => {
 
   return (
     <>
-      <h2 className="mt-16 border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
+      <h2 className="mt-16 border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red lg:border-b-8 lg:p-8 lg:text-4xl">
         Hela perioden eller delar?
       </h2>
-      <p className="cursor-pointer border-b-2 border-yrgo-red  p-4 font-extrabold uppercase  text-yrgo-red">
+      <p className="cursor-pointer border-b-2 border-yrgo-red p-4  font-extrabold uppercase text-yrgo-red  lg:border-b-4">
         Vår praktikperiod löper mellan 25 november 2024 – 30 maj 2025.
         <br />
         <br />
         Har ni möjlighet att ta emot under...
       </p>
-      <form>
+      <form className="border-yrgo-red lg:w-1/2 lg:border-r-4">
         {choices.map((choice) => {
           return (
             <div
@@ -69,7 +69,7 @@ const InternshipDuration = ({ answer, setAnswer }) => {
                 durationAnswer === choice
                   ? "border-white bg-yrgo-red"
                   : "border-yrgo-red bg-white"
-              }  border-b-2 p-4`}
+              }  border-b-2 p-4 lg:border-b-4 `}
             >
               <label className="align-center flex">
                 <input

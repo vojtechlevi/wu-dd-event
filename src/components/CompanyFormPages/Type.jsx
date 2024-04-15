@@ -2,23 +2,28 @@ import { useState } from "react";
 
 const ListItem = ({ sliderName, sliderText, onChange }) => {
   return (
-    <li key={sliderName} className="m-4 mt-8">
-      <p className="mb-8 font-extrabold uppercase text-yrgo-blue">
+    <li
+      key={sliderName}
+      className="m-4 mt-8 items-center gap-8 lg:mx-24 lg:mt-16 lg:flex"
+    >
+      <p className="mb-8 font-extrabold  uppercase text-yrgo-blue lg:mb-4">
         {sliderText}
       </p>
-      <input
-        type="range"
-        min="1"
-        max="10"
-        defaultValue="5"
-        onChange={onChange}
-        className="w-full"
-        id={sliderName}
-        name={sliderName}
-      />
-      <div className="flex justify-between">
-        <p className="font-bold text-yrgo-blue">1</p>
-        <p className="font-bold text-yrgo-blue">10</p>
+      <div className="flex-grow">
+        <input
+          type="range"
+          min="1"
+          max="10"
+          defaultValue="5"
+          onChange={onChange}
+          className="w-full"
+          id={sliderName}
+          name={sliderName}
+        />
+        <div className="flex justify-between">
+          <p className="font-bold text-yrgo-blue">1</p>
+          <p className="font-bold text-yrgo-blue">10</p>
+        </div>
       </div>
     </li>
   );
@@ -40,7 +45,7 @@ const Type = ({ answer, setAnswer }) => {
 
   return (
     <>
-      <h2 className="mt-16 border-b-4 border-yrgo-blue p-4 text-2xl font-extrabold uppercase text-yrgo-blue  ">
+      <h2 className="mt-16 border-b-4 border-yrgo-blue p-4 text-2xl font-extrabold uppercase text-yrgo-blue lg:border-b-8 lg:p-8 lg:text-4xl">
         Vilken rörelse är ditt företag?
       </h2>
       <ul>

@@ -9,27 +9,26 @@ const Employees = ({ answer, setAnswer }) => {
   };
 
   const choices = [
-    "1-5",
+    "1-4",
     "5-10",
-    "10-20",
-    "20-30",
+    "10-15",
+    "15-30",
     "30-50",
     "50-100",
     "100-200",
-    "200-400",
-    "400+",
+    "200+",
   ];
   return (
     <>
-      <h2 className="border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red ">
+      <h2 className="mt-16 border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red lg:border-b-8 lg:p-8 lg:text-4xl">
         Hur många jobbar hos er?
       </h2>
-      <ul>
+      <ul className="grid-cols-2 gap-x-1 bg-yrgo-red lg:grid">
         {choices.map((choice) => {
           return (
             <li key={choice}>
               <label
-                className={`${answer.employees === choice ? "border-white bg-yrgo-red" : "border-yrgo-red bg-white"} align-center flex border-b-2  p-4`}
+                className={`${answer.employees === choice ? "border-white bg-yrgo-red" : "border-yrgo-red bg-white"} align-center  flex  border-b-2  p-4 lg:border-b-4`}
               >
                 <input
                   checked={employeesCount === choice ? true : false}

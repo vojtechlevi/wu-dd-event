@@ -9,7 +9,7 @@ const BlueQuestionsModal = ({ ...props }) => {
           <div className={`h-12 w-full bg-yrgo-blue`}></div>
         </header>
 
-        <section className="my-auto overflow-y-auto px-4">
+        <section className="my-auto overflow-y-auto px-4 lg:mx-auto lg:my-auto">
           <h2 className="  p-4 text-2xl font-extrabold uppercase text-white  ">
             och nu några frågor med lite mer personlighet!
           </h2>
@@ -18,7 +18,7 @@ const BlueQuestionsModal = ({ ...props }) => {
           </h2>
         </section>
 
-        <section className="mb-4 flex w-full px-4">
+        <section className="mx-4 mb-4 flex  justify-between border-white lg:mx-16 lg:border-4">
           <ButtonArrowLeft color={"blue"} onClick={props.goBack}>
             tillbaka
           </ButtonArrowLeft>
