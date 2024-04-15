@@ -13,7 +13,7 @@ export default function ButtonArrowLeft({
       {isLink === true ? (
         <Link
           to={linkTo}
-          className={`flex w-1/2 items-center justify-start border-2 border-yrgo-${color} bg-white p-4`}
+          className={`flex w-1/2 items-center justify-start border-r lg:w-48 lg:border-r-4 border-yrgo-${color} bg-white p-4`}
         >
           <svg
             width="24"
@@ -33,7 +33,7 @@ export default function ButtonArrowLeft({
       ) : (
         <button
           onClick={onClick}
-          className={`flex w-1/2 items-center justify-start border-2 border-yrgo-${color} bg-white p-4`}
+          className={`flex w-1/2 items-center justify-start border-r lg:w-48 lg:border-r-4 border-yrgo-${color} bg-white p-4`}
         >
           <svg
             width="24"

@@ -31,63 +31,46 @@ const Student = () => {
   async function getCompanies() {
     let { data } = await supabase.from("companies").select();
 
-    if (
-      focusAreasFilter.length > 0 ||
-      softwareDesignFilter.length > 0 ||
-      softwareDevelopFilter.length > 0 ||
-      internTypeFilter.length > 0
-    ) {
-      let focusAreasFilteredData = [];
-      if (focusAreasFilter.length > 0) {
-        focusAreasFilteredData = data.filter((row) => {
-          return focusAreasFilter.some((area) => row.focusAreas.includes(area));
-        });
-      }
+    let filteredData = data;
 
-      let softwareDesignFilteredData = [];
-      if (softwareDesignFilter.length > 0) {
-        softwareDesignFilteredData = data.filter((row) => {
-          return softwareDesignFilter.some((filter) =>
-            row.softwaresDesign.includes(filter),
-          );
-        });
-      }
-
-      let softwareDevelopFilteredData = [];
-      if (softwareDevelopFilter.length > 0) {
-        softwareDevelopFilteredData = data.filter((row) => {
-          return softwareDevelopFilter.some((filter) =>
-            row.softwaresDev.includes(filter),
-          );
-        });
-      }
-
-      let internTypeFilteredData = [];
-      if (internTypeFilter.length > 0) {
-        internTypeFilteredData = data.filter((row) => {
-          return internTypeFilter.some(
-            (filter) =>
-              row.internTypeCount2 &&
-              Array.isArray(row.internTypeCount2) &&
-              row.internTypeCount2.includes(filter),
-          );
-        });
-      }
-
-      let filteredData = [
-        ...focusAreasFilteredData,
-        ...softwareDesignFilteredData,
-        ...softwareDevelopFilteredData,
-        ...internTypeFilteredData,
-      ];
-      filteredData = [...new Set(filteredData)];
-
-      setCompanies(filteredData);
-    } else {
-      setCompanies(data);
+    // focusAreasFilter:
+    if (focusAreasFilter.length > 0) {
+      filteredData = filteredData.filter((row) => {
+        return focusAreasFilter.every((area) => row.focusAreas.includes(area));
+      });
     }
-    console.log(companies);
-    console.log(internTypeFilter);
+
+    // softwareDesignFilter:
+    if (softwareDesignFilter.length > 0) {
+      filteredData = filteredData.filter((row) => {
+        return softwareDesignFilter.every((software) =>
+          row.softwaresDesign.includes(software),
+        );
+      });
+    }
+
+    // softwareDevelopFilter:
+    if (softwareDevelopFilter.length > 0) {
+      filteredData = filteredData.filter((row) => {
+        return softwareDevelopFilter.every((software) =>
+          row.softwaresDev.includes(software),
+        );
+      });
+    }
+
+    // internTypeFilter:
+    if (internTypeFilter.length > 0) {
+      filteredData = filteredData.filter((row) => {
+        return internTypeFilter.every(
+          (internType) =>
+            row.internType &&
+            Array.isArray(row.internType) &&
+            row.internType.includes(internType),
+        );
+      });
+    }
+
+    setCompanies(filteredData);
   }
 
   function handleMenu() {
@@ -187,9 +170,8 @@ const Student = () => {
                     </h3>
                     <div className="flex items-center gap-1 min-[375px]:gap-2">
                       <p className=" text-xs min-[375px]:text-sm">Söker: </p>
-                      {company.internTypeCount2 &&
-                      company.internTypeCount2.length > 0 ? (
-                        company.internTypeCount2.map((type) => (
+                      {company.internType && company.internType.length > 0 ? (
+                        company.internType.map((type) => (
                           <div key={type}>
                             <p className="border-[0.5px] border-black px-2 py-1 text-xs min-[375px]:text-sm">
                               {type}

@@ -4,6 +4,7 @@ const InternTypeCount = ({ answer, setAnswer }) => {
   const [internTypeCount, setInternTypeCount] = useState(
     answer.internTypeCount || [],
   );
+  const [internType, setInternType] = useState(answer.internType || []);
 
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
   const [whichDropdownIsOpen, setWhichDropdownIsOpen] = useState("");
@@ -12,10 +13,14 @@ const InternTypeCount = ({ answer, setAnswer }) => {
 
   const handleToggleChoice = (event) => {
     if (internTypeCount[event.target.value] === 0) {
+      // if the checkbox is toggled on:
+
       setInternTypeCount((prevState) => ({
         ...prevState,
         [event.target.value]: 1,
       }));
+
+      setInternType((prevState) => [...prevState, event.target.value]);
 
       setAnswer((prevState) => ({
         ...prevState,
@@ -23,12 +28,19 @@ const InternTypeCount = ({ answer, setAnswer }) => {
           ...prevState.internTypeCount,
           [event.target.value]: 1,
         },
+        internType: [...prevState.internType, event.target.value],
       }));
     } else {
+      // if the checkbox is toggled off:
+
       setInternTypeCount((prevState) => ({
         ...prevState,
         [event.target.value]: 0,
       }));
+
+      setInternType((prevState) =>
+        prevState.filter((item) => item !== event.target.value),
+      );
 
       setAnswer((prevState) => ({
         ...prevState,
@@ -36,6 +48,9 @@ const InternTypeCount = ({ answer, setAnswer }) => {
           ...prevState.internTypeCount,
           [event.target.value]: 0,
         },
+        internType: prevState.internType.filter(
+          (item) => item !== event.target.value,
+        ),
       }));
     }
   };
@@ -57,10 +72,10 @@ const InternTypeCount = ({ answer, setAnswer }) => {
 
   return (
     <>
-      <h2 className="mt-16 border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
+      <h2 className="mt-16 border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red lg:border-b-8 lg:p-8 lg:text-4xl">
         Vilken typ av praktikant söker ni?
       </h2>
-      <ul>
+      <ul className=" border-yrgo-red lg:w-1/2 lg:border-r-4">
         {choices.map((choice) => {
           return (
             <div
@@ -69,7 +84,7 @@ const InternTypeCount = ({ answer, setAnswer }) => {
                 internTypeCount[choice] > 0
                   ? "border-white bg-yrgo-red"
                   : "border-yrgo-red bg-white"
-              }  border-b-2 p-4`}
+              }   border-b-2 p-4 lg:border-b-4`}
             >
               <label className="align-center flex">
                 <input

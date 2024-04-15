@@ -68,7 +68,6 @@ const FilterList = ({
 }) => {
   const handleFocusAreasFilterChange = (event) => {
     if (event.target.checked) {
-      event.target.classList.toggle("bg-yrgo-blue");
       setFocusAreasFilter([...focusAreasFilter, event.target.value]);
     } else {
       const updatedFilter = focusAreasFilter.filter((checkedFilter) => {
@@ -79,7 +78,6 @@ const FilterList = ({
   };
   const handleSoftwareDesignFilterChange = (event) => {
     if (event.target.checked) {
-      event.target.classList.toggle("bg-yrgo-blue");
       setSoftwareDesignFilter([...softwareDesignFilter, event.target.value]);
     } else {
       const updatedFilter = softwareDesignFilter.filter((checkedFilter) => {
@@ -91,7 +89,6 @@ const FilterList = ({
 
   const handleSoftwareDevelopFilterChange = (event) => {
     if (event.target.checked) {
-      event.target.classList.toggle("bg-yrgo-blue");
       setSoftwareDevelopFilter([...softwareDevelopFilter, event.target.value]);
     } else {
       setSoftwareDevelopFilter(
@@ -102,7 +99,6 @@ const FilterList = ({
 
   const handleInternTypeFilterChange = (event) => {
     if (event.target.checked) {
-      event.target.classList.toggle("bg-yrgo-blue");
       setInternTypeFilter([...internTypeFilter, event.target.value]);
     } else {
       const updatedFilter = internTypeFilter.filter((checkedFilter) => {
@@ -152,10 +148,10 @@ const FilterList = ({
                 return (
                   <label
                     key={choice}
-                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1 text-yrgo-blue ${
+                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1 ${
                       internTypeFilter.includes(choice)
                         ? "bg-yrgo-blue text-white"
-                        : ""
+                        : "text-yrgo-blue"
                     } `}
                   >
                     <input
@@ -164,6 +160,7 @@ const FilterList = ({
                       value={choice}
                       onChange={handleInternTypeFilterChange}
                       style={{ display: "none" }}
+                      defaultChecked={internTypeFilter.includes(choice)}
                     />
                     <span>{choice}</span>
                   </label>
@@ -178,10 +175,10 @@ const FilterList = ({
                 return (
                   <label
                     key={choice}
-                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1 text-yrgo-blue ${
+                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1 ${
                       focusAreasFilter.includes(choice)
                         ? "bg-yrgo-blue text-white"
-                        : ""
+                        : "text-yrgo-blue"
                     } `}
                   >
                     <input
@@ -190,6 +187,7 @@ const FilterList = ({
                       value={choice}
                       onChange={handleFocusAreasFilterChange}
                       style={{ display: "none" }}
+                      defaultChecked={focusAreasFilter.includes(choice)}
                     />
                     <span>{choice}</span>
                   </label>
@@ -204,10 +202,10 @@ const FilterList = ({
                 return (
                   <label
                     key={choice}
-                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1 text-yrgo-blue  ${
+                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1 ${
                       softwareDesignFilter.includes(choice)
                         ? "bg-yrgo-blue text-white"
-                        : ""
+                        : "text-yrgo-blue"
                     } `}
                   >
                     <input
@@ -216,6 +214,7 @@ const FilterList = ({
                       value={choice}
                       onChange={handleSoftwareDesignFilterChange}
                       style={{ display: "none" }}
+                      defaultChecked={softwareDesignFilter.includes(choice)}
                     />
                     <span>{choice}</span>
                   </label>
@@ -230,10 +229,10 @@ const FilterList = ({
                 return (
                   <label
                     key={choice}
-                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1 text-yrgo-blue  ${
+                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1 ${
                       softwareDevelopFilter.includes(choice)
                         ? "bg-yrgo-blue text-white"
-                        : ""
+                        : "text-yrgo-blue"
                     } `}
                   >
                     <input
@@ -242,6 +241,7 @@ const FilterList = ({
                       value={choice}
                       onChange={handleSoftwareDevelopFilterChange}
                       style={{ display: "none" }}
+                      defaultChecked={softwareDevelopFilter.includes(choice)}
                     />
                     <span>{choice}</span>
                   </label>
