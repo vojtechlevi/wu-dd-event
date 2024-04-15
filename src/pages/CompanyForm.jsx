@@ -142,7 +142,7 @@ const CompanyForm = () => {
             className={`h-12 w-full  ${blueTheme ? "bg-yrgo-blue" : "bg-yrgo-red"} lg:hidden`}
           ></div>
           <div
-            className={`hidden items-center justify-center lg:mx-16 lg:mt-4 lg:flex lg:h-24 ${blueTheme ? "bg-yrgo-blue" : "bg-yrgo-red"} lg`}
+            className={`hidden items-center justify-center lg:mx-16 lg:mt-4 lg:flex lg:h-24 ${blueTheme ? "bg-yrgo-blue" : "bg-yrgo-red"} `}
           >
             <img src={yrgologo} alt="Yrgo logo text" />
           </div>
