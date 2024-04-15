@@ -42,11 +42,11 @@ const FocusAreas = ({ answer, setAnswer }) => {
 
   return (
     <>
-      <h2 className="border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
+      <h2 className="mt-16 border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red lg:border-b-8 lg:p-8 lg:text-4xl">
         VILKA TYPER AV TJÄNSTER ERBJUDER NI?
       </h2>
-      <ul>
-        {choices.map((choice) => {
+      <ul className="grid-cols-2 bg-white lg:grid">
+        {choices.map((choice, index) => {
           return (
             <li key={choice}>
               <label
@@ -54,7 +54,7 @@ const FocusAreas = ({ answer, setAnswer }) => {
                   Array.isArray(focusAreas) && focusAreas.includes(choice)
                     ? "border-white bg-yrgo-red"
                     : "border-yrgo-red bg-white"
-                } align-center flex border-b-2 p-4`}
+                } align-center flex border-b-2 p-4 ${index % 2 ? "border-l-4" : ""} lg:border-b-4`}
               >
                 <input
                   defaultChecked={

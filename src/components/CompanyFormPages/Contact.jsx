@@ -17,31 +17,32 @@ const Contact = ({ answer, setAnswer }) => {
 
   return (
     <>
-      <h2 className="mt-32 border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red">
+      <h2 className="mt-16 border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red lg:border-b-8 lg:p-8 lg:text-4xl">
         Kontaktinformation
       </h2>
       <input
         type="text"
         name="name"
-        placeholder="Företag..."
+        placeholder="Företag"
         defaultValue={answer.contact.name || ""}
-        className="w-full border-b-2 border-yrgo-red p-4 font-medium uppercase text-yrgo-red placeholder:text-placeholder-grey focus:outline-none"
+        className="w-full border-b-2 border-yrgo-red p-4 font-medium uppercase text-yrgo-red placeholder:text-placeholder-grey focus:outline-none lg:border-b-4 lg:p-8 lg:text-xl lg:font-extrabold "
         onChange={handleChange}
+        required={true}
       />
       <input
         type="url"
         name="url"
-        placeholder="www.hemsida.se"
+        placeholder="hemsida"
         value={answer.contact.url || ""}
-        className="w-full border-b-2 border-yrgo-red p-4 font-medium uppercase text-yrgo-red placeholder:text-placeholder-grey focus:outline-none"
+        className="w-full border-b-2 border-yrgo-red p-4 font-medium uppercase text-yrgo-red placeholder:text-placeholder-grey focus:outline-none lg:border-b-4 lg:p-8 lg:text-xl lg:font-extrabold "
         onChange={handleChange}
       />
       <input
         type="email"
         name="email"
-        placeholder="info@mail.com"
+        placeholder="mail"
         value={answer.contact.email || ""}
-        className="w-full border-b-2 border-yrgo-red p-4 font-medium uppercase text-yrgo-red placeholder:text-placeholder-grey focus:outline-none"
+        className="w-full border-b-2 border-yrgo-red p-4 font-medium uppercase text-yrgo-red placeholder:text-placeholder-grey focus:outline-none lg:border-b-4 lg:p-8 lg:text-xl lg:font-extrabold "
         onChange={handleChange}
       />
     </>

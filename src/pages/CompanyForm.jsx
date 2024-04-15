@@ -2,6 +2,9 @@ import { useState } from "react";
 
 import { supabase } from "../client";
 
+// Icons
+import yrgologo from "../assets/yrgo-text-white.png";
+
 // Buttons and Modals
 import ButtonArrowRight from "../components/Buttons/ButtonArrowRight";
 import ButtonArrowLeft from "../components/Buttons/ButtonArrowLeft";
@@ -136,31 +139,35 @@ const CompanyForm = () => {
       <main className="relative grid h-full w-full grid-rows-layout">
         <header className=" w-full bg-white">
           <div
-            className={`h-12 w-full ${blueTheme ? "bg-yrgo-blue" : "bg-yrgo-red"}`}
+            className={`h-12 w-full  ${blueTheme ? "bg-yrgo-blue" : "bg-yrgo-red"} lg:hidden`}
           ></div>
+          <div
+            className={`hidden items-center justify-center lg:mx-16 lg:mt-4 lg:flex lg:h-24 ${blueTheme ? "bg-yrgo-blue" : "bg-yrgo-red"} lg`}
+          >
+            <img src={yrgologo} alt="Yrgo logo text" />
+          </div>
+          {/*  don't display the progress bar on the last page (preview page): */}
           {counter !== formPages.length - 1 ? (
             <div
-              className={`mx-4 border-x-2  ${blueTheme ? "border-yrgo-blue" : "border-yrgo-red"}`}
+              className={`mx-4 border-x-2  lg:mx-16 lg:border-x-4 ${blueTheme ? "border-yrgo-blue" : "border-yrgo-red"}`}
             >
               <div
-                className={`flex justify-between  border-b-2 ${blueTheme ? "border-yrgo-blue" : "border-yrgo-red"} px-4`}
+                className={`flex justify-between  border-b-2 lg:border-b-4 ${blueTheme ? "border-yrgo-blue" : "border-yrgo-red"} `}
               >
                 <p
-                  className={`my-1 font-extrabold uppercase  ${blueTheme ? "text-yrgo-blue" : "text-yrgo-red"}`}
+                  className={`px-4 py-1 font-extrabold uppercase lg:py-4  ${blueTheme ? "text-yrgo-blue" : "text-yrgo-red"}`}
                 >
                   yrgo event 24 april
                 </p>
-                <div
-                  className={`border ${blueTheme ? "border-yrgo-blue" : "border-yrgo-red"}`}
-                ></div>
+
                 <p
-                  className={`py-1 font-extrabold uppercase ${blueTheme ? "text-yrgo-blue" : "text-yrgo-red"}`}
+                  className={`border-l-2 px-4 py-1 font-extrabold uppercase  lg:border-l-4 lg:py-4 ${blueTheme ? "border-yrgo-blue text-yrgo-blue" : "border-yrgo-red text-yrgo-red"}`}
                 >
                   fråga {counter + 1}/{formPages.length - 1}
                 </p>
               </div>
               <div
-                className={`flex h-6 w-full justify-between border-b-2 ${blueTheme ? "border-yrgo-blue" : "border-yrgo-red"}`}
+                className={`flex h-6 w-full justify-between border-b-2 lg:border-b-4 ${blueTheme ? "border-yrgo-blue" : "border-yrgo-red"}`}
               >
                 {formPages.map((page) => {
                   return (
@@ -177,9 +184,10 @@ const CompanyForm = () => {
           )}
         </header>
 
+        {/*  all but last page (preview page): */}
         {counter !== formPages.length - 1 ? (
           <section
-            className={`mx-4 overflow-y-auto border-x-2 ${blueTheme ? "border-yrgo-blue" : "border-yrgo-red"} py-8`}
+            className={`mx-4 overflow-y-auto  border-x-2 lg:mx-16 lg:border-x-4 ${blueTheme ? "border-yrgo-blue" : "border-yrgo-red"} py-8`}
           >
             <FormPage answer={answer} setAnswer={setAnswer} />
           </section>
@@ -189,7 +197,9 @@ const CompanyForm = () => {
           </section>
         )}
 
-        <section className="mb-4 flex w-full px-4">
+        <section
+          className={`${blueTheme ? "border-yrgo-blue" : "border-yrgo-red"} mx-4 mb-4  flex border-2 lg:mx-16 lg:justify-between lg:border-4`}
+        >
           {counter === 0 ? ( // first form page
             <ButtonArrowLeft isLink={true} linkTo={"/company"}>
               tillbaka

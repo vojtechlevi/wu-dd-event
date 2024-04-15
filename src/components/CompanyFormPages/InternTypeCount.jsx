@@ -72,10 +72,10 @@ const InternTypeCount = ({ answer, setAnswer }) => {
 
   return (
     <>
-      <h2 className="mt-16 border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red  ">
+      <h2 className="mt-16 border-b-4 border-yrgo-red p-4 text-2xl font-extrabold uppercase text-yrgo-red lg:border-b-8 lg:p-8 lg:text-4xl">
         Vilken typ av praktikant söker ni?
       </h2>
-      <ul>
+      <ul className=" border-yrgo-red lg:w-1/2 lg:border-r-4">
         {choices.map((choice) => {
           return (
             <div
@@ -84,7 +84,7 @@ const InternTypeCount = ({ answer, setAnswer }) => {
                 internTypeCount[choice] > 0
                   ? "border-white bg-yrgo-red"
                   : "border-yrgo-red bg-white"
-              }  border-b-2 p-4`}
+              }   border-b-2 p-4 lg:border-b-4`}
             >
               <label className="align-center flex">
                 <input

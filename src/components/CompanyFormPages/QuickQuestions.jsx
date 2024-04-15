@@ -55,7 +55,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
 
   return (
     <>
-      <h2 className="mt-16 border-b-4 border-yrgo-blue p-4 text-2xl font-extrabold uppercase text-yrgo-blue  ">
+      <h2 className="mt-16 border-b-4 border-yrgo-blue p-4 text-2xl font-extrabold uppercase text-yrgo-blue lg:border-b-8 lg:p-8 lg:text-4xl">
         5 snabba!
       </h2>
 
@@ -67,7 +67,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
                 answer.top5[choice.name] === true
                   ? "border-white bg-yrgo-blue"
                   : "border-yrgo-blue bg-white"
-              } flex items-center border-b-2 border-r border-r-yrgo-blue p-4 
+              } flex items-center border-b-2 border-r border-r-yrgo-blue p-4 lg:border-b-4 lg:border-r-2
               ${index === 4 ? " border-yrgo-blue" : null}
               `}
             >
@@ -91,7 +91,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
                 answer.top5[choice.name] === false
                   ? "border-white bg-yrgo-blue"
                   : "border-yrgo-blue bg-white"
-              } flex items-center border-b-2 border-l border-l-yrgo-blue p-4
+              } flex items-center border-b-2 border-l border-l-yrgo-blue p-4 lg:border-b-4 lg:border-l-2
               ${index === 4 ? " border-yrgo-blue" : null}
               `}
             >
