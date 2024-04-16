@@ -1,5 +1,7 @@
-import snabb from "../assets/snabb_som_blixten.gif";
-import cat from "../assets/CoolCat.gif";
+import coolGif from "../assets/CoolCat.gif";
+import fastGif from "../assets/snabb_som_blixten.gif";
+import stableGif from "../assets/Stadig_och_Stabil.gif";
+
 import yrgologo from "../assets/yrgo-text-white.png";
 
 const CompanyDetails = ({ details, setSelectedCompany }) => {
@@ -26,10 +28,22 @@ const CompanyDetails = ({ details, setSelectedCompany }) => {
     },
   };
 
-  const gifAnimations = [snabb, cat];
+  const gifAnimations = [coolGif, fastGif, stableGif];
 
-  let randomAnimation =
-    gifAnimations[Math.floor(Math.random() * gifAnimations.length)];
+  const gifByCompanyType = [
+    { name: "cool", value: details.companyType.cool, gif: coolGif },
+    { name: "fast", value: details.companyType.fast, gif: fastGif },
+    { name: "stable", value: details.companyType.stable, gif: stableGif },
+  ];
+
+  // get the gif of the highest value
+  gifByCompanyType.sort((a, b) => b.value - a.value);
+
+  // if the 2 highest values are equal, pick one of them by random
+  if (gifByCompanyType[0].value === gifByCompanyType[1].value) {
+    gifByCompanyType.pop();
+    gifByCompanyType.sort((a, b) => 0.5 - Math.random());
+  }
 
   console.log(details);
 
@@ -55,7 +69,7 @@ const CompanyDetails = ({ details, setSelectedCompany }) => {
                 </h3>
                 <div className="h-[4px] w-full bg-yrgo-blue lg:hidden"></div>
                 <img
-                  src={randomAnimation}
+                  src={gifByCompanyType[0].gif}
                   alt="your company as an animation"
                   className="max-w-full  md:max-w-xl"
                 />

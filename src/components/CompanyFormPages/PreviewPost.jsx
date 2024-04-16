@@ -1,5 +1,6 @@
-import snabb from "../../assets/snabb_som_blixten.gif";
-import cat from "../../assets/CoolCat.gif";
+import coolGif from "../../assets/CoolCat.gif";
+import fastGif from "../../assets/snabb_som_blixten.gif";
+import stableGif from "../../assets/Stadig_och_Stabil.gif";
 
 const PreviewPost = ({ answer }) => {
   const quickQuestionsText = {
@@ -25,10 +26,22 @@ const PreviewPost = ({ answer }) => {
     },
   };
 
-  const gifAnimations = [snabb, cat];
+  const gifAnimations = [coolGif, fastGif, stableGif];
 
-  let randomAnimation =
-    gifAnimations[Math.floor(Math.random() * gifAnimations.length)];
+  const gifByCompanyType = [
+    { name: "cool", value: answer.companyType.cool, gif: coolGif },
+    { name: "fast", value: answer.companyType.fast, gif: fastGif },
+    { name: "stable", value: answer.companyType.stable, gif: stableGif },
+  ];
+
+  // get the gif of the highest value
+  gifByCompanyType.sort((a, b) => b.value - a.value);
+
+  // if the 2 highest values are equal, pick one of them by random
+  if (gifByCompanyType[0].value === gifByCompanyType[1].value) {
+    gifByCompanyType.pop();
+    gifByCompanyType.sort((a, b) => 0.5 - Math.random());
+  }
 
   console.log(answer);
 
@@ -43,7 +56,7 @@ const PreviewPost = ({ answer }) => {
             </h3>
             <div className="h-[4px] w-full bg-yrgo-red lg:hidden"></div>
             <img
-              src={randomAnimation}
+              src={gifByCompanyType[0].gif}
               alt="your company as an animation"
               className="max-w-full  md:max-w-xl"
             />
