@@ -69,12 +69,12 @@ const InternshipDuration = ({ answer, setAnswer }) => {
                 durationAnswer === choice
                   ? "border-white bg-yrgo-red"
                   : "border-yrgo-red bg-white"
-              }  border-b-2 p-4 lg:border-b-4 `}
+              }  border-b-2 p-4 transition-all duration-300 ease-in lg:border-b-4`}
             >
               <label className="align-center flex">
                 <input
                   checked={durationAnswer === choice ? true : false}
-                  className=" border-yrgo-red checked:border-white"
+                  className=" border-yrgo-red transition-all duration-300 ease-in checked:border-white"
                   type="radio"
                   value={choice}
                   name={choice}
@@ -84,14 +84,14 @@ const InternshipDuration = ({ answer, setAnswer }) => {
                 <span
                   className={` ${
                     durationAnswer === choice ? "text-white" : "text-yrgo-red"
-                  } cursor-pointer pl-4 font-extrabold uppercase`}
+                  } cursor-pointer pl-4 font-extrabold uppercase transition-all duration-300 ease-in`}
                 >
                   {choice}
                 </span>
               </label>
               {choice == "delar av perioden" &&
               durationAnswer == "delar av perioden" ? (
-                <div className="m-4 ml-8 flex flex-col">
+                <div className="m-4 ml-8 flex flex-col transition-all duration-300 ease-in">
                   <span className="mb-1 text-sm font-normal capitalize text-white">
                     från:
                   </span>

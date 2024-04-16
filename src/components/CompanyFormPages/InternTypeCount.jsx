@@ -84,12 +84,12 @@ const InternTypeCount = ({ answer, setAnswer }) => {
                 internTypeCount[choice] > 0
                   ? "border-white bg-yrgo-red"
                   : "border-yrgo-red bg-white"
-              }   border-b-2 p-4 lg:border-b-4`}
+              }   border-b-2 p-4 transition-all duration-300 ease-in lg:border-b-4`}
             >
               <label className="align-center flex">
                 <input
                   checked={internTypeCount[choice] > 0 ? true : false}
-                  className=" border-yrgo-red checked:border-white"
+                  className=" border-yrgo-red transition-all duration-300 ease-in checked:border-white"
                   type="checkbox"
                   value={choice}
                   name={choice}
@@ -99,15 +99,15 @@ const InternTypeCount = ({ answer, setAnswer }) => {
                 <span
                   className={` ${
                     internTypeCount[choice] > 0 ? "text-white" : "text-yrgo-red"
-                  } cursor-pointer pl-4 font-extrabold uppercase`}
+                  } cursor-pointer pl-4 font-extrabold uppercase transition-all duration-300 ease-in`}
                 >
                   {choice}
                 </span>
               </label>
               {internTypeCount[choice] !== 0 ? (
-                <form className="relative ml-8 mr-32 mt-4">
+                <form className="relative ml-8 mr-32 mt-4 transition-all duration-300 ease-in">
                   <select
-                    className="w-full cursor-pointer appearance-none border-2 border-white bg-yrgo-red px-4 py-2 font-extrabold uppercase text-white focus:outline-none"
+                    className="w-full cursor-pointer appearance-none border-2 border-white bg-yrgo-red px-4 py-2 font-extrabold uppercase text-white transition-all duration-300 ease-in focus:outline-none"
                     name={choice}
                     id={choice}
                     onClick={() => {
@@ -136,7 +136,7 @@ const InternTypeCount = ({ answer, setAnswer }) => {
                       6+ st
                     </option>
                   </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-2 flex items-center  text-white">
+                  <div className="pointer-events-none absolute inset-y-0 right-2 flex items-center  text-white transition-all duration-300 ease-in">
                     <svg
                       className={`h-8 w-8 fill-current ${dropdownIsOpen && whichDropdownIsOpen === choice ? "rotate-180" : ""}`}
                       width="40"
