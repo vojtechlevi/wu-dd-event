@@ -45,9 +45,10 @@ const CompanyForm = () => {
       remoteWorkFriendly: null,
     },
     companyType: {
-      cool: null,
-      fast: null,
-      stable: null,
+      // sliders 0-10, default 5 in the middle
+      cool: 5,
+      fast: 5,
+      stable: 5,
     },
 
     internTypeCount: {
@@ -142,7 +143,7 @@ const CompanyForm = () => {
             className={`h-12 w-full  ${blueTheme ? "bg-yrgo-blue" : "bg-yrgo-red"} lg:hidden`}
           ></div>
           <div
-            className={`hidden items-center justify-center lg:mx-16 lg:mt-4 lg:flex lg:h-24 ${blueTheme ? "bg-yrgo-blue" : "bg-yrgo-red"} lg`}
+            className={`hidden items-center justify-center lg:mx-16 lg:mt-4 lg:flex lg:h-24 ${blueTheme ? "bg-yrgo-blue" : "bg-yrgo-red"} `}
           >
             <img src={yrgologo} alt="Yrgo logo text" />
           </div>
@@ -192,7 +193,7 @@ const CompanyForm = () => {
             <FormPage answer={answer} setAnswer={setAnswer} />
           </section>
         ) : (
-          <section className="overflow-y-auto px-4 ">
+          <section className="overflow-y-auto lg:mx-16">
             <FormPage answer={answer} setAnswer={setAnswer} />
           </section>
         )}

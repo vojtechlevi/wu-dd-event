@@ -56,7 +56,7 @@ const SoftwaresDesign = ({ answer, setAnswer }) => {
                   Array.isArray(software) && software.includes(choice)
                     ? "border-white bg-yrgo-red"
                     : "border-yrgo-red bg-white"
-                } align-center flex border-b-2 p-4 ${index % 2 ? "border-l-4" : ""} lg:border-b-4`}
+                } align-center flex border-b-2 p-4 ${index % 2 ? "border-l-4" : ""} transition-all duration-300 ease-in lg:border-b-4`}
               >
                 <input
                   defaultChecked={
@@ -64,7 +64,7 @@ const SoftwaresDesign = ({ answer, setAnswer }) => {
                       ? true
                       : false
                   }
-                  className=" border-yrgo-red checked:border-white"
+                  className=" border-yrgo-red transition-all duration-300 ease-in checked:border-white"
                   type="checkbox"
                   value={choice}
                   onClick={handleClick}
@@ -76,7 +76,7 @@ const SoftwaresDesign = ({ answer, setAnswer }) => {
                     Array.isArray(software) && software.includes(choice)
                       ? "text-white"
                       : "text-yrgo-red"
-                  } cursor-pointer pl-4 font-extrabold uppercase`}
+                  } cursor-pointer pl-4 font-extrabold uppercase transition-all duration-300 ease-in`}
                 >
                   {choice}
                 </span>

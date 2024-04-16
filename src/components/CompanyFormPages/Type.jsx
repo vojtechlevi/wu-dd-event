@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ListItem = ({ sliderName, sliderText, onChange }) => {
+const ListItem = ({ sliderName, sliderText, onChange, defaultValue }) => {
   return (
     <li
       key={sliderName}
@@ -12,16 +12,16 @@ const ListItem = ({ sliderName, sliderText, onChange }) => {
       <div className="flex-grow">
         <input
           type="range"
-          min="1"
+          min="0"
           max="10"
-          defaultValue="5"
+          defaultValue={defaultValue}
           onChange={onChange}
           className="w-full"
           id={sliderName}
           name={sliderName}
         />
         <div className="flex justify-between">
-          <p className="font-bold text-yrgo-blue">1</p>
+          <p className="font-bold text-yrgo-blue">0</p>
           <p className="font-bold text-yrgo-blue">10</p>
         </div>
       </div>
@@ -50,16 +50,19 @@ const Type = ({ answer, setAnswer }) => {
       </h2>
       <ul>
         <ListItem
+          defaultValue={answer.companyType.cool || 5}
           sliderName={"cool"}
           sliderText={"cool som en katt"}
           onChange={handleChange}
         />
         <ListItem
+          defaultValue={answer.companyType.fast || 5}
           sliderName={"fast"}
           sliderText={"snabb som blixten"}
           onChange={handleChange}
         />
         <ListItem
+          defaultValue={answer.companyType.stable || 5}
           sliderName={"stable"}
           sliderText={"stadig och stabil"}
           onChange={handleChange}
