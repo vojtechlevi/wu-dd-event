@@ -54,7 +54,7 @@ const FocusAreas = ({ answer, setAnswer }) => {
                   Array.isArray(focusAreas) && focusAreas.includes(choice)
                     ? "border-white bg-yrgo-red"
                     : "border-yrgo-red bg-white"
-                } align-center flex border-b-2 p-4 ${index % 2 ? "border-l-4" : ""} transition-all duration-300 ease-in lg:border-b-4`}
+                } align-center flex border-b-2 p-4 ${index % 2 ? "lg:border-l-4" : ""} transition-all duration-300 ease-in lg:border-b-4`}
               >
                 <input
                   defaultChecked={

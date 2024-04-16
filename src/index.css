@@ -67,6 +67,23 @@ input {
   input[type="date"] {
     color-scheme: dark;
   }
+
+  /*  animation for progress bar on form pages*/
+  .progress-bar-opacity-none {
+    transform: translateX(-100%);
+    opacity: 0;
+    transition:
+      transform 300ms ease-in-out,
+      opacity 150ms ease-in-out;
+  }
+
+  .progress-bar-opacity-full {
+    transform: translateX(0);
+    opacity: 1;
+    transition:
+      transform 150ms ease-in-out,
+      opacity 150ms ease-in-out;
+  }
 }
 
 .rotate {

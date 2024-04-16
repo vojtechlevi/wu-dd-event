@@ -13,7 +13,6 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PageNotFound from "./pages/PageNotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Test from "./pages/Test";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -52,7 +51,6 @@ function App() {
           <Route path="/company" element={<Company />} />
           <Route path="/company-form" element={<CompanyForm />} />
           <Route path="/event-info" element={<EventInfo />} />
-          <Route path="/test" element={<Test />} />
           <Route
             path="/student"
             element={
