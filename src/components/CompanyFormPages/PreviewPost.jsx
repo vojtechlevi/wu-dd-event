@@ -1,5 +1,6 @@
-import snabb from "../../assets/snabb_som_blixten.gif";
-import cat from "../../assets/CoolCat.gif";
+import coolGif from "../../assets/CoolCat.gif";
+import fastGif from "../../assets/snabb_som_blixten.gif";
+import stableGif from "../../assets/Stadig_och_Stabil.gif";
 
 const PreviewPost = ({ answer }) => {
   const quickQuestionsText = {
@@ -25,16 +26,28 @@ const PreviewPost = ({ answer }) => {
     },
   };
 
-  const gifAnimations = [snabb, cat];
+  const gifAnimations = [coolGif, fastGif, stableGif];
 
-  let randomAnimation =
-    gifAnimations[Math.floor(Math.random() * gifAnimations.length)];
+  const gifByCompanyType = [
+    { name: "cool", value: answer.companyType.cool, gif: coolGif },
+    { name: "fast", value: answer.companyType.fast, gif: fastGif },
+    { name: "stable", value: answer.companyType.stable, gif: stableGif },
+  ];
+
+  // get the gif of the highest value
+  gifByCompanyType.sort((a, b) => b.value - a.value);
+
+  // if the 2 highest values are equal, pick one of them by random
+  if (gifByCompanyType[0].value === gifByCompanyType[1].value) {
+    gifByCompanyType.pop();
+    gifByCompanyType.sort((a, b) => 0.5 - Math.random());
+  }
 
   console.log(answer);
 
   return (
     <>
-      <main className=" w-full select-none">
+      <div className=" w-full select-none">
         <div className=" flex w-full grid-cols-4 flex-col items-center justify-center gap-10 lg:grid lg:gap-1 lg:border-x-4 lg:border-yrgo-blue lg:bg-yrgo-blue">
           {/* company name + company as animation: */}
           <div className="col-span-4 flex w-full flex-col items-center gap-4 border-yrgo-blue bg-white lg:border-b-4 lg:pb-24 lg:pt-12">
@@ -43,7 +56,7 @@ const PreviewPost = ({ answer }) => {
             </h3>
             <div className="h-[4px] w-full bg-yrgo-red lg:hidden"></div>
             <img
-              src={randomAnimation}
+              src={gifByCompanyType[0].gif}
               alt="your company as an animation"
               className="max-w-full  md:max-w-xl"
             />
@@ -177,7 +190,7 @@ const PreviewPost = ({ answer }) => {
             <h4 className="text-xl font-extrabold uppercase text-yrgo-blue lg:text-2xl">
               Fem snabba
             </h4>
-            <div className="flex w-full flex-col gap-4">
+            <div className="flex w-full flex-col gap-4 px-4 lg:px-0">
               {Object.entries(answer.top5).map(([key, value], index) => (
                 <div key={key} className="flex w-full flex-row">
                   <p
@@ -221,7 +234,7 @@ const PreviewPost = ({ answer }) => {
 
           <div className="mb-10 h-[2px] w-1/2 bg-yrgo-blue lg:hidden "></div>
         </div>
-      </main>
+      </div>
     </>
   );
 };

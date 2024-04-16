@@ -65,7 +65,7 @@ const EventInfo = () => {
               isLink={true}
               linkTo={"https://www.yrgo.se/program/webbutvecklare/"}
             >
-              <div className="mx-auto flex w-full gap-4">
+              <div className="mx-auto flex w-full items-center  gap-4 ">
                 <p>Webbutvecklare</p>
                 <ArrowRight />
               </div>
@@ -78,7 +78,7 @@ const EventInfo = () => {
               isLink={true}
               linkTo={"https://www.yrgo.se/program/digital-designer/"}
             >
-              <div className="mx-auto flex w-full gap-4">
+              <div className="mx-auto flex w-full items-center gap-4">
                 <p>Digital designer</p>
                 <ArrowRight />
               </div>
