@@ -118,7 +118,7 @@ const FilterList = ({
   return (
     <>
       <div
-        className={` h-full w-full bg-[#f2f2f2] lg:block lg:max-w-96 ${!filterList ? "hidden" : ""}`}
+        className={` h-[1100px] w-full bg-[#f2f2f2] lg:block  lg:max-w-96 ${!filterList ? "hidden" : ""}`}
       >
         <div className="mx-auto flex h-[111px] w-full flex-col items-center justify-center gap-4 bg-yrgo-blue font-semibold text-white">
           <div className="flex w-[90%] flex-col gap-4 ">
