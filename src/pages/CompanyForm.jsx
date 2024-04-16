@@ -173,7 +173,7 @@ const CompanyForm = () => {
                 {formPages.map((page) => {
                   return (
                     <div
-                      className={`${formPages.indexOf(page) <= counter && blueTheme ? "bg-yrgo-blue" : formPages.indexOf(page) <= counter ? "bg-yrgo-red" : ""} w-full`}
+                      className={`${formPages.indexOf(page) <= counter ? "progress-bar-opacity-full" : "progress-bar-opacity-none"} w-full  ${blueTheme ? "bg-yrgo-blue" : "bg-yrgo-red"} `}
                       key={formPages.indexOf(page)}
                     ></div>
                   );
