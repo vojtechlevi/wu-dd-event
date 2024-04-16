@@ -1,3 +1,6 @@
+import snabb from "../../assets/snabb_som_blixten.gif";
+import cat from "../../assets/CoolCat.gif";
+
 const PreviewPost = ({ answer }) => {
   const quickQuestionsText = {
     dogFriendly: {
@@ -22,6 +25,11 @@ const PreviewPost = ({ answer }) => {
     },
   };
 
+  const gifAnimations = [snabb, cat];
+
+  let randomAnimation =
+    gifAnimations[Math.floor(Math.random() * gifAnimations.length)];
+
   console.log(answer);
 
   return (
@@ -34,9 +42,11 @@ const PreviewPost = ({ answer }) => {
               {answer.contact.name}
             </h3>
             <div className="h-[4px] w-full bg-yrgo-red lg:hidden"></div>
-            <div className="flex h-[278px] w-[90%] items-center justify-center border-2 border-yrgo-blue">
-              <p>Animation</p>
-            </div>
+            <img
+              src={randomAnimation}
+              alt=""
+              className="max-w-full  lg:max-w-3xl"
+            />
             <p className="font-medium text-yrgo-blue lg:text-xl lg:font-bold lg:text-black">
               {answer.contact.name} som animation
             </p>
