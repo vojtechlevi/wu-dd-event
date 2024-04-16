@@ -45,9 +45,10 @@ const CompanyForm = () => {
       remoteWorkFriendly: null,
     },
     companyType: {
-      cool: null,
-      fast: null,
-      stable: null,
+      // sliders 0-10, default 5 in the middle
+      cool: 5,
+      fast: 5,
+      stable: 5,
     },
 
     internTypeCount: {

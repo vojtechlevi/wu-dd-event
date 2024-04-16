@@ -12,7 +12,7 @@ const ListItem = ({ sliderName, sliderText, onChange, defaultValue }) => {
       <div className="flex-grow">
         <input
           type="range"
-          min="1"
+          min="0"
           max="10"
           defaultValue={defaultValue}
           onChange={onChange}
@@ -21,7 +21,7 @@ const ListItem = ({ sliderName, sliderText, onChange, defaultValue }) => {
           name={sliderName}
         />
         <div className="flex justify-between">
-          <p className="font-bold text-yrgo-blue">1</p>
+          <p className="font-bold text-yrgo-blue">0</p>
           <p className="font-bold text-yrgo-blue">10</p>
         </div>
       </div>
