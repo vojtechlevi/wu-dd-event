@@ -192,7 +192,7 @@ const CompanyForm = () => {
             <FormPage answer={answer} setAnswer={setAnswer} />
           </section>
         ) : (
-          <section className="overflow-y-auto px-4 ">
+          <section className="overflow-y-auto lg:mx-16">
             <FormPage answer={answer} setAnswer={setAnswer} />
           </section>
         )}

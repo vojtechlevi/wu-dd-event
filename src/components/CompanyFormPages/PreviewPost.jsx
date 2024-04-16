@@ -176,7 +176,7 @@ const PreviewPost = ({ answer }) => {
                     {quickQuestionsText[key]?.isTrue}
                   </p>
                   <p
-                    className={`w-1/2 border-y-2 border-r-2 border-yrgo-red p-2 font-semibold lg:border-y-4 lg:border-r-4 lg:px-6 lg:py-4 lg:text-xl lg:font-bold lg:uppercase  ${value === true ? "bg-yrgo-red text-white" : "text-yrgo-red"}`}
+                    className={`w-1/2 border-y-2 border-r-2 border-yrgo-red p-2 font-semibold lg:border-y-4 lg:border-r-4 lg:px-6 lg:py-4 lg:text-xl lg:font-bold lg:uppercase  ${value === false ? "bg-yrgo-red text-white" : "text-yrgo-red"}`}
                   >
                     {quickQuestionsText[key]?.isFalse}
                   </p>
