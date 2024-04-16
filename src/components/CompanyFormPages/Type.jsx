@@ -37,7 +37,7 @@ const Type = ({ answer, setAnswer }) => {
   const handleChange = (event) => {
     const updatedChoices = {
       ...selectedChoices,
-      [event.target.name]: event.target.value,
+      [event.target.name]: Number(event.target.value),
     };
     setSelectedChoices(updatedChoices);
     setAnswer({ ...answer, companyType: updatedChoices });
