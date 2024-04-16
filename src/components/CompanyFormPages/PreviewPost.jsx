@@ -44,8 +44,8 @@ const PreviewPost = ({ answer }) => {
             <div className="h-[4px] w-full bg-yrgo-red lg:hidden"></div>
             <img
               src={randomAnimation}
-              alt=""
-              className="max-w-full  lg:max-w-3xl"
+              alt="your company as an animation"
+              className="max-w-full  md:max-w-xl"
             />
             <p className="font-medium text-yrgo-blue lg:text-xl lg:font-bold lg:text-black">
               {answer.contact.name} som animation
