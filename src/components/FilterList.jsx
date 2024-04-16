@@ -29,6 +29,7 @@ const choicesSoftwareDesign = [
   "Spline",
   "Blender",
   "Canva",
+  "Illustrator",
   "Annat",
 ];
 
@@ -48,7 +49,6 @@ const choicesSoftwareDevelop = [
   "Wordpress",
   "Sanity",
   "Storyblok",
-  "Andra CMS",
   "Andra tekniker",
 ];
 
@@ -117,19 +117,22 @@ const FilterList = ({
 
   return (
     <>
-      <div className=" h-full w-full">
+      <div
+        className={` h-full w-full bg-[#f2f2f2] lg:block lg:max-w-96 ${!filterList ? "hidden" : ""}`}
+      >
         <div className="mx-auto flex h-[111px] w-full flex-col items-center justify-center gap-4 bg-yrgo-blue font-semibold text-white">
           <div className="flex w-[90%] flex-col gap-4 ">
             <div className="flex justify-between ">
               <p
                 onClick={() => setFilterList(!filterList)}
-                className="flex cursor-pointer items-center justify-between uppercase underline"
+                className="flex cursor-pointer items-center justify-between uppercase underline lg:hidden"
               >
                 Visa Resultat
               </p>
+              <p className="hidden text-xl uppercase lg:flex">FILTRERA</p>
               <X
                 onClick={() => setFilterList(!filterList)}
-                className="cursor-pointer text-white"
+                className="cursor-pointer text-white lg:hidden"
               />
             </div>
             <p
@@ -140,15 +143,15 @@ const FilterList = ({
             </p>
           </div>
         </div>
-        <div className=" my-12 flex w-full flex-col gap-12 pb-12">
+        <div className=" my-12 flex w-full flex-col gap-12  pb-12">
           <div className="flex flex-col gap-2 px-4">
             <h2 className="text-xl font-bold uppercase">Typ av LIA-plats</h2>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 ">
               {internType.map((choice, index) => {
                 return (
                   <label
                     key={choice}
-                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1 ${
+                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1 transition-all duration-300 ease-in ${
                       internTypeFilter.includes(choice)
                         ? "bg-yrgo-blue text-white"
                         : "text-yrgo-blue"
@@ -175,7 +178,7 @@ const FilterList = ({
                 return (
                   <label
                     key={choice}
-                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1 ${
+                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1 transition-all duration-300 ease-in ${
                       focusAreasFilter.includes(choice)
                         ? "bg-yrgo-blue text-white"
                         : "text-yrgo-blue"
@@ -202,7 +205,7 @@ const FilterList = ({
                 return (
                   <label
                     key={choice}
-                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1 ${
+                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1 transition-all duration-300 ease-in ${
                       softwareDesignFilter.includes(choice)
                         ? "bg-yrgo-blue text-white"
                         : "text-yrgo-blue"
@@ -229,7 +232,7 @@ const FilterList = ({
                 return (
                   <label
                     key={choice}
-                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1 ${
+                    className={`cursor-pointer border-[0.5px] border-yrgo-blue px-2 py-1 transition-all duration-300 ease-in ${
                       softwareDevelopFilter.includes(choice)
                         ? "bg-yrgo-blue text-white"
                         : "text-yrgo-blue"
