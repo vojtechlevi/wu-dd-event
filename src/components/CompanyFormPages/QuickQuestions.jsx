@@ -67,12 +67,12 @@ const QuickQuestions = ({ answer, setAnswer }) => {
                 answer.top5[choice.name] === true
                   ? "border-white bg-yrgo-blue"
                   : "border-yrgo-blue bg-white"
-              } flex items-center border-b-2 border-r border-r-yrgo-blue p-4 lg:border-b-4 lg:border-r-2
+              } flex items-center border-b-2 border-r border-r-yrgo-blue p-4 transition-all duration-300 ease-in lg:border-b-4 lg:border-r-2
               ${index === 4 ? " border-yrgo-blue" : null}
               `}
             >
               <input
-                className=" shrink-0 border-yrgo-blue checked:border-white"
+                className=" shrink-0 border-yrgo-blue transition-all duration-300 ease-in checked:border-white"
                 type="radio"
                 value={true}
                 id={choice.textBoolTrue}
@@ -80,7 +80,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
                 checked={answer.top5[choice.name] === true ? true : false}
               />
               <span
-                className={`${answer.top5[choice.name] === true ? "text-white" : "text-yrgo-blue"} cursor-pointer pl-4 font-extrabold uppercase`}
+                className={`${answer.top5[choice.name] === true ? "text-white" : "text-yrgo-blue"} cursor-pointer pl-4 font-extrabold uppercase transition-all duration-300 ease-in`}
               >
                 {choice.textBoolTrue}
               </span>
@@ -91,12 +91,12 @@ const QuickQuestions = ({ answer, setAnswer }) => {
                 answer.top5[choice.name] === false
                   ? "border-white bg-yrgo-blue"
                   : "border-yrgo-blue bg-white"
-              } flex items-center border-b-2 border-l border-l-yrgo-blue p-4 lg:border-b-4 lg:border-l-2
+              } flex items-center border-b-2 border-l border-l-yrgo-blue p-4 transition-all duration-300 ease-in lg:border-b-4 lg:border-l-2
               ${index === 4 ? " border-yrgo-blue" : null}
               `}
             >
               <input
-                className=" shrink-0 border-yrgo-blue checked:border-white"
+                className=" shrink-0 border-yrgo-blue transition-all duration-300 ease-in checked:border-white"
                 type="radio"
                 value={false}
                 id={choice.textBoolFalse}
@@ -104,7 +104,7 @@ const QuickQuestions = ({ answer, setAnswer }) => {
                 checked={answer.top5[choice.name] === false ? true : false}
               />
               <span
-                className={`${answer.top5[choice.name] === false ? "text-white" : "text-yrgo-blue"} cursor-pointer pl-4 font-extrabold uppercase`}
+                className={`${answer.top5[choice.name] === false ? "text-white" : "text-yrgo-blue"} cursor-pointer pl-4 font-extrabold uppercase transition-all duration-300 ease-in`}
               >
                 {choice.textBoolFalse}
               </span>

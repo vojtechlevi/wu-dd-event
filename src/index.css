@@ -53,13 +53,13 @@ input {
 
   input[type="radio"]::before,
   input[type="checkbox"]::before {
-    @apply h-6 w-6 opacity-0;
+    @apply h-6 w-6 opacity-0 transition-all duration-300 ease-in;
     content: url("./assets/checked-x.svg");
   }
 
   input[type="radio"]:checked::before,
   input[type="checkbox"]:checked::before {
-    @apply h-6 w-6 opacity-100;
+    @apply h-6 w-6 opacity-100 transition-all duration-300 ease-in;
   }
 
   /* CUSTOM DATE PICKER  */
