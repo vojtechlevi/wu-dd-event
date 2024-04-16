@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 import { supabase } from "../client";
 import UserContext from "../UserContext";
@@ -64,27 +65,32 @@ const Login = () => {
   return (
     <>
       <ThemeBox backBtn="/">
-        <div className="w-full">
-          <div className="mb-8 pl-2">
-            <h2 className=" text-5xl font-extrabold uppercase">Logga in</h2>
+        <div className="w-full lg:w-auto">
+          <div className="mb-8 flex pl-2 lg:items-center lg:justify-center">
+            <h2 className=" text-5xl font-extrabold uppercase lg:text-7xl">
+              Logga in
+            </h2>
           </div>
-          <form onSubmit={signInWithEmail} className="flex w-full flex-col">
+          <form
+            onSubmit={signInWithEmail}
+            className="flex w-full flex-col lg:gap-4"
+          >
             <input
               onChange={handleChange}
               type="email"
               name="email"
               placeholder="Mailadress"
-              className="w-full border-t-2 border-yrgo-blue px-4 py-6 outline-none"
+              className="w-full border-t-2 border-yrgo-blue px-4 py-6 outline-none lg:w-[445px] lg:border-2"
             />
             <input
               onChange={handleChange}
               type="password"
               name="password"
               placeholder="Lösenord"
-              className="w-full border-t-2 border-yrgo-blue px-4 py-6 outline-none"
+              className="w-full border-t-2 border-yrgo-blue px-4 py-6 outline-none lg:w-[445px] lg:border-2"
             />
             {errorMessage ? (
-              <div className="w-full border-t-2 border-yrgo-blue ">
+              <div className="w-full border-t-2 border-yrgo-blue bg-[#f2f2f2] lg:border-none ">
                 <p className="py-4 text-center text-yrgo-blue">
                   {errorMessage}
                 </p>
@@ -92,18 +98,47 @@ const Login = () => {
             ) : (
               ""
             )}
-            <div className="flex h-12 w-full border-y-2 border-yrgo-blue">
-              <button
-                className="h-full w-1/2 bg-yrgo-blue px-2 font-extrabold uppercase text-white"
-                type="submit"
+            <div className="lg:hidden">
+              <Link
+                to="/"
+                className="absolute bottom-0 left-0 flex h-14 w-14 items-center justify-center border-r-2 border-t-2 border-yrgo-blue"
               >
-                Logga In
-              </button>
-              <Link to="/signup" className="h-full w-1/2 ">
-                <button className=" h-full w-full px-2 font-extrabold uppercase text-yrgo-blue">
-                  Skapa Konto
-                </button>
+                <ArrowLeft />
               </Link>
+              <div className="flex h-12 w-full border-y-2 border-yrgo-blue lg:hidden">
+                <button
+                  className="h-full w-1/2 bg-yrgo-blue px-2 font-extrabold uppercase text-white"
+                  type="submit"
+                >
+                  Logga In
+                </button>
+                <Link to="/signup" className="h-full w-1/2 ">
+                  <button className=" h-full w-full px-2 font-extrabold uppercase text-yrgo-blue">
+                    Skapa Konto
+                  </button>
+                </Link>
+              </div>
+            </div>
+            <div className="absolute bottom-0 left-0 hidden w-full justify-between border-t-4 border-yrgo-blue lg:flex">
+              <Link
+                to="/"
+                className="flex h-14 w-14 items-center justify-center border-r-4  border-yrgo-blue"
+              >
+                <ArrowLeft />
+              </Link>
+              <div className="flex h-12  border-y-2 border-yrgo-blue lg:h-14 lg:border-t-2 lg:border-none">
+                <Link to="/signup" className="h-full w-1/2 lg:w-[230px]">
+                  <button className=" h-full w-full border-l-4 border-yrgo-blue px-2 font-extrabold uppercase text-yrgo-blue">
+                    Skapa Konto
+                  </button>
+                </Link>
+                <button
+                  className="h-full w-1/2 bg-yrgo-blue px-2 font-extrabold uppercase text-white lg:w-[230px]"
+                  type="submit"
+                >
+                  Logga In
+                </button>
+              </div>
             </div>
           </form>
         </div>
