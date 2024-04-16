@@ -120,13 +120,13 @@ const Student = () => {
         <div className="flex w-full flex-col items-center justify-center lg:w-[80%]">
           <div className=" h-[50px] w-full bg-yrgo-blue"></div>
           <div className=" mx-4 mb-8 flex flex-col lg:w-full ">
-            <div className="flex h-[43px] items-center justify-between border-x-2 border-b-2 border-yrgo-blue ">
-              <p className="ml-4 font-extrabold uppercase text-yrgo-blue ">
+            <div className="flex h-[43px] items-center justify-between border-x-2 border-b-2 border-yrgo-blue px-4 lg:px-0 ">
+              <p className=" font-extrabold uppercase text-yrgo-blue lg:ml-2 ">
                 yrgo event 24 april
               </p>
               <button
                 onClick={signOut}
-                className="hidden h-full cursor-pointer items-center border-l-2 border-yrgo-blue px-4 py-3 font-extrabold  uppercase lg:flex"
+                className="hidden h-full cursor-pointer items-center border-l-2 border-yrgo-blue px-4 font-extrabold  uppercase lg:flex"
               >
                 Logga ut
               </button>
@@ -141,7 +141,6 @@ const Student = () => {
             </div>
             {!menu ? (
               <div className="flex w-full flex-col gap-4 border-x-2 border-b-2 border-yrgo-blue px-4 py-4 text-right">
-                <p className="cursor-pointer">Sparade Favoriter</p>
                 <Link to="/" className="cursor-pointer">
                   <button onClick={signOut}>Logga ut</button>
                 </Link>
@@ -219,21 +218,24 @@ const Student = () => {
                               </p>
                             )}
                           </div>
-                          <div className="mt-4 hidden flex-wrap items-center gap-2 lg:flex">
-                            <p className="whitespace-nowrap text-xs min-[375px]:text-sm">
-                              Vi jobbar med: <br />
-                            </p>
-                            {tags
-                              .find((tag) => tag.id === company.id)
-                              ?.tags.map((tag, index) => (
-                                <p
-                                  key={index}
-                                  className=" flex flex-wrap whitespace-nowrap border-[0.5px] border-black px-2 py-1 text-xs min-[375px]:text-sm"
-                                >
-                                  {tag}
-                                </p>
-                              ))}
-                          </div>
+                          {tags.find((tag) => tag.id === company.id)?.tags
+                            .length > 0 && (
+                            <div className="mt-4 hidden flex-wrap items-center gap-2 lg:flex">
+                              <p className="whitespace-nowrap text-xs min-[375px]:text-sm">
+                                Vi jobbar med: <br />
+                              </p>
+                              {tags
+                                .find((tag) => tag.id === company.id)
+                                ?.tags.map((tag, index) => (
+                                  <p
+                                    key={index}
+                                    className=" flex flex-wrap whitespace-nowrap border-[0.5px] border-black px-2 py-1 text-xs min-[375px]:text-sm"
+                                  >
+                                    {tag}
+                                  </p>
+                                ))}
+                            </div>
+                          )}
                         </li>
                       ))
                     ) : (
