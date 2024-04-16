@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 
 import { supabase } from "../client";
 import ThemeBox from "../components/ThemeBox";
-import Modal from "../components/GDPR/Modal";
+import Modal from "../components/Modals/GdprModal";
 
 const Signup = () => {
   const navigate = useNavigate();
