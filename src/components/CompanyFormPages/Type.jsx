@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ListItem = ({ sliderName, sliderText, onChange }) => {
+const ListItem = ({ sliderName, sliderText, onChange, defaultValue }) => {
   return (
     <li
       key={sliderName}
@@ -14,7 +14,7 @@ const ListItem = ({ sliderName, sliderText, onChange }) => {
           type="range"
           min="1"
           max="10"
-          defaultValue="5"
+          defaultValue={defaultValue}
           onChange={onChange}
           className="w-full"
           id={sliderName}
@@ -50,16 +50,19 @@ const Type = ({ answer, setAnswer }) => {
       </h2>
       <ul>
         <ListItem
+          defaultValue={answer.companyType.cool || 5}
           sliderName={"cool"}
           sliderText={"cool som en katt"}
           onChange={handleChange}
         />
         <ListItem
+          defaultValue={answer.companyType.fast || 5}
           sliderName={"fast"}
           sliderText={"snabb som blixten"}
           onChange={handleChange}
         />
         <ListItem
+          defaultValue={answer.companyType.stable || 5}
           sliderName={"stable"}
           sliderText={"stadig och stabil"}
           onChange={handleChange}
