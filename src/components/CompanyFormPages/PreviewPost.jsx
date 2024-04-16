@@ -34,7 +34,7 @@ const PreviewPost = ({ answer }) => {
 
   return (
     <>
-      <main className=" w-full select-none">
+      <div className=" w-full select-none">
         <div className=" flex w-full grid-cols-4 flex-col items-center justify-center gap-10 lg:grid lg:gap-1 lg:border-x-4 lg:border-yrgo-blue lg:bg-yrgo-blue">
           {/* company name + company as animation: */}
           <div className="col-span-4 flex w-full flex-col items-center gap-4 border-yrgo-blue bg-white lg:border-b-4 lg:pb-24 lg:pt-12">
@@ -177,7 +177,7 @@ const PreviewPost = ({ answer }) => {
             <h4 className="text-xl font-extrabold uppercase text-yrgo-blue lg:text-2xl">
               Fem snabba
             </h4>
-            <div className="flex w-full flex-col gap-4">
+            <div className="flex w-full flex-col gap-4 px-4 lg:px-0">
               {Object.entries(answer.top5).map(([key, value], index) => (
                 <div key={key} className="flex w-full flex-row">
                   <p
@@ -221,7 +221,7 @@ const PreviewPost = ({ answer }) => {
 
           <div className="mb-10 h-[2px] w-1/2 bg-yrgo-blue lg:hidden "></div>
         </div>
-      </main>
+      </div>
     </>
   );
 };
